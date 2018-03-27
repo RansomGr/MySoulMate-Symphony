@@ -1,0 +1,29 @@
+ransom_gr_publicite:
+    resource: "@RansomGrPubliciteBundle/Resources/config/routing.yml"
+    prefix:   /
+
+nadia_matching:
+    resource: "@NadiaMatchingBundle/Resources/config/routing.yml"
+    prefix:   /
+
+amira_events:
+    resource: "@AmiraEventsBundle/Resources/config/routing.yml"
+    prefix:   /
+
+marwen_plan:
+    resource: "@MarwenPlanBundle/Resources/config/routing.yml"
+    prefix:   /
+
+jileni_relation:
+    resource: "@JileniRelationBundle/Resources/config/routing.yml"
+    prefix:   /
+
+my_soul_mate_main:
+    resource: "@MySoulMateMainBundle/Resources/config/routing.yml"
+    prefix:   /
+
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
+fos_user:
+     resource: "@FOSUserBundle/Resources/config/routing/all.xml"

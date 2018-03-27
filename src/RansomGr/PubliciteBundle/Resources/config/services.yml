@@ -1,0 +1,4 @@
+services:
+#    ransom_gr_publicite.example:
+#        class: RansomGr\PubliciteBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

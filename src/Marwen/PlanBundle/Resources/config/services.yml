@@ -1,0 +1,4 @@
+services:
+#    marwen_plan.example:
+#        class: Marwen\PlanBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

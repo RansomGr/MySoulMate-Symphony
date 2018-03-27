@@ -1,0 +1,3 @@
+jileni_relation_homepage:
+    path:     /
+    defaults: { _controller: JileniRelationBundle:Default:index }

@@ -1,0 +1,3 @@
+amira_events_homepage:
+    path:     /
+    defaults: { _controller: AmiraEventsBundle:Default:index }

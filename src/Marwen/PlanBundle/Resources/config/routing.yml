@@ -1,0 +1,3 @@
+marwen_plan_homepage:
+    path:     /
+    defaults: { _controller: MarwenPlanBundle:Default:index }

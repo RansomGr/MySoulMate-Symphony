@@ -1,0 +1,3 @@
+nadia_matching_homepage:
+    path:     /
+    defaults: { _controller: NadiaMatchingBundle:Default:index }
