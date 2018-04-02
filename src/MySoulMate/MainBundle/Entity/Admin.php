@@ -4,6 +4,7 @@ namespace MySoulMate\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
+
 /**
  * Admin
  *
@@ -79,6 +80,7 @@ class Admin extends BaseUser
         $this->action = new \Doctrine\Common\Collections\ArrayCollection();
         $this->recCompte = new \Doctrine\Common\Collections\ArrayCollection();
     }
+
 
 }
 

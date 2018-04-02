@@ -2,8 +2,13 @@
 
 namespace MySoulMate\MainBundle;
 
-use Symfony\Component\HttpKernel\Bundle\Bundle;
+use FOS\UserBundle\FOSUserBundle;
 
-class MySoulMateMainBundle extends Bundle
+class MySoulMateMainBundle extends FOSUserBundle
 {
+    public function getParent()
+    {
+        return 'FOSUserBundle';
+    }
+
 }
