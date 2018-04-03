@@ -129,6 +129,9 @@
                               CONTENT
     =========================================================-->
     <main class="text-center">
+        {% block content %}
+
+        {% endblock %}
 
         <!-- Dating Club Frequently -->
         <section class="well-10 text-left center-xs">
@@ -142,9 +145,7 @@
                     <div class="col-sm-6">
 
                         <article class="post">
-                            {% block content %}
 
-                            {% endblock %}
 
                             <h5 class="small text-primary">
                                 <!--Stay in control>-->

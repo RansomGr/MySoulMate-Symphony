@@ -1,3 +1,3 @@
 ransom_gr_publicite_homepage:
-    path:     /
+    path:     /rr
     defaults: { _controller: RansomGrPubliciteBundle:Default:index }
