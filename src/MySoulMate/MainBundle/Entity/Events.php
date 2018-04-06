@@ -93,20 +93,6 @@ class Events
      */
     private $planEvt;
 
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Client", mappedBy="evenementGroupe")
-     */
-    private $client;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->client = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
 }
 

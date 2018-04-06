@@ -66,20 +66,6 @@ class Plan
      */
     private $entite;
 
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Client", mappedBy="plan")
-     */
-    private $client;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->client = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
 }
 

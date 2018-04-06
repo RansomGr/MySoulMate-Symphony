@@ -69,20 +69,6 @@ class Relation
      */
     private $client2;
 
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="ContenuMoment", mappedBy="relation")
-     */
-    private $cMoment;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->cMoment = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
 }
 

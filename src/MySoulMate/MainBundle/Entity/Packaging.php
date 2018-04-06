@@ -49,20 +49,6 @@ class Packaging
      */
     private $prix;
 
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Client", mappedBy="packaging")
-     */
-    private $client;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->client = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
 }
 

@@ -40,7 +40,7 @@ class Actualite
      *
      * @ORM\Column(name="add_date", type="datetime", nullable=false)
      */
-    private $addDate = 'CURRENT_TIMESTAMP';
+    private $addDate;
 
     /**
      * @var \Entite
@@ -62,20 +62,6 @@ class Actualite
      */
     private $createur;
 
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Client", mappedBy="actualite")
-     */
-    private $client;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->client = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
 }
 

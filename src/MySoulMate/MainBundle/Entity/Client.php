@@ -3,70 +3,40 @@
 namespace MySoulMate\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use FOS\UserBundle\Model\User as BaseUser;
 /**
  * Client
  *
  * @ORM\Table(name="client", indexes={@ORM\Index(name="fk_client_profil", columns={"profil"})})
  * @ORM\Entity
  */
-class Client
+class Client extends  BaseUser
 {
     /**
      * @var string
      *
-     * @ORM\Column(name="prenom", type="string", length=30, nullable=true)
+     * @ORM\Column(name="nom", type="string", length=50, nullable=false)
      */
-    private $prenom;
-
+    private $nom;
     /**
      * @var string
      *
-     * @ORM\Column(name="motdepasse", type="string", length=50, nullable=true)
+     * @ORM\Column(name="prenom", type="string", length=50, nullable=false)
      */
-    private $motdepasse;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="email", type="string", length=50, nullable=true)
-     */
-    private $email;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="date_naissane", type="date", nullable=true)
-     */
-    private $dateNaissane;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="pseudo", type="string", length=30, nullable=true)
-     */
-    private $pseudo;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="activation", type="integer", nullable=false)
-     */
-    private $activation = '0';
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="ban", type="integer", nullable=false)
-     */
-    private $ban = '0';
-
+    private $prenom
+    ;
     /**
      * @var string
      *
      * @ORM\Column(name="gender", type="string", length=20, nullable=false)
      */
     private $gender;
+    /**
+     * @var date
+     *
+     * @ORM\Column(name="datenaissance", type="date",nullable=false)
+     */
+    private $datenaissance;
 
     /**
      * @var \Profil
@@ -90,92 +60,6 @@ class Client
      */
     private $entite;
 
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Packaging", inversedBy="client")
-     * @ORM\JoinTable(name="achat_packaging",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="client", referencedColumnName="entite")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="packaging", referencedColumnName="ID")
-     *   }
-     * )
-     */
-    private $packaging;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Plan", inversedBy="client")
-     * @ORM\JoinTable(name="avis",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="client", referencedColumnName="entite")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="plan", referencedColumnName="Entite")
-     *   }
-     * )
-     */
-    private $plan;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Client", inversedBy="client1")
-     * @ORM\JoinTable(name="invitation",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="client1", referencedColumnName="entite")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="client2", referencedColumnName="entite")
-     *   }
-     * )
-     */
-    private $client2;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Events", inversedBy="client")
-     * @ORM\JoinTable(name="invite_evenement",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="client", referencedColumnName="entite")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="evenement_groupe", referencedColumnName="Entite")
-     *   }
-     * )
-     */
-    private $evenementGroupe;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Actualite", inversedBy="client")
-     * @ORM\JoinTable(name="mention_jaime",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="client", referencedColumnName="entite")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="actualite", referencedColumnName="ID")
-     *   }
-     * )
-     */
-    private $actualite;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->packaging = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->plan = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->client2 = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->evenementGroupe = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->actualite = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
 }
 
