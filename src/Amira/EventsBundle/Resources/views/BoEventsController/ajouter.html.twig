@@ -1,0 +1,32 @@
+{% extends "Layouts/Layout_BO.html.twig" %}
+{% block content %}
+<h1>Ajouter évènement</h1>
+    {{ form_start(fajout)  }}
+<table>
+    <tr>
+        <td>Date :</td>
+        <td>{{ form_widget(fajout.dateEvt,{'attr':{'class':'input','placeholder':""}}) }}</td>
+    </tr>
+    <tr>
+        <td>Type :</td>
+        <td>{{ form_widget(fajout.typeEvt,{'attr':{'class':'input','placeholder':""}}) }}</td>
+    </tr>
+    <tr>
+        <td>Heure :</td>
+        <td>{{ form_widget(fajout.heure,{'attr':{'class':'input','placeholder':""}}) }}</td>
+    </tr>
+    <tr>
+        <td>Durée :</td>
+        <td>{{ form_widget(fajout.dureeEvt,{'attr':{'class':'input','placeholder':""}}) }}</td>
+    </tr>
+    <tr>
+        <td>Description :</td>
+        <td>{{ form_widget(fajout.descriptionEvt,{'attr':{'class':'input','placeholder':""}}) }}</td>
+    </tr>
+    <tr>
+        <td>nombre d'invité :</td>
+        <td>{{ form_widget(fajout.nbMax,{'attr':{'class':'input','placeholder':""}}) }}</td>
+    </tr>
+</table>
+    {{ form_end(fajout) }}
+{% endblock %}

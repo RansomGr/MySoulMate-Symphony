@@ -1,3 +1,35 @@
 amira_events_homepage:
     path:     /
     defaults: { _controller: AmiraEventsBundle:Default:index }
+
+_ajouter:
+    path:     /ajouter
+    defaults: { _controller: AmiraEventsBundle:BoEventsController:Ajouter }
+
+_modifier:
+    path:     /modifier
+    defaults: { _controller: AmiraEventsBundle:BoEventsController:Modifier }
+
+_listing:
+    path:     /listing
+    defaults: { _controller: AmiraEventsBundle:BoEventsController:Listing }
+
+_delete:
+    path:     /delete/{$entite}
+    defaults: { _controller: AmiraEventsBundle:BoEventsController:Delete }
+
+FO_ajouter:
+        path:     /foajouter
+        defaults: { _controller: AmiraEventsBundle:FoEventsController:Ajouter }
+
+FO _modifier:
+        path:     /fomodifier
+        defaults: { _controller: AmiraEventsBundle:FoEventsController:Modifier }
+
+FO_listing:
+        path:     /folisting
+        defaults: { _controller: AmiraEventsBundle:FoEventsController:Listing }
+
+FO_delete:
+        path:     /fodelete/{$entite}
+        defaults: { _controller: AmiraEventsBundle:FoEventsController:Delete }
