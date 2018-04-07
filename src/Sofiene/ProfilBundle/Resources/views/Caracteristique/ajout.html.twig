@@ -1,0 +1,105 @@
+{% extends "Layouts/Layout_Profil.html.twig" %}
+
+
+{% block content %}
+
+
+{{ form_start(form)  }}
+<table>
+                  <tr>
+                  <td>Corpulence</td>
+                      <td>{{ form_widget(form.corpulence,{'attr':{'class':'input','placeholder':"corpulence"}}) }}</td>
+                  </tr>
+    <tr>
+        <td>Pilosite</td>
+        <td>{{ form_widget(form.pilosite,{'attr':{'class':'input','placeholder':"corpulence"}}) }}</td>
+    </tr>
+
+    <tr>
+        <td>Origine</td>
+        <td>    {{ form_widget(form.origine,{'attr':{'class':'input','placeholder':"corpulence"}}) }}
+        </td>
+    </tr>
+
+    <tr>
+        <td>Profession</td>
+        <td>        {{ form_widget(form.profession,{'attr':{'class':'input','placeholder':"corpulence"}}) }}
+
+        </td>
+    </tr>
+
+
+    <tr>
+        <td>Alcool</td>
+        <td>            {{ form_widget(form.alcool,{'attr':{'class':'input','placeholder':"corpulence"}}) }}
+
+        </td>
+    </tr>
+
+
+
+
+
+    <tr>
+        <td>Tabac</td>
+        <td>            {{ form_widget(form.tabac,{'attr':{'class':'input','placeholder':"corpulence"}}) }}
+
+        </td>
+    </tr>
+
+    <tr>
+        <td>Taille</td>
+        <td>            {{ form_widget(form.taille,{'attr':{'class':'input','placeholder':"corpulence"}}) }}
+
+        </td>
+    </tr>
+    <tr>
+        <td>Cheuveux</td>
+        <td>            {{ form_widget(form.cheveux,{'attr':{'class':'input','placeholder':"corpulence"}}) }}
+
+        </td>
+    </tr>
+
+    <tr>
+        <td>Yeux</td>
+        <td>            {{ form_widget(form.yeux,{'attr':{'class':'input','placeholder':"corpulence"}}) }}
+
+        </td>
+    </tr>
+    <tr>
+        <td>Caractère</td>
+        <td>            {{ form_widget(form.caractere,{'attr':{'class':'input','placeholder':"corpulence"}}) }}
+
+        </td>
+    </tr>
+    <tr>
+        <td>Statut</td>
+        <td>            {{ form_widget(form.statut,{'attr':{'class':'input','placeholder':"corpulence"}}) }}
+
+        </td>
+    </tr>
+    <tr>
+        <td>Cuisine</td>
+        <td>            {{ form_widget(form.cuisine,{'attr':{'class':'input','placeholder':"corpulence"}}) }}
+
+        </td>
+    </tr>
+
+
+
+
+
+
+    <tr>
+        <td>             <input type="submit" class="button" value="Ajouter">
+
+
+        </td>
+    </tr>
+
+
+</table>
+
+{{ form_end(form) }}
+
+{% endblock %}

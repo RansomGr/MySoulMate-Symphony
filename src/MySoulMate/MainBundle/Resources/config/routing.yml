@@ -1,3 +1,7 @@
-my_soul_mate_main_homepage:
-    path:     /
-    defaults: { _controller: MySoulMateMainBundle:Default:index }
+_homepage:
+    path:     /welcome
+    defaults: { _controller: MySoulMateMainBundle:Main:index }
+_Dashpage:
+    path:     /Admin
+    defaults: { _controller: MySoulMateMainBundle:Main:Admin }
+

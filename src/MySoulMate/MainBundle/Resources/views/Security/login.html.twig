@@ -1,0 +1,5 @@
+{% extends "@FOSUser/layout.html.twig" %}
+{% trans_default_domain 'FOSUserBundle' %}
+{% block fos_user_content %}
+    {{ include('Layouts/Login.html.twig') }}
+{% endblock fos_user_content %}

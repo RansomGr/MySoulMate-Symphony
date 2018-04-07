@@ -15,6 +15,13 @@
     <link href="{{ asset("BO_assets/vendors/nprogress/nprogress.css") }}" rel="stylesheet">
     <!-- iCheck -->
     <link href="{{ asset("BO_assets/vendors/iCheck/skins/flat/green.css") }}" rel="stylesheet">
+    <!-- Datatables -->
+    <link href="{{ asset("BO_assets/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css") }}" rel="stylesheet">
+    <link href="{{ asset("BO_assets/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css") }}" rel="stylesheet">
+    <link href="{{ asset("BO_assets/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css") }}" rel="stylesheet">
+    <link href="{{ asset("BO_assets/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css") }}" rel="stylesheet">
+    <link href="{{ asset("BO_assets/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css") }}" rel="stylesheet">
+
 
     <!-- bootstrap-progressbar -->
     <link href="{{ asset("BO_assets/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css") }}"
@@ -230,15 +237,10 @@
         <!-- /top navigation -->
 
         <!-- page content -->
-        <div class="right_col" role="main">
-           {% block content %}
+        <div class="left_col" role="main">
+        {% block content %}
 
-
-
-
-
-
-            {% endblock %}
+        {% endblock %}
         </div>
         <!-- /page content -->
 

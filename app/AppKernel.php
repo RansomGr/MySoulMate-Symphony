@@ -23,6 +23,7 @@ class AppKernel extends Kernel
             new Amira\EventsBundle\AmiraEventsBundle(),
             new Nadia\MatchingBundle\NadiaMatchingBundle(),
             new RansomGr\PubliciteBundle\RansomGrPubliciteBundle(),
+            new Sofiene\ProfilBundle\SofieneProfilBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

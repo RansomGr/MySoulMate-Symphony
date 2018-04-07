@@ -1,0 +1,34 @@
+<link rel="stylesheet" href="{{ asset('FO_assets/Search_files/bootstrap.css') }}" xmlns="http://www.w3.org/1999/html"
+      xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"/>
+<link rel="stylesheet" href="{{ asset('FO_assets/Register_files/bootstrap.css') }}" />
+<link rel="stylesheet" href="{{ asset('FO_assets/FAQ.html') }}" />
+<div class="row">
+    <div class="col-sm-4" style="background-color:lavender;">
+
+    {% for i in m %}
+        <table border="2">
+        <tr>
+            <td>alcool</td>
+    <td>{{ i.alcool }}</td>
+        </tr>
+            <tr>
+                <td>caractere</td>
+
+                <td>{{ i.caractere }} </td>
+            </tr>
+
+            <tr>
+                <td>cheveux</td>
+
+                <td>{{ i.cheveux }}</td>
+            </tr>
+            <tr>
+                <td>modifier</td>
+
+                <td> <a href="{{ path('modifier_caracteristique',{'q':i.id}) }}"> modifier ici</a> </td>
+            </tr>
+        </table>
+{% endfor %}
+
+    </div>
+</div>
