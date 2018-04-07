@@ -1,3 +1,24 @@
-sofiene_profil_homepage:
-    path:     /
-    defaults: { _controller: SofieneProfilBundle:Default:index }
+ajouter:
+    path:     /s
+    defaults: { _controller: SofieneProfilBundle:Caracteristique:ajout }
+
+afficher:
+    path:     /afficher/
+    defaults: { _controller: SofieneProfilBundle:Caracteristique:affichage }
+
+
+modifier_caracteristique:
+    path:     /modifier/{q}
+    defaults: { _controller: SofieneProfilBundle:Caracteristique:modifier }
+
+
+acceuil:
+    path:     /acceuil
+    defaults: { _controller: SofieneProfilBundle:Caracteristique:acceuil}
+
+
+
+
+
+
+

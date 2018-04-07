@@ -22,16 +22,6 @@ class Moment
     private $id;
 
     /**
-     * @var \Conseil
-     *
-     * @ORM\ManyToOne(targetEntity="Conseil")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="c_moment", referencedColumnName="ID")
-     * })
-     */
-    private $cMoment;
-
-    /**
      * @var \Relation
      *
      * @ORM\ManyToOne(targetEntity="Relation")
@@ -40,6 +30,16 @@ class Moment
      * })
      */
     private $relation;
+
+    /**
+     * @var \Conseil
+     *
+     * @ORM\ManyToOne(targetEntity="Conseil")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="c_moment", referencedColumnName="ID")
+     * })
+     */
+    private $cMoment;
 
 
 }
