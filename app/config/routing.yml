@@ -1,7 +1,3 @@
-sofiene_profil:
-    resource: "@SofieneProfilBundle/Resources/config/routing.yml"
-    prefix:   /
-
 ransom_gr_publicite:
     resource: "@RansomGrPubliciteBundle/Resources/config/routing.yml"
     prefix:   /

@@ -60,6 +60,102 @@ class Client extends  BaseUser
      */
     private $entite;
 
+    /**
+     * @return string
+     */
+    public function getNom()
+    {
+        return $this->nom;
+    }
+
+    /**
+     * @param string $nom
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPrenom()
+    {
+        return $this->prenom;
+    }
+
+    /**
+     * @param string $prenom
+     */
+    public function setPrenom($prenom)
+    {
+        $this->prenom = $prenom;
+    }
+
+    /**
+     * @return string
+     */
+    public function getGender()
+    {
+        return $this->gender;
+    }
+
+    /**
+     * @param string $gender
+     */
+    public function setGender($gender)
+    {
+        $this->gender = $gender;
+    }
+
+    /**
+     * @return date
+     */
+    public function getDatenaissance()
+    {
+        return $this->datenaissance;
+    }
+
+    /**
+     * @param date $datenaissance
+     */
+    public function setDatenaissance($datenaissance)
+    {
+        $this->datenaissance = $datenaissance;
+    }
+
+    /**
+     * @return \Profil
+     */
+    public function getProfil()
+    {
+        return $this->profil;
+    }
+
+    /**
+     * @param \Profil $profil
+     */
+    public function setProfil($profil)
+    {
+        $this->profil = $profil;
+    }
+
+    /**
+     * @return \Entite
+     */
+    public function getEntite()
+    {
+        return $this->entite;
+    }
+
+    /**
+     * @param \Entite $entite
+     */
+    public function setEntite($entite)
+    {
+        $this->entite = $entite;
+    }
+
 
 }
 

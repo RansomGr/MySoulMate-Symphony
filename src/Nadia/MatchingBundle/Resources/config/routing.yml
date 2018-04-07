@@ -1,3 +1,28 @@
-nadia_matching_homepage:
-    path:     /
-    defaults: { _controller: NadiaMatchingBundle:Default:index }
+FO_matching_homepage:
+    path:     /FO_matching_homepage
+    defaults: { _controller: NadiaMatchingBundle:Matching:FO_MatchingHomepage }
+
+FO_voirpackagings:
+    path:     /FO_voirpackaging
+    defaults: { _controller: NadiaMatchingBundle:Matching:FO_Packagings }
+
+FO_ajouterpref:
+    path:     /FO_ajouterpref
+    defaults: { _controller: NadiaMatchingBundle:Matching:FO_AjoutPref }
+
+
+BO_ajouterpack:
+    path:     /BO_ajouterpack
+    defaults: { _controller: NadiaMatchingBundle:Packaging:Ajout }
+
+BO_afficherpack:
+    path:     /BO_afficherpack
+    defaults: { _controller: NadiaMatchingBundle:Packaging:affichage }
+
+BO_modifpack:
+    path:     /BO_modifpack{id}
+    defaults: { _controller: NadiaMatchingBundle:Packaging:update }
+
+BO_supppack:
+    path:     /BO_supppack{id}
+    defaults: { _controller: NadiaMatchingBundle:Packaging:delete }
