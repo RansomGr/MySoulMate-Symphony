@@ -40,14 +40,21 @@ class Avis
      *
      * @ORM\Column(name="dateh", type="datetime", nullable=false)
      */
-    private $dateh = 'CURRENT_TIMESTAMP';
+    private $dateh;
 
     /**
-     * @var \Client
+     * @var integer
      *
-     * @ORM\ManyToOne(targetEntity="Client")
+     * @ORM\Column(name="adresse", type="integer", nullable=false)
+     */
+    private $adresse;
+
+    /**
+     * @var \Utilisateur
+     *
+     * @ORM\ManyToOne(targetEntity="Utilisateur")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="client", referencedColumnName="entite")
+     *   @ORM\JoinColumn(name="client", referencedColumnName="id")
      * })
      */
     private $client;
@@ -57,7 +64,7 @@ class Avis
      *
      * @ORM\ManyToOne(targetEntity="Plan")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="plan", referencedColumnName="Entite")
+     *   @ORM\JoinColumn(name="plan", referencedColumnName="id")
      * })
      */
     private $plan;

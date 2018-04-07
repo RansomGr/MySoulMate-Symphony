@@ -50,21 +50,21 @@ class Relation
     private $pointRelation;
 
     /**
-     * @var \Client
+     * @var \Utilisateur
      *
-     * @ORM\ManyToOne(targetEntity="Client")
+     * @ORM\ManyToOne(targetEntity="Utilisateur")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="client1", referencedColumnName="entite")
+     *   @ORM\JoinColumn(name="client1", referencedColumnName="id")
      * })
      */
     private $client1;
 
     /**
-     * @var \Client
+     * @var \Utilisateur
      *
-     * @ORM\ManyToOne(targetEntity="Client")
+     * @ORM\ManyToOne(targetEntity="Utilisateur")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="client2", referencedColumnName="entite")
+     *   @ORM\JoinColumn(name="client2", referencedColumnName="id")
      * })
      */
     private $client2;

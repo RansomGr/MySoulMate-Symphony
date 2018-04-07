@@ -26,27 +26,27 @@ class Invitation
      *
      * @ORM\Column(name="date_h", type="datetime", nullable=false)
      */
-    private $dateH = 'CURRENT_TIMESTAMP';
+    private $dateH;
 
     /**
-     * @var \Client
+     * @var \Utilisateur
      *
-     * @ORM\ManyToOne(targetEntity="Client")
+     * @ORM\ManyToOne(targetEntity="Utilisateur")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="client1", referencedColumnName="entite")
-     * })
-     */
-    private $client1;
-
-    /**
-     * @var \Client
-     *
-     * @ORM\ManyToOne(targetEntity="Client")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="client2", referencedColumnName="entite")
+     *   @ORM\JoinColumn(name="client2", referencedColumnName="id")
      * })
      */
     private $client2;
+
+    /**
+     * @var \Utilisateur
+     *
+     * @ORM\ManyToOne(targetEntity="Utilisateur")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="client1", referencedColumnName="id")
+     * })
+     */
+    private $client1;
 
 
 }

@@ -22,21 +22,28 @@ class InviteEvenement
     private $id;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="participe", type="string", length=3, nullable=false)
+     */
+    private $participe;
+
+    /**
      * @var \Events
      *
      * @ORM\ManyToOne(targetEntity="Events")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="evenement_groupe", referencedColumnName="Entite")
+     *   @ORM\JoinColumn(name="evenement_groupe", referencedColumnName="id")
      * })
      */
     private $evenementGroupe;
 
     /**
-     * @var \Client
+     * @var \Utilisateur
      *
-     * @ORM\ManyToOne(targetEntity="Client")
+     * @ORM\ManyToOne(targetEntity="Utilisateur")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="client", referencedColumnName="entite")
+     *   @ORM\JoinColumn(name="client", referencedColumnName="id")
      * })
      */
     private $client;

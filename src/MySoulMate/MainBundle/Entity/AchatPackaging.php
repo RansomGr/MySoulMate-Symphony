@@ -22,16 +22,6 @@ class AchatPackaging
     private $id;
 
     /**
-     * @var \Client
-     *
-     * @ORM\ManyToOne(targetEntity="Client")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="client", referencedColumnName="entite")
-     * })
-     */
-    private $client;
-
-    /**
      * @var \Packaging
      *
      * @ORM\ManyToOne(targetEntity="Packaging")
@@ -40,6 +30,16 @@ class AchatPackaging
      * })
      */
     private $packaging;
+
+    /**
+     * @var \Utilisateur
+     *
+     * @ORM\ManyToOne(targetEntity="Utilisateur")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="client", referencedColumnName="id")
+     * })
+     */
+    private $client;
 
 
 }

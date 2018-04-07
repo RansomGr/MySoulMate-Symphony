@@ -46,11 +46,11 @@ class Interaction
     private $actualite;
 
     /**
-     * @var \Client
+     * @var \Utilisateur
      *
-     * @ORM\ManyToOne(targetEntity="Client")
+     * @ORM\ManyToOne(targetEntity="Utilisateur")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="Client", referencedColumnName="entite")
+     *   @ORM\JoinColumn(name="Client", referencedColumnName="id")
      * })
      */
     private $client;
