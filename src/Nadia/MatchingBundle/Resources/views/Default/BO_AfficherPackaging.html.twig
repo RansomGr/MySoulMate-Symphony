@@ -1,0 +1,26 @@
+
+{% extends "Layouts/Layout_BO.html.twig" %}
+
+
+{% block content %}
+
+    <table border="1">
+        <tr>
+            <td>Nom</td>
+            <td>Contenu</td>
+            <td>Prix</td>
+            <td>Duree</td>
+        </tr>
+        {%  for i in m %}
+            <tr>
+                <td>{{ i.getNom() }}</td>
+                <td>{{ i.getContenu() }}</td>
+                <td>{{ i.getPrix() }}</td>
+                <td>{{ i.getDuree() }}</td>
+                <td><a href="{{ path('BO_supppack',{'id':i.getId()}) }}">delete</a> </td>
+                <td><a href="{{ path('BO_modifpack',{'id':i.getId}) }}">modif</a> </td>
+            </tr>
+        {%  endfor %}
+    </table>
+
+{% endblock %}
