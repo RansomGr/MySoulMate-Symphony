@@ -56,28 +56,6 @@ class ContenuMoment
      */
     private $dateMoment;
 
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Relation", inversedBy="cMoment")
-     * @ORM\JoinTable(name="moment",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="c_moment", referencedColumnName="ID")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="relation", referencedColumnName="ID")
-     *   }
-     * )
-     */
-    private $relation;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->relation = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
 }
 

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Actualite
  *
- * @ORM\Table(name="actualite", indexes={@ORM\Index(name="fk_actualite_e", columns={"entite"}), @ORM\Index(name="fk_actualite_owner", columns={"createur"})})
+ * @ORM\Table(name="actualite", indexes={@ORM\Index(name="FK_54928197FAD8DA84", columns={"createur"})})
  * @ORM\Entity
  */
 class Actualite
@@ -40,42 +40,18 @@ class Actualite
      *
      * @ORM\Column(name="add_date", type="datetime", nullable=false)
      */
-    private $addDate = 'CURRENT_TIMESTAMP';
+    private $addDate;
 
     /**
-     * @var \Entite
+     * @var \Utilisateur
      *
-     * @ORM\ManyToOne(targetEntity="Entite")
+     * @ORM\ManyToOne(targetEntity="Utilisateur")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="entite", referencedColumnName="ID")
-     * })
-     */
-    private $entite;
-
-    /**
-     * @var \Client
-     *
-     * @ORM\ManyToOne(targetEntity="Client")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="createur", referencedColumnName="entite")
+     *   @ORM\JoinColumn(name="createur", referencedColumnName="id")
      * })
      */
     private $createur;
 
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Client", mappedBy="actualite")
-     */
-    private $client;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->client = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
 }
 

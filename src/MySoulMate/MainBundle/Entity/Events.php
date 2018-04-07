@@ -13,6 +13,15 @@ use Doctrine\ORM\Mapping as ORM;
 class Events
 {
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="nom_evt", type="string", length=50, nullable=false)
@@ -62,51 +71,25 @@ class Events
     private $nbMax;
 
     /**
-     * @var \Entite
-     *
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
-     * @ORM\OneToOne(targetEntity="Entite")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="Entite", referencedColumnName="ID")
-     * })
-     */
-    private $entite;
-
-    /**
-     * @var \Client
-     *
-     * @ORM\ManyToOne(targetEntity="Client")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="organisateur_evt", referencedColumnName="entite")
-     * })
-     */
-    private $organisateurEvt;
-
-    /**
      * @var \Plan
      *
      * @ORM\ManyToOne(targetEntity="Plan")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="plan_evt", referencedColumnName="Entite")
+     *   @ORM\JoinColumn(name="plan_evt", referencedColumnName="id")
      * })
      */
     private $planEvt;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * @var \Utilisateur
      *
-     * @ORM\ManyToMany(targetEntity="Client", mappedBy="evenementGroupe")
+     * @ORM\ManyToOne(targetEntity="Utilisateur")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="organisateur_evt", referencedColumnName="id")
+     * })
      */
-    private $client;
+    private $organisateurEvt;
 
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->client = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
 }
 

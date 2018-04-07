@@ -5,12 +5,12 @@ namespace MySoulMate\MainBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Interaction
+ * MentionJaime
  *
- * @ORM\Table(name="interaction", indexes={@ORM\Index(name="fk_interaction_client", columns={"Client"}), @ORM\Index(name="fk_interaction_actualite", columns={"actualite"})})
+ * @ORM\Table(name="mention_jaime", indexes={@ORM\Index(name="IDX_2E95F80CC7440455", columns={"client"}), @ORM\Index(name="IDX_2E95F80C54928197", columns={"actualite"})})
  * @ORM\Entity
  */
-class Interaction
+class MentionJaime
 {
     /**
      * @var integer
@@ -24,16 +24,9 @@ class Interaction
     /**
      * @var string
      *
-     * @ORM\Column(name="commentaire", type="text", length=65535, nullable=true)
+     * @ORM\Column(name="jaime", type="string", length=3, nullable=false)
      */
-    private $commentaire;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="dateheure", type="datetime", nullable=true)
-     */
-    private $dateheure;
+    private $jaime;
 
     /**
      * @var \Actualite
@@ -50,7 +43,7 @@ class Interaction
      *
      * @ORM\ManyToOne(targetEntity="Utilisateur")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="Client", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="client", referencedColumnName="id")
      * })
      */
     private $client;

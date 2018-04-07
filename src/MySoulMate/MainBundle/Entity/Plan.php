@@ -13,6 +13,15 @@ use Doctrine\ORM\Mapping as ORM;
 class Plan
 {
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="type", type="string", length=30, nullable=true)
@@ -54,32 +63,6 @@ class Plan
      */
     private $description;
 
-    /**
-     * @var \Entite
-     *
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
-     * @ORM\OneToOne(targetEntity="Entite")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="Entite", referencedColumnName="ID")
-     * })
-     */
-    private $entite;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Client", mappedBy="plan")
-     */
-    private $client;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->client = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
 }
 
