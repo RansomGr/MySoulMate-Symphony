@@ -1,0 +1,24 @@
+Admin_publicite_index:
+    path:     /
+    defaults: { _controller: "RansomGrPubliciteBundle:Publicite:index" }
+    methods:  GET
+
+Admin_publicite_show:
+    path:     /{id}/show
+    defaults: { _controller: "RansomGrPubliciteBundle:Publicite:show" }
+    methods:  GET
+
+Admin_publicite_new:
+    path:     /new
+    defaults: { _controller: "RansomGrPubliciteBundle:Publicite:new" }
+    methods:  [GET, POST]
+
+Admin_publicite_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "RansomGrPubliciteBundle:Publicite:edit" }
+    methods:  [GET, POST]
+
+Admin_publicite_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "RansomGrPubliciteBundle:Publicite:delete" }
+    methods:  DELETE
