@@ -81,6 +81,118 @@ class Admin extends BaseUser
         $this->recCompte = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNom()
+    {
+        return $this->nom;
+    }
+
+    /**
+     * @param string $nom
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPrenom()
+    {
+        return $this->prenom;
+    }
+
+    /**
+     * @param string $prenom
+     */
+    public function setPrenom($prenom)
+    {
+        $this->prenom = $prenom;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLogin()
+    {
+        return $this->login;
+    }
+
+    /**
+     * @param string $login
+     */
+    public function setLogin($login)
+    {
+        $this->login = $login;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMotdepasse()
+    {
+        return $this->motdepasse;
+    }
+
+    /**
+     * @param string $motdepasse
+     */
+    public function setMotdepasse($motdepasse)
+    {
+        $this->motdepasse = $motdepasse;
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAction()
+    {
+        return $this->action;
+    }
+
+    /**
+     * @param \Doctrine\Common\Collections\Collection $action
+     */
+    public function setAction($action)
+    {
+        $this->action = $action;
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getRecCompte()
+    {
+        return $this->recCompte;
+    }
+
+    /**
+     * @param \Doctrine\Common\Collections\Collection $recCompte
+     */
+    public function setRecCompte($recCompte)
+    {
+        $this->recCompte = $recCompte;
+    }
+
 
 }
 
