@@ -14,8 +14,10 @@ security:
            pattern: ^/
            form_login:
                provider: fos_userbundle
+               success_handler: authentication.handler.login_success_handler
                #csrf_provider: form.csrf_provider
-           logout:       true
+           logout:
+               target : /login
            anonymous:    true
 
     access_control:
