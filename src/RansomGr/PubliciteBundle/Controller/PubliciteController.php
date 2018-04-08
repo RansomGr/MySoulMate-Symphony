@@ -22,7 +22,7 @@ class PubliciteController extends Controller
 
         $publicites = $em->getRepository('RansomGrPubliciteBundle:Publicite')->findAll();
 
-        return $this->render('publicite/index.html.twig', array(
+        return $this->render('@RansomGrPublicite/publicite/index.html.twig', array(
             'publicites' => $publicites,
         ));
     }
@@ -42,10 +42,10 @@ class PubliciteController extends Controller
             $em->persist($publicite);
             $em->flush();
 
-            return $this->redirectToRoute('Admin_publicite_show', array('id' => $publicite->getId()));
+            return $this->redirectToRoute('Admin_Publicite_show', array('id' => $publicite->getId()));
         }
 
-        return $this->render('publicite/new.html.twig', array(
+        return $this->render('@RansomGrPublicite/publicite/new.html.twig', array(
             'publicite' => $publicite,
             'form' => $form->createView(),
         ));
@@ -59,7 +59,7 @@ class PubliciteController extends Controller
     {
         $deleteForm = $this->createDeleteForm($publicite);
 
-        return $this->render('publicite/show.html.twig', array(
+        return $this->render('@RansomGrPublicite/publicite/show.html.twig', array(
             'publicite' => $publicite,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -78,10 +78,10 @@ class PubliciteController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('Admin_publicite_edit', array('id' => $publicite->getId()));
+            return $this->redirectToRoute('Admin_Publicite_edit', array('id' => $publicite->getId()));
         }
 
-        return $this->render('publicite/edit.html.twig', array(
+        return $this->render('@RansomGrPublicite/publicite/edit.html.twig', array(
             'publicite' => $publicite,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -103,7 +103,7 @@ class PubliciteController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('Admin_publicite_index');
+        return $this->redirectToRoute('Admin_Publicite_index');
     }
 
     /**
@@ -116,9 +116,9 @@ class PubliciteController extends Controller
     private function createDeleteForm(Publicite $publicite)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('Admin_publicite_delete', array('id' => $publicite->getId())))
+            ->setAction($this->generateUrl('Admin_Publicite_delete', array('id' => $publicite->getId())))
             ->setMethod('DELETE')
-            ->getForm();
-
+            ->getForm()
+        ;
     }
 }

@@ -18,6 +18,10 @@
                 <td>{{ publicite.photo }}</td>
             </tr>
             <tr>
+                <th>Lien</th>
+                <td>{{ publicite.lien }}</td>
+            </tr>
+            <tr>
                 <th>Description</th>
                 <td>{{ publicite.description }}</td>
             </tr>
@@ -29,15 +33,19 @@
                 <th>Datefin</th>
                 <td>{% if publicite.dateFin %}{{ publicite.dateFin|date('Y-m-d') }}{% endif %}</td>
             </tr>
+            <tr>
+                <th>Approved</th>
+                <td>{{ publicite.approved }}</td>
+            </tr>
         </tbody>
     </table>
 
     <ul>
         <li>
-            <a href="{{ path('Admin_publicite_index') }}">Back to the list</a>
+            <a href="{{ path('Admin_Publicite_index') }}">Back to the list</a>
         </li>
         <li>
-            <a href="{{ path('Admin_publicite_edit', { 'id': publicite.id }) }}">Edit</a>
+            <a href="{{ path('Admin_Publicite_edit', { 'id': publicite.id }) }}">Edit</a>
         </li>
         <li>
             {{ form_start(delete_form) }}

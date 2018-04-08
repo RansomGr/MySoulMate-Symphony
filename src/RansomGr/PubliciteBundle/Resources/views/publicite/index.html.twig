@@ -9,28 +9,32 @@
                 <th>Id</th>
                 <th>Title</th>
                 <th>Photo</th>
+                <th>Lien</th>
                 <th>Description</th>
                 <th>Datedebut</th>
                 <th>Datefin</th>
+                <th>Approved</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for publicite in publicites %}
             <tr>
-                <td><a href="{{ path('Admin_publicite_show', { 'id': publicite.id }) }}">{{ publicite.id }}</a></td>
+                <td><a href="{{ path('Admin_Publicite_show', { 'id': publicite.id }) }}">{{ publicite.id }}</a></td>
                 <td>{{ publicite.title }}</td>
                 <td>{{ publicite.photo }}</td>
+                <td>{{ publicite.lien }}</td>
                 <td>{{ publicite.description }}</td>
                 <td>{% if publicite.dateDebut %}{{ publicite.dateDebut|date('Y-m-d') }}{% endif %}</td>
                 <td>{% if publicite.dateFin %}{{ publicite.dateFin|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ publicite.approved }}</td>
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('Admin_publicite_show', { 'id': publicite.id }) }}">show</a>
+                            <a href="{{ path('Admin_Publicite_show', { 'id': publicite.id }) }}">show</a>
                         </li>
                         <li>
-                            <a href="{{ path('Admin_publicite_edit', { 'id': publicite.id }) }}">edit</a>
+                            <a href="{{ path('Admin_Publicite_edit', { 'id': publicite.id }) }}">edit</a>
                         </li>
                     </ul>
                 </td>
@@ -41,7 +45,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('Admin_publicite_new') }}">Create a new publicite</a>
+            <a href="{{ path('Admin_Publicite_new') }}">Create a new publicite</a>
         </li>
     </ul>
 {% endblock %}

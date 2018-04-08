@@ -4,7 +4,7 @@ namespace RansomGr\PubliciteBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class PubliciteControllerTest extends WebTestCase
+class PubPosControllerTest extends WebTestCase
 {
     /*
     public function testCompleteScenario()
@@ -13,13 +13,13 @@ class PubliciteControllerTest extends WebTestCase
         $client = static::createClient();
 
         // Create a new entry in the database
-        $crawler = $client->request('GET', '/Admin/Publicite/');
-        $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for GET /Admin/Publicite/");
+        $crawler = $client->request('GET', '/Admin/Publicite_Position/');
+        $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for GET /Admin/Publicite_Position/");
         $crawler = $client->click($crawler->selectLink('Create a new entry')->link());
 
         // Fill in the form and submit it
         $form = $crawler->selectButton('Create')->form(array(
-            'ransomgr_publicitebundle_publicite[field_name]'  => 'Test',
+            'ransomgr_publicitebundle_pubpos[field_name]'  => 'Test',
             // ... other fields to fill
         ));
 
@@ -33,7 +33,7 @@ class PubliciteControllerTest extends WebTestCase
         $crawler = $client->click($crawler->selectLink('Edit')->link());
 
         $form = $crawler->selectButton('Update')->form(array(
-            'ransomgr_publicitebundle_publicite[field_name]'  => 'Foo',
+            'ransomgr_publicitebundle_pubpos[field_name]'  => 'Foo',
             // ... other fields to fill
         ));
 
