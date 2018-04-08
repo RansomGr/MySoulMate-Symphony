@@ -77,7 +77,20 @@ class PubPos
      */
     public function setPosition($pos)
     {
-        $this->pos = $pos;
+        $this->position = $pos;
+
+        return $this;
+    }
+    /**
+     * Set pos
+     *
+     * @param integer $pos
+     *
+     * @return PubPos
+     */
+    public function setPos($pos)
+    {
+        $this->position = $pos;
 
         return $this;
     }
@@ -91,11 +104,7 @@ class PubPos
     {
         return $this->position;
     }
-    /**
-     * Get position
-     *
-     * @return int
-     */
+
     public function getPos()
     {
         return $this->position;
