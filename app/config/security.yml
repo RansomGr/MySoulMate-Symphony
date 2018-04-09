@@ -27,6 +27,7 @@ security:
     - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
     - { path: ^/Admin, role: ROLE_ADMIN }
     - { path: ^/Admin/^, role: ROLE_ADMIN }
+    - { path: ^/Client/^, role: ROLE_USER }
 
 
 
