@@ -1,51 +1,103 @@
-{% extends 'base.html.twig' %}
+{% extends 'Layouts/Layout_BO.html.twig' %}
 
-{% block body %}
-    <h1>Publicites list</h1>
+{% block content %}
+    <div class="right_col" role="main">
+        <div class="">
+            <div class="page-title">
+                <div class="title_left">
+                    <h3>Publicite</h3>
+                </div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Photo</th>
-                <th>Lien</th>
-                <th>Description</th>
-                <th>Datedebut</th>
-                <th>Datefin</th>
-                <th>Approved</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for publicite in publicites %}
-            <tr>
-                <td><a href="{{ path('Admin_Publicite_show', { 'id': publicite.id }) }}">{{ publicite.id }}</a></td>
-                <td>{{ publicite.title }}</td>
-                <td>{{ publicite.photo }}</td>
-                <td>{{ publicite.lien }}</td>
-                <td>{{ publicite.description }}</td>
-                <td>{% if publicite.dateDebut %}{{ publicite.dateDebut|date('Y-m-d') }}{% endif %}</td>
-                <td>{% if publicite.dateFin %}{{ publicite.dateFin|date('Y-m-d') }}{% endif %}</td>
-                <td>{{ publicite.approved }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('Admin_Publicite_show', { 'id': publicite.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('Admin_Publicite_edit', { 'id': publicite.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+                <div class="title_right">
+                    <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search for...">
+                            <span class="input-group-btn">
+                      <button class="btn btn-default" type="button">Go!</button>
+                    </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h3>Liste Publicite</h3>
+                            <h4><a href="{{ path('Admin_Publicite_new') }}">Ajouter nouvelle Publicite</a></h4>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                       aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="#">Settings 1</a>
+                                        </li>
+                                        <li><a href="#">Settings 2</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('Admin_Publicite_new') }}">Create a new publicite</a>
-        </li>
-    </ul>
+                        <div class="x_content">
+                            <br/>
+                            <table id="datatable-buttons" class="table table-striped table-bordered">
+                                <thead>
+                                <tr>
+
+                                    <th>Title</th>
+                                    <th>Photo</th>
+                                    <th>Lien</th>
+                                    <th>Description</th>
+                                    <th>Datedebut</th>
+                                    <th>Datefin</th>
+                                    <th>Approved</th>
+                                    <th>Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for publicite in publicites %}
+                                    <tr>
+                                        <td>{{ publicite.title }}</td>
+                                        <td>{{ publicite.photo }}</td>
+                                        <td>{{ publicite.lien }}</td>
+                                        <td>{{ publicite.description }}</td>
+                                        <td>{% if publicite.dateDebut %}{{ publicite.dateDebut|date('Y-m-d') }}{% endif %}</td>
+                                        <td>{% if publicite.dateFin %}{{ publicite.dateFin|date('Y-m-d') }}{% endif %}</td>
+                                        <td>{{ publicite.approved }}</td>
+                                        <td>
+                                            <button class="btn btn-success" type="button"
+                                                    onclick="takeme_here('{{ path('Admin_Publicite_edit', { 'id': publicite.id }) }}')">
+                                                Modifer
+                                            </button>
+                                            <button class="btn btn-danger" type="button"
+                                                    onclick="if(confirm('Voulez vous vraiment \nSupprimer Cette Publicite?'))takeme_here('{{ path('Admin_Publicite_delete_get', { 'id': publicite.id }) }}')">
+                                                Supprimer
+                                            </button>
+                                            <button class="btn btn-primary" type="button"
+                                                    onclick="takeme_here('{{ path('Admin_Publicite_show', { 'id': publicite.id }) }}')">
+                                                Aperçu
+                                            </button>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                            <script>
+                                function takeme_here(link) {
+                                    window.location.href = link;
+                                }
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

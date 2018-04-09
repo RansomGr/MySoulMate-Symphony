@@ -3,7 +3,7 @@
 namespace RansomGr\PubliciteBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert ;
 /**
  * Publicite
  *
@@ -27,17 +27,17 @@ class Publicite
      * @ORM\Column(name="title", type="string", length=255)
      */
     private $title;
-
     /**
      * @var string
-     *
-     * @ORM\Column(name="photo", type="string", length=255)
+     * @Assert\Image()
+     * @ORM\Column(name="lien", type="string", length=255)
      */
+
     private $photo;
     /**
      * @var string
      *
-     * @ORM\Column(name="lien", type="string", length=255)
+     * @ORM\Column(name="photo", type="string", length=255)
      */
     private $lien;
 

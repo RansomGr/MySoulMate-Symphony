@@ -22,3 +22,7 @@ Admin_Publicite_Position_delete:
     path:     /{id}/delete
     defaults: { _controller: "RansomGrPubliciteBundle:PubPos:delete" }
     methods:  DELETE
+Admin_Publicite_Position_delete_get:
+    path:     /{id}/remove
+    defaults: { _controller: "RansomGrPubliciteBundle:PubPos:remove" }
+

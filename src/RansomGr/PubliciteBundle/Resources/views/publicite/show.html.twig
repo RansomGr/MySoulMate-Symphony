@@ -1,56 +1,91 @@
-{% extends 'base.html.twig' %}
+{% extends 'Layouts/Layout_BO.html.twig' %}
 
-{% block body %}
-    <h1>Publicite</h1>
+{% block content %}
+    <div class="right_col" role="main">
+        <div class="">
+            <div class="page-title">
+                <div class="title_left">
+                    <h3>Publicite</h3>
+                </div>
+                <div class="title_right">
+                    <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search for...">
+                            <span class="input-group-btn">
+                      <button class="btn btn-default" type="button">Go!</button>
+                    </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h3>Detail Publicite</h3>
+                            <h4><a href="{{ path('Admin_Publicite_index') }}">Liste Publicites</a></h4>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                       aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="#">Settings 1</a>
+                                        </li>
+                                        <li><a href="#">Settings 2</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ publicite.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ publicite.title }}</td>
-            </tr>
-            <tr>
-                <th>Photo</th>
-                <td>{{ publicite.photo }}</td>
-            </tr>
-            <tr>
-                <th>Lien</th>
-                <td>{{ publicite.lien }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ publicite.description }}</td>
-            </tr>
-            <tr>
-                <th>Datedebut</th>
-                <td>{% if publicite.dateDebut %}{{ publicite.dateDebut|date('Y-m-d') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Datefin</th>
-                <td>{% if publicite.dateFin %}{{ publicite.dateFin|date('Y-m-d') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Approved</th>
-                <td>{{ publicite.approved }}</td>
-            </tr>
-        </tbody>
-    </table>
+                        <div class="x_content">
+                            <br/>
+                            <div class="col-md-12 col-sm-12 col-xs-12  profile_details">
+                                <div class="well profile_view">
+                                    <div class="col-sm-12">
+                                        <h4 class="brief"><strong>Etat :</strong><i>{{ publicite.approved }}</i></h4>
+                                        <div class="left col-xs-7">
+                                            <h2><strong>Titre</strong> :{{ publicite.title }}</h2>
+                                            <ul class="list-unstyled">
+                                                <li> Address:</li>
+                                                <li><strong><a href="{{ publicite.lien }}">Lien</a></strong> #:{{ publicite.lien }}
+                                                </li>
+                                                <li></li>
+                                                <p><strong>Description: </strong> {{ publicite.description }}</p>
+                                            </ul>
+                                        </div>
+                                        <div class="right col-xs-5 text-center">
+                                            <img src="{{ asset(publicite.photo) }}" alt="" class="img-circle img-responsive">
+                                        </div>
+                                    </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('Admin_Publicite_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('Admin_Publicite_edit', { 'id': publicite.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+                                    <div class="col-xs-12 bottom text-center">
+                                        <button class="btn btn-success" type="button"
+                                                onclick="takeme_here('{{ path('Admin_Publicite_edit', { 'id': publicite.id }) }}')">
+                                            Modifer
+                                        </button>
+                                        <button class="btn btn-danger" type="button"
+                                                onclick="if(confirm('Voulez vous vraiment \nSupprimer Cette Position?'))takeme_here('{{ path('Admin_Publicite_delete', { 'id': publicite.id }) }}')">
+                                            Supprimer
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <script>
+                                function takeme_here(link) {
+                                    window.location.href = link;
+                                }
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

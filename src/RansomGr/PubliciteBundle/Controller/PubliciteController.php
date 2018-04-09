@@ -4,6 +4,8 @@ namespace RansomGr\PubliciteBundle\Controller;
 
 use RansomGr\PubliciteBundle\Entity\Publicite;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -36,9 +38,17 @@ class PubliciteController extends Controller
         $publicite = new Publicite();
         $form = $this->createForm('RansomGr\PubliciteBundle\Form\PubliciteType', $publicite);
         $form->handleRequest($request);
-
+   /**
+    * @var UploadedFile $file
+    */
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $file=$publicite->getPhoto();
+            $photo=md5(uniqid()).'.'.$file->guessExtension();
+            $file->move(
+                $this->getParameter('image_directory'),$photo
+            );
+            $publicite->setPhoto($photo);
             $em->persist($publicite);
             $em->flush();
 
@@ -71,20 +81,38 @@ class PubliciteController extends Controller
      */
     public function editAction(Request $request, Publicite $publicite)
     {
+
         $deleteForm = $this->createDeleteForm($publicite);
+        $publicite->setPhoto(
+            new File($this->getParameter('image_directory').'/'.$publicite->getPhoto())
+
+        );
+        /**
+         * @var UploadedFile $file
+         */
+        $file=$publicite->getPhoto();
         $editForm = $this->createForm('RansomGr\PubliciteBundle\Form\PubliciteType', $publicite);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+
+            $file=$publicite->getPhoto();
+            $photo=md5(uniqid()).'.'.$file->guessExtension();
+            $file->move(
+                $this->getParameter('image_directory'),$photo
+            );
+
+            $publicite->setPhoto($photo);
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('Admin_Publicite_edit', array('id' => $publicite->getId()));
+            return $this->redirectToRoute('Admin_Publicite_index', array('id' => $publicite->getId()));
         }
 
         return $this->render('@RansomGrPublicite/publicite/edit.html.twig', array(
             'publicite' => $publicite,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+            'photo'=> $file->getFilename()
         ));
     }
 
@@ -103,6 +131,14 @@ class PubliciteController extends Controller
             $em->flush();
         }
 
+        return $this->redirectToRoute('Admin_Publicite_index');
+    }
+    public function removeAction($id)
+    {
+        $em=$this->getDoctrine()->getManager();
+        $publicite=$this->getDoctrine()->getManager()->getRepository("RansomGrPubliciteBundle:Publicite")->find($id);
+        $em->remove($publicite);
+        $em->flush();
         return $this->redirectToRoute('Admin_Publicite_index');
     }
 

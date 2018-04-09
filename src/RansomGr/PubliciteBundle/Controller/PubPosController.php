@@ -105,6 +105,14 @@ class PubPosController extends Controller
 
         return $this->redirectToRoute('Admin_Publicite_Position_index');
     }
+    public function removeAction($id)
+{
+    $em=$this->getDoctrine()->getManager();
+    $publicite=$this->getDoctrine()->getManager()->getRepository("RansomGrPubliciteBundle:PubPos")->find($id);
+    $em->remove($publicite);
+    $em->flush();
+    return $this->redirectToRoute('Admin_Publicite_Position_index');
+}
 
     /**
      * Creates a form to delete a pubPo entity.

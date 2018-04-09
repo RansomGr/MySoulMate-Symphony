@@ -21,4 +21,7 @@ Admin_Publicite_edit:
 Admin_Publicite_delete:
     path:     /{id}/delete
     defaults: { _controller: "RansomGrPubliciteBundle:Publicite:delete" }
-    methods:  DELETE
+    methods:  [DELETE]
+Admin_Publicite_delete_get:
+    path:     /{id}/remove
+    defaults: { _controller: "RansomGrPubliciteBundle:PubPos:remove" }
