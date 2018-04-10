@@ -60,6 +60,32 @@ class Utilisateur extends BaseUser
     private $profil;
 
     /**
+     * @var \Adresse
+     *
+     * @ORM\ManyToOne(targetEntity="Adresse")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="adresse", referencedColumnName="ID")
+     * })
+     */
+    private $adresse;
+
+    /**
+     * @return \Adresse
+     */
+    public function getAdresse()
+    {
+        return $this->adresse;
+    }
+
+    /**
+     * @param \Adresse $adresse
+     */
+    public function setAdresse($adresse)
+    {
+        $this->adresse = $adresse;
+    }
+
+    /**
      * @return string
      */
     public function getNom()
