@@ -2,6 +2,7 @@ FO_matching_homepage:
     path:     /Client/FO_matching_homepage
     defaults: { _controller: NadiaMatchingBundle:Default:FO_MatchingHomepage }
 
+
 FO_voirpackagings:
     path:     /Client/FO_voirpackaging
     defaults: { _controller: NadiaMatchingBundle:Default:FO_Packagings }
@@ -14,6 +15,24 @@ FO_ajouterpref:
 FO_inviter:
     path:     /Client/FO_inviter{id}
     defaults: { _controller: NadiaMatchingBundle:Invitation:FO_Inviter }
+
+FO_MesAmis:
+    path:     /Client/MesAmis
+    defaults: { _controller: NadiaMatchingBundle:Default:FO_MesAmis }
+
+FO_VoirCompa:
+    path:     /Client/FO_VoirCompa{id}
+    defaults: { _controller: NadiaMatchingBundle:Default:FO_VoirCompa }
+
+
+FO_acheter:
+    path:     /Client/FO_acheter{id}
+    defaults: { _controller: NadiaMatchingBundle:AchatPackaging:FO_Acheter }
+
+
+FO_panier:
+    path:     /Client/FO_panier
+    defaults: { _controller: NadiaMatchingBundle:AchatPackaging:affichage }
 
 
 BO_ajouterpack:
