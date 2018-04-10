@@ -1,0 +1,152 @@
+{% extends "Layouts/Layout_FO.html.twig" %}
+
+
+{% block content %}
+    <br>  <br>  <br>
+    <br>  <br>  <br>
+    <br> <br> <br>
+
+    <h5 class="col-sm-6" class="titrerose"><a href='{{ path('FO_matching_homepage') }}'> Retour </a></h5> </h5><br><br><br>
+
+    <center>
+        <body class="ktibagris">
+        <h3> Enregistrer mes préférences</h3>
+        <form method="post" action="">    <br><br><br>
+
+            <table class="col-sm-6">
+                <tr>
+                    <td><font color="transparent"> __________ </font></td>
+                    <td> Caractère :</td>
+                    <td><input type="text" name="caractere" width="48" height="48"/></td>
+                </tr>
+
+                <tr>
+                    <td><font color="transparent"> __________ </font></td>
+                    <td> ville :</td>
+                    <td>
+                        <select name="ville" width="48" height="48">
+                            <option value="Toutes" selected>Toutes</option>
+                            <option value="Tunis">Ariana</option>
+                            <option value="Sfax">Beja</option>
+                            <option value="Sousse">Ben Arous</option>
+                            <option value="Tataouine">Bizerte</option>
+                            <option value="Tunis">Gabes</option>
+                            <option value="Sfax">Jendouba</option>
+                            <option value="Sousse">Kairouan</option>
+                            <option value="Tataouine">Kasserine</option>
+                            <option value="Tataouine">Kebili</option>
+                            <option value="Tunis">Kef</option>
+                            <option value="Sfax">Mahdia</option>
+                            <option value="Sousse">Mannouba</option>
+                            <option value="Tataouine">Medenine</option>
+                            <option value="Tataouine">Monastir</option>
+                            <option value="Tunis">Nabeul</option>
+                            <option value="Sfax">Sfax</option>
+                            <option value="Sousse">Sidi Bouzid</option>
+                            <option value="Tataouine">Siliana</option>
+                            <option value="Tataouine">Sousse</option>
+                            <option value="Tunis">Tataouine</option>
+                            <option value="Sfax">Tozeur</option>
+                            <option value="Sousse">Tunis</option>
+                            <option value="Tataouine">Zaghouene</option>
+                        </select>
+
+
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><font color="transparent"> __________ </font></td>
+                    <td> Tabac :</td>
+                    <td><input type="radio" name="tabac" value="oui"> Oui <font color="transparent"> ___ </font> <input type="radio" name="tabac" value="non"> Non <font color="transparent"> ___ </font> <input type="radio" name="tabac" value="indifferent"> Indifférent </td>
+
+                </tr>
+
+                <tr>
+                    <td><font color="transparent"> __________ </font></td>
+                    <td> Alcool :</td>
+                    <td><input type="radio" name="alcool" value="oui"> Oui <font color="transparent"> ___ </font> <input type="radio" name="alcool" value="non"> Non <font color="transparent"> ___ </font> <input type="radio" name="alcool" value="indifferent"> Indifférent </td>
+
+                </tr>
+
+                <tr>
+                    <td><font color="transparent"> __________ </font></td>
+                    <td> Cuisine :</td>
+                    <td>
+                        <select name="regime">
+                            <option value="Toutes" selected>Toutes</option>
+                            <option value="Tunis">Bio</option>
+                            <option value="Sfax">Fast Food</option>
+                            <option value="Sousse">Vegan</option>
+                            <option value="Tataouine">Sushi</option>
+                            <option value="Tunis">Végétarienne</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                <td> <font color="transparent"> __________ </font> </td>
+                <td> Pilosité :</td>
+                <td>
+                    <select name="pilosite" >
+                        <option value="Toutes" selected>Toutes</option>
+                        <option value="Imberbe">Imberbe</option>
+                        <option value="Poilu">Poilu</option>
+                        <option value="Normal">Normal</option>
+
+                    </select>
+                </td>
+                </tr>
+                <tr>
+                    <td> <font color="transparent"> __________ </font> </td>
+                <td> Origine :</td>
+                <td>
+                    <select name="origine">
+                        <option value="Toutes" selected>Toutes</option>
+                        <option value="Europe">Europe</option>
+                        <option value="Asie">Asie</option>
+                        <option value="Afrique">Afrique</option>
+                        <option value="Amérique">Amérique</option>
+                        <option value="Australie">Australie</option>
+                    </select>
+                </td>
+                </tr>
+                <tr>
+                    <td> <font color="transparent"> __________ </font> </td>
+                    <td> Cheveux :</td>
+                    <td><input type="text" name="cheveux"/></td>
+                </tr>
+
+                <tr>
+                    <td> <font color="transparent"> __________ </font> </td>
+                    <td> Yeux :</td>
+                    <td><input type="text" name="yeux"/></td>
+                </tr>
+                <tr>
+                    <td> <font color="transparent"> __________ </font> </td>
+                    <td> Profession :</td>
+                    <td><input type="text" name="profession"/></td>
+                </tr>
+
+                <tr><td> <font color="transparent"> __________ </font> </td></tr>
+                <tr>
+                    <td></td><td></td>
+                    <td>
+                        <button class="btn btn-xs btn-default" type="button"
+                                onclick="return confirm('Préférences enregistrées')"
+                                onclick="takeme_here('{{ path('FO_ajouterpref') }}')">
+                            Enregistrer
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+        </body>
+    </center>
+
+    <script>
+        function takeme_here(link) {
+            window.location.href = link;
+        }
+    </script>
+
+{% endblock %}

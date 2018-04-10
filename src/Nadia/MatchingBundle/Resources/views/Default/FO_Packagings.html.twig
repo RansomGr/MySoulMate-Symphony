@@ -1,0 +1,73 @@
+{% extends "Layouts/Layout_FO.html.twig" %}
+
+
+{% block content %}
+    <br>  <br>  <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+
+    <center><h5 class="titrerose"><a href='{{ path('FO_matching_homepage') }}'> Retour </a><font color="white">
+                ______________________________________________________________________________________________________ </font>
+            <a href='{{ path('FO_panier') }}'> Panier</a></center> </h5>
+
+    <section class="well-1 well-1--inset-1">
+        <div class="container container-wide">
+            <h3> Retrouvez votre âme soeur...</h3>
+            <div class="titreroseplusgrand">L'amour n'a pas de prix!</div>
+
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+
+            <div class="row flow-offset-1">
+                <form class="form-horizontal form-label-left" method="post" action="">
+
+                {% for i in m %}
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                        <div id="cadrepackaging">
+                            <h5 class="small text-primary"> {{ i.getNom() }}</h5>
+
+                            <p class="offset-0">
+                            <div class="titreroseplusgrand">{{ i.getPrix() }} Dt</div>
+
+                            <div class="descriptionpackaging"> Profitez de {{ i.getContenu() }} % de compatibilité<br>
+                                pendant {{ i.getDuree() }} jours !
+                            </div>
+                            </p>
+
+                            <button class="btn btn-xs btn-default" type="button"
+                                    onclick="return confirm('Voulez-vous vraiment acheter ce packaging?')"
+                                    onclick="takeme_here('{{ path('FO_acheter', { 'id': i.getId() }) }}')">
+                                Acheter
+                            </button>
+                        </div>
+                    </div>
+                {% endfor %}
+                </form>
+
+
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function takeme_here(link) {
+            window.location.href = link;
+        }
+    </script>
+{% endblock %}

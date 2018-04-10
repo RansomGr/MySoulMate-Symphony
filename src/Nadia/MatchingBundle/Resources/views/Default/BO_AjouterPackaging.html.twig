@@ -2,11 +2,22 @@
 
 
 {% block content %}
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
     <div class="right_col" role="main">
         <div class="">
             <div class="page-title">
                 <div class="title_left">
-                    <h3>Affichage des packagings</h3>
+                    <h3>Ajouter nouveau packaging</h3>
                 </div>
 
                 <div class="title_right">
@@ -23,7 +34,6 @@
                     <div class="x_panel">
                         <div class="x_title">
 
-                            <h4><a href="{{ path('BO_ajouterpack') }}">Nouveau packaging</a></h4>
                             <ul class="nav navbar-right panel_toolbox">
                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                 </li>
@@ -45,45 +55,34 @@
 
                         <div class="x_content">
                             <br/>
-                            <table id="datatable-buttons" class="table table-striped table-bordered">
-                                <thead>
-                                <tr>
-                                    <th>Nom</th>
-                                    <th>Contenu</th>
-                                    <th>Prix</th>
-                                    <th>Durée</th>
-                                    <th>Actions</th>
-
-                                </tr>
-                                </thead>
-
-
-                                <tbody>
-
-                                {% for i in m %}
+                            <form class="form-horizontal form-label-left" method="post" action="">
+                                <table>
                                     <tr>
-                                        <td>{{ i.getNom() }}</td>
-                                        <td>{{ i.getContenu() }} % de compatibilité</td>
-                                        <td>{{ i.getPrix() }} dt</td>
-                                        <td>{{ i.getDuree() }} jours</td>
-                                        <td>
-
-                                            <button class="btn btn-success" type="button"
-                                                    onclick="takeme_here('{{ path('BO_modifpack', { 'id': i.getId() }) }}')">
-                                                Modifer
-                                            </button>
-                                            <button class="btn btn-danger" type="button"
-                                                    onclick="if(confirm('Voulez vous vraiment \nSupprimer ce packaging?'))takeme_here('{{ path('BO_supppack', { 'id': i.getId() }) }}')">
-                                                Supprimer
-                                            </button>
-
-                                        </td>
-
+                                        <td> Nom :</td>
+                                        <td><input class="form-control col-md-7 col-xs-12" type="text" name="nom"/></td>
                                     </tr>
 
-                                {% endfor %}
-                                </tbody>
-                            </table>
+                                    <tr>
+                                        <td> Contenu :</td>
+                                        <td><input class="form-control col-md-7 col-xs-12" type="textarea" name="contenu"/></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td> prix :</td>
+                                        <td><input class="form-control col-md-7 col-xs-12" type="number" name="prix"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td> duree :</td>
+                                        <td><input class="form-control col-md-7 col-xs-12" type="number" name="duree"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td><input  class="btn btn-success"  type="submit" onclick="return confirm('Ajout avec succès')" value="Ajouter"></td>
+
+                                    </tr>
+                                </table>
+                            </form>
+
                         </div>
                     </div>
                 </div>
@@ -91,9 +90,6 @@
         </div>
     </div>
 
-    <script>
-        function takeme_here(link) {
-            window.location.href = link;
-        }
-    </script>
+
+
 {% endblock %}
