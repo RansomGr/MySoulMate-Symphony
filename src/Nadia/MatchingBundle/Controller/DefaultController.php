@@ -3,6 +3,12 @@
 namespace Nadia\MatchingBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Request;
+use MySoulMate\MainBundle\Entity\Caracteristique;
+use Nadia\MatchingBundle\Controller\MatchingController;
+use MySoulMate\MainBundle\Entity\Utilisateur;
+use MySoulMate\MainBundle\Entity\Invitation;
 
 class DefaultController extends Controller
 {
@@ -10,6 +16,18 @@ class DefaultController extends Controller
     {
         return $this->render('NadiaMatchingBundle:Default:FO_RechercheMatching.html.twig');
     }
+
+    public function FO_ConnexionAction()
+    {
+        return $this->render('NadiaMatchingBundle:Default:FO_Connexion.html.twig');
+    }
+
+    public function Login_Homepage_FOAction()
+{
+    return $this->render('NadiaMatchingBundle:Default:Login_Homepage_FO.html.twig');
+
+}
+
 
     public function FO_MatchingHomepageAction()
     {
@@ -20,60 +38,24 @@ class DefaultController extends Controller
 
     }
 
-    public function FO_AjoutPrefAction(Request $request)
-    {
-
-        $marque = new Caracteristique();
-
-        if ($request->getMethod() == "POST") //click sur le bouton ajouter
-        {
-            $x = $request->get('libelle'); //récupérer les valeurs de l'interface
-            $y = $request->get('pays');
-            $marque->setLibelle($x);
-            $marque->setPays($y);
-            $em = $this->getDoctrine()->getManager(); //instancier l'orm
-            $em->persist($marque); //equivaut à insert into table
-            $em->flush();
-
-            return new Response('Ajout avec succès');
-
-        }
-        return $this->render('NadiaMatchingBundle:Default:FO_AjouterPreference.html.twig');
-    }
-
-    public function FO_PackagingsAction()
-
-    {
-        $em = $this->getDoctrine()->getManager();
-        $packagings = $em->getRepository('MySoulMateMainBundle:Packaging')->findAll();
-        return $this->render('NadiaMatchingBundle:Default:FO_Packagings.html.twig' , array('m' => $packagings));
-    }
-
-    public function AffichageMatchingsAction(Request $request)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $clients = $em->getRepository('MySoulMateMainBundle:Utilisateur')->findAll();
-        var_dump($clients);
-        return $this->render('NadiaMatchingBundle:Default:FO_RechercheMatching.html.twig', array('m' => $clients));
 
 
-    }
 
-    public function AffichageProfilAction($id)
-    {
-        $em=$this->getDoctrine()->getManager();
-        $match=$em->getRepository('MySoulMateMainBundle:Utilisateur')->find($id);
-        return $this->render('NadiaGrapheBundle:FO_Profil.html.twig', array('m' => $match));
 
-    }
 
-    public function DetailsMatchingAction($id1,$id2)
-    {   $matchingtotal=0;
+    /////////////////
+    ///
+    ///
+    public function CalculMatchingTot($id2)
+
+    {    $matchingtotal=0;
         $matchingphysique=0;
         $matchingpsychologique=0;
         $matchinglifestyle=0;
+
+
         $em=$this->getDoctrine()->getManager();
-        $client1=$em->getRepository('MySoulMateMainBundle:Utilisateur')->find($id1);
+        $client1 = $em->getRepository('MySoulMateMainBundle:Utilisateur')->find($this->getUser());
         $client2=$em->getRepository('MySoulMateMainBundle:Utilisateur')->find($id2);
 
         if($client1->getProfil().getPreference().getCorpulence() == $client2->getProfil().getCaracteristique().getCorpulence())
@@ -150,7 +132,100 @@ class DefaultController extends Controller
 
         }
 
-        return $this->render('NadiaGrapheBundle:Graphe:FO_Histogramme.html.twig', array('m1' => $client1, 'm2'=>$client2, 'tot'=>$matchingtotal , 'phys'=>$matchingphysique , 'psy'=>$matchingpsychologique , 'lifestyl'=>$matchinglifestyle ));
+        return $matchingtotal;
+    }
+    public function FO_MesAmisAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $moi = $em->getRepository('MySoulMateMainBundle:Utilisateur')->find($this->getUser());
+
+
+
+
+        $qb = $em->createQueryBuilder();
+        $qb->select('i')
+            ->from('MySoulMateMainBundle:Invitation', 'i')
+            ->where('i.client1 = :client1')
+            ->setParameter('client1', $moi)
+            ->where('i.getStatut() = "Accepté"')
+            ->orderBy(CalculMatchingTot('i.client2'), 'ASC');
+
+
+        $qb2 = $em->getRepository('MySoulMateMainBundle:Invitation')->createQueryBuilder('ii')->from('MySoulMateMainBundle:Invitation', 'ii');
+
+        $qb2->select('ii')
+            ->from('Invitation', 'ii')
+            ->where('i.client1 = :client1')
+            ->setParameter('client1', $moi)
+            ->where('i.getStatut()', '=' , "en Attente")
+            ->orderBy(CalculMatchingTot(i.getClient2()), 'ASC');
+
+        $query = $qb->getQuery()->execute()->fetchAll();
+        $query2 = $qb2->getQuery()->execute()->fetchAll();
+        return $this->render('NadiaMatchingBundle:Default:FO_MesAmis.html.twig', array('m' => $query , 'n' => $query2) );
+
 
     }
+
+
+    public function FO_AjoutPrefAction(\Symfony\Component\HttpFoundation\Request $request)
+    {
+
+        $carac = new Caracteristique();
+
+        if ($request->getMethod() == "POST") //click sur le bouton ajouter
+        {
+            $a = $request->get('caractere'); //récupérer les valeurs de l'interface
+            $b = $request->get('tabac');
+            $c = $request->get('alcool');
+            $d = $request->get('ville');
+            $e = $request->get('regime');
+            $f = $request->get('pilosite');
+            $g = $request->get('origine');
+            $h = $request->get('cheveux');
+            $i = $request->get('yeux');
+            $j = $request->get('profession');
+
+            $carac->setCaractere($a);
+            $carac->setTabac($b);
+            $carac->setAlcool($c);
+            $carac->setVille($d);
+            $carac->setCuisine($e);
+
+            $em = $this->getDoctrine()->getManager(); //instancier l'orm
+            $em->persist($carac); //equivaut à insert into table
+            $em->flush();
+
+
+        }
+        return $this->render('NadiaMatchingBundle:Default:FO_AjouterPreference.html.twig');
+    }
+
+    public function FO_PackagingsAction()
+
+    {
+        $em = $this->getDoctrine()->getManager();
+        $packagings = $em->getRepository('MySoulMateMainBundle:Packaging')->findAll();
+        return $this->render('NadiaMatchingBundle:Default:FO_Packagings.html.twig' , array('m' => $packagings));
+    }
+
+    public function AffichageMatchingsAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $clients = $em->getRepository('MySoulMateMainBundle:Utilisateur')->findAll();
+        var_dump($clients);
+        return $this->render('NadiaMatchingBundle:Default:FO_RechercheMatching.html.twig', array('m' => $clients));
+
+
+    }
+
+    public function AffichageProfilAction($id)
+    {
+        $em=$this->getDoctrine()->getManager();
+        $match=$em->getRepository('MySoulMateMainBundle:Utilisateur')->find($id);
+        return $this->render('NadiaGrapheBundle:FO_Profil.html.twig', array('m' => $match));
+
+    }
+
+
 }
