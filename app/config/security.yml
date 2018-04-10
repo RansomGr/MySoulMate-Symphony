@@ -19,12 +19,14 @@ security:
            logout:
                target : /login
            anonymous:    true
-
+#allow_if: "not has_role('ROLE_USER') and not has_role('ROLE_ADMIN')"
+#allow_if: "not has_role('ROLE_USER') and not has_role('ROLE_ADMIN')"
     access_control:
-    - { path: ^/login$, role: allow_if: "not has_role('ROLE_USER') and not has_role('ROLE_ADMIN')" }
-    - { path: ^/register, role: allow_if: "not has_role('ROLE_USER') and not has_role('ROLE_ADMIN')" }
+    - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
     - { path: ^/welcome, role: IS_AUTHENTICATED_ANONYMOUSLY }
     - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/Admin, role: ROLE_ADMIN }
     - { path: ^/Admin/, role: ROLE_ADMIN }
     - { path: ^/Admin/^, role: ROLE_ADMIN }
     - { path: ^/Client/^, role: ROLE_USER }
