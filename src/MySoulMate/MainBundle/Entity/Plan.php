@@ -279,6 +279,5 @@ class Plan
         $this->id = $id;
     }
 
-
 }
 
