@@ -37,9 +37,8 @@ class InvitationController extends Controller
     }
 
 
-    public function AccepterInvitAction(Request $request, $id)
+    public function AccepterInvitAction( $id)
     {
-        $invit = new Invitation();
 
             $em = $this->getDoctrine()->getManager();
             $invit = $em->getRepository('MySoulMateMainBundle:Invitation')->find($id);

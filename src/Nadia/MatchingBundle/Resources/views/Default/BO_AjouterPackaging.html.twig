@@ -69,11 +69,11 @@
 
                                     <tr>
                                         <td> prix :</td>
-                                        <td><input class="form-control col-md-7 col-xs-12" type="number" name="prix"/></td>
+                                        <td><input class="form-control col-md-7 col-xs-12" type="number" name="prix"  id="prix" min='0' /></td>
                                     </tr>
                                     <tr>
                                         <td> duree :</td>
-                                        <td><input class="form-control col-md-7 col-xs-12" type="number" name="duree"/></td>
+                                        <td><input class="form-control col-md-7 col-xs-12" type="number" name="duree" id="durée" min='1' /></td>
                                     </tr>
                                     <tr>
                                         <td></td>
@@ -89,7 +89,25 @@
             </div>
         </div>
     </div>
+<script>
+    var pr = document.getElementById('prix');
+    var du = document.getElementById('duree');
 
+    // Listen for input event on numInput.
+    pr.onkeydown = function(e) {
+        if(!((e.keyCode > 95 && e.keyCode < 106)
+            || (e.keyCode > 47 && e.keyCode < 58)
+            || e.keyCode == 8)) {
+            return false;
+        }
+    }
 
-
+    du.onkeydown = function(e) {
+        if(!((e.keyCode > 95 && e.keyCode < 106)
+            || (e.keyCode > 47 && e.keyCode < 58)
+            || e.keyCode == 8)) {
+            return false;
+        }
+    }
+</script>
 {% endblock %}
