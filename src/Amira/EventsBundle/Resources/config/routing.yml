@@ -7,7 +7,7 @@ _ajouter:
     defaults: { _controller: AmiraEventsBundle:BoEventsController:Ajouter }
 
 _modifier:
-    path:     /modifier
+    path:     /modifier/{id}
     defaults: { _controller: AmiraEventsBundle:BoEventsController:Modifier }
 
 _listing:
@@ -15,7 +15,7 @@ _listing:
     defaults: { _controller: AmiraEventsBundle:BoEventsController:Listing }
 
 _delete:
-    path:     /delete/{$entite}
+    path:     /delete/{id}
     defaults: { _controller: AmiraEventsBundle:BoEventsController:Delete }
 
 FO_ajouter:
@@ -23,7 +23,7 @@ FO_ajouter:
         defaults: { _controller: AmiraEventsBundle:FoEventsController:Ajouter }
 
 FO _modifier:
-        path:     /fomodifier
+        path:     /fomodifier/{id}
         defaults: { _controller: AmiraEventsBundle:FoEventsController:Modifier }
 
 FO_listing:
@@ -31,5 +31,9 @@ FO_listing:
         defaults: { _controller: AmiraEventsBundle:FoEventsController:Listing }
 
 FO_delete:
-        path:     /fodelete/{$entite}
+        path:     /fodelete/{id}
         defaults: { _controller: AmiraEventsBundle:FoEventsController:Delete }
+
+FO_QR:
+        path:     /QR/{id}
+        defaults: { _controller: AmiraEventsBundle:FoEventsController:QR }

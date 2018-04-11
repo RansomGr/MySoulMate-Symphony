@@ -84,7 +84,7 @@
                                                      alt=""></a>
                                 </td>
                                 <td>
-                                    <a href={{ path('ajouter') }}> <img class="img-responsive"
+                                    <a href=""> <img class="img-responsive"
                                                      src="{{ asset('FO_assets/assets_FO/colore_compte.png') }}" alt=""></a>
                                 </td>
 
@@ -130,7 +130,6 @@
                               CONTENT
     =========================================================-->
     <main class="text-center">
-        <h1>aaa</h1>
 
         <!-- Dating Club Frequently -->
         <section class="well-10 text-left center-xs">
@@ -144,6 +143,9 @@
                     <div class="col-sm-6">
 
                         <article class="post">
+                            {% block content %}
+
+                            {% endblock %}
 
                             <h5 class="small text-primary">
                                 <!--Stay in control>-->
@@ -181,13 +183,9 @@
                                  meeting someone who’s right for you. Our research shows that members with photographs
                                  receive as many as seven times more responses to their profiles than those without</p>-->
                         </article>
-
                     </div>
                 </div>
             </div>
-
-            {% block affiche %}
-            {% endblock %}
         </section>
         <!-- END Dating Club Frequently-->
 
@@ -198,7 +196,6 @@
         <!-- END Making your first date -->
 
     </main>
-
     <!--========================================================
                             FOOTER
     =========================================================-->

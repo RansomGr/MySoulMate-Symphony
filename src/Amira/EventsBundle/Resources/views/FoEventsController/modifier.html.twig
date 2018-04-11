@@ -1,6 +1,85 @@
 {% extends "Layouts/Layout_FO.html.twig" %}
 {% block content %}
-  {{ form_start(fmodif) }}
-    {{ form_widget(fmodif) }}
-    {{ form_end(fmodif) }}
+    <br><br><br><br><br><br>
+  <h2>Modifier évènement</h2>
+  <form method="post">
+    <table>
+      <tr>
+        <td>Date :</td>
+        <td>
+          <input type="date" value="{{ date }}" name="date">
+
+        </td>
+      </tr>
+      <tr>
+        <td>Type :</td>
+        <td> <select name="type">
+            <option {% if event.typeEvt=="rendez-vous" %} selected {% endif %} value="rendez-vous">rendez-vous</option>
+            <option {% if event.typeEvt=="fiancaille" %} selected {% endif %}value="fiancaille">fiancaille</option>
+            <option {% if event.typeEvt=="mariage" %} selected {% endif %}value="mariage">mariage</option>
+            <option {% if event.typeEvt=="conference" %} selected {% endif %}value="conference">conférence</option>
+          </select>
+        </td>
+      </tr>
+
+      <tr>
+        <td>Heure :</td>
+        <td><input type="number" value="{{ heure }}" min="0" max="23" name="heure">
+          :
+          <input type="number" value="{{ minute }}" min="0" max="59" name="minute">
+
+
+        </td>
+      </tr>
+      <tr>
+        <td>Durée :</td>
+        <td>
+          <select name="duree">
+            <option {% if event.dureeEvt==1 %}selected{% endif %} value="1">1 heure</option>
+            <option {% if event.dureeEvt==2 %}selected{% endif %}  value="2">2 heures</option>
+            <option {% if event.dureeEvt==3 %}selected{% endif %}  value="3">3 heures</option>
+            <option {% if event.dureeEvt==4 %}selected{% endif %}  value="4">4 heures</option>
+            <option {% if event.dureeEvt==5 %}selected{% endif %}  value="5">5 heures</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>Description :</td>
+        <td>
+          <textarea name="description">{{ event.descriptionEvt }}</textarea>
+        </td>
+      </tr>
+      <tr>
+        <td>Emplacement :</td>
+        <td>
+          <select name="emplecement">
+              {% for plan in plans %}
+                <option value="{{ plan.id }}">{{ plan.type }}</option>
+              {%  endfor %}
+          </select>
+
+
+        </td>
+      </tr>
+
+      <tr>
+        <td>nombre d'invité :</td>
+        <td><input required value="{{ event.nbMax }}" type="number" name="nbMaximale" min="0"></td>
+      </tr>
+
+      <tr>
+        <td>Liste des utilisateurs :</td>
+      </tr>
+        {% for utilisateur in utilisateurs %}
+          <tr>
+
+            <td><input type="checkbox" value="{{ utilisateur.id }}" name="invites[]">{{ utilisateur.username }}</td>
+
+
+          </tr>
+        {% endfor %}
+    </table>
+
+    <input type="submit" value="Modifier">
+  </form>
 {% endblock %}
