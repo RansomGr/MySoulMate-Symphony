@@ -9,6 +9,7 @@ use MySoulMate\MainBundle\Entity\Caracteristique;
 use Nadia\MatchingBundle\Controller\MatchingController;
 use MySoulMate\MainBundle\Entity\Utilisateur;
 use MySoulMate\MainBundle\Entity\Invitation;
+use Doctrine\ORM\EntityManager;
 
 class DefaultController extends Controller
 {
@@ -138,31 +139,39 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $moi = $em->getRepository('MySoulMateMainBundle:Utilisateur')->find($this->getUser());
+        $accept="Accepté";
+
+        $query=$this->getDoctrine()->getManager()->createQuery('select i from MySoulMateMainBundle:Invitation i where (i.client1 = :client1) AND (i.statut like :accept) ')
+            ->setParameter(':client1',$moi)->setParameter(':accept', $accept);
+        $result=$query->getResult();
 
 
-
-
-        $qb = $em->createQueryBuilder();
-        $qb->select('i')
-            ->from('MySoulMateMainBundle:Invitation', 'i')
-            ->where('i.client1 = :client1')
-            ->setParameter('client1', $moi)
-            ->where('i.getStatut() = "Accepté"')
-            ->orderBy(CalculMatchingTot('i.client2'), 'ASC');
-
-
-        $qb2 = $em->getRepository('MySoulMateMainBundle:Invitation')->createQueryBuilder('ii')->from('MySoulMateMainBundle:Invitation', 'ii');
-
-        $qb2->select('ii')
-            ->from('Invitation', 'ii')
-            ->where('i.client1 = :client1')
-            ->setParameter('client1', $moi)
-            ->where('i.getStatut()', '=' , "en Attente")
-            ->orderBy(CalculMatchingTot(i.getClient2()), 'ASC');
-
-        $query = $qb->getQuery()->execute()->fetchAll();
-        $query2 = $qb2->getQuery()->execute()->fetchAll();
-        return $this->render('NadiaMatchingBundle:Default:FO_MesAmis.html.twig', array('m' => $query , 'n' => $query2) );
+        $attente="En Attente";
+        $query2=$this->getDoctrine()->getManager()->createQuery('select i from MySoulMateMainBundle:Invitation i where (i.client1 = :client1) AND (i.statut like :attent) ')
+            ->setParameter(':client1',$moi)->setParameter(':attent', $attente);
+        $result2=$query2->getResult();
+//
+//        $qb = $em->createQueryBuilder();
+//        $qb->select('i')
+//            ->from('MySoulMateMainBundle:Invitation', 'i')
+//            ->where('i.client1 = :client1')
+//            ->setParameter('client1', $moi)
+//            ->where('i.getStatut() = "Accepté"')
+//            ->orderBy(CalculMatchingTot('i.client2'), 'ASC');
+//
+//
+//        $qb2 = $em->getRepository('MySoulMateMainBundle:Invitation')->createQueryBuilder('ii')->from('MySoulMateMainBundle:Invitation', 'ii');
+//
+//        $qb2->select('ii')
+//            ->from('Invitation', 'ii')
+//            ->where('i.client1 = :client1')
+//            ->setParameter('client1', $moi)
+//            ->where('i.getStatut()', '=' , "en Attente")
+//            ->orderBy(CalculMatchingTot(i.getClient2()), 'ASC');
+//
+//        $query = $qb->getQuery()->execute()->fetchAll();
+//        $query2 = $qb2->getQuery()->execute()->fetchAll();
+        return $this->render('NadiaMatchingBundle:Default:FO_MesAmis.html.twig', array('m' => $result , 'n' => $result2) );
 
 
     }
