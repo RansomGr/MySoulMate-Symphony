@@ -24,6 +24,7 @@ class AppKernel extends Kernel
             new Nadia\MatchingBundle\NadiaMatchingBundle(),
             new RansomGr\PubliciteBundle\RansomGrPubliciteBundle(),
             new Sofiene\ProfilBundle\SofieneProfilBundle(),
+            new CMEN\GoogleChartsBundle\CMENGoogleChartsBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

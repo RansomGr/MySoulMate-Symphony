@@ -23,6 +23,7 @@ security:
 #allow_if: "not has_role('ROLE_USER') and not has_role('ROLE_ADMIN')"
     access_control:
     - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/login2$, role: IS_AUTHENTICATED_ANONYMOUSLY }
     - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
     - { path: ^/welcome, role: IS_AUTHENTICATED_ANONYMOUSLY }
     - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
