@@ -1,0 +1,148 @@
+{% extends 'Layouts/Layout_BO.html.twig' %}
+
+{% block content %}
+    <style>
+        .fileContainer {
+            overflow: hidden;
+            position: relative;
+        }
+        .fileContainer [type=file] {
+            cursor: inherit;
+            display: block;
+            font-size: 999px;
+            filter: alpha(opacity=0);
+            min-height: 100%;
+            min-width: 100%;
+            opacity: 0;
+            position: absolute;
+            right: 0;
+            text-align: right;
+            top: 0;
+        }
+    </style>
+    <div class="right_col" role="main">
+        <div class="">
+            <div class="page-title">
+                <div class="title_left">
+                    <h3>Publicite</h3>
+                </div>
+                <div class="title_right">
+                    <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search for...">
+                            <span class="input-group-btn">
+                      <button class="btn btn-default" type="button">Go!</button>
+                    </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h3>Modifier Une Publicité</h3>
+                            <h4><a href="{{ path('Admin_Publicite_index') }}">Retour a la liste</a></h4>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                       aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="#">Settings 1</a>
+                                        </li>
+                                        <li><a href="#">Settings 2</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <br/>
+                            {{ form_start(edit_form, { 'attr': {'class': 'form-horizontal form-label-left'}}) }}
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Titre</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    {{ form_widget(edit_form.title, { 'attr': {'class': 'form-control col-md-7 col-xs-12'} }) }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Aperçu</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <img style="max-height:150px;max-width:150px;height:auto;width:auto;" src="{{ asset('images/') }}{{ photo }}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Photo</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <label class="fileContainer form-control col-md-7 col-xs-12">  Ajouter Une Photo!{{ form_widget(edit_form.photo, { 'attr': {'class': 'form-control col-md-7 col-xs-12 '} }) }}</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Description</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    {{ form_widget(edit_form.description, { 'attr': {'class': 'form-control col-md-7 col-xs-12'} }) }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Date Debut</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    {{ form_widget(edit_form.dateDebut, { 'attr': {'class': 'form-control col-md-7 col-xs-12  has-feedback-left date'} }) }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Date fin</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    {{ form_widget(edit_form.dateFin, { 'attr': {'class': 'form-control col-md-7 col-xs-12'} }) }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Lien du site
+                                    annonceur</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    {{ form_widget(edit_form.lien, { 'attr': {'class': 'form-control col-md-7 col-xs-12'} }) }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                                       for="title">Confirmation</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    {{ form_widget(edit_form.approved, { 'attr': {'class': 'form-control col-md-7 col-xs-12'} }) }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Annonceur</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    {{ form_widget(edit_form.owner, { 'attr': {'class': 'form-control col-md-7 col-xs-12','tabindex':'-1'} }) }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Position</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    {{ form_widget(edit_form.position, { 'attr': {'class': 'select2_single form-control col-md-7 col-xs-12 ','tabindex':'-1'} }) }}
+                                </div>
+                            </div>
+                            <div class="ln_solid"></div>
+                            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                <button class="btn btn-success" type="submit">Modifier</button>
+                                <button class="btn btn-primary" type="reset">Annuler</button>
+                                <button class="btn btn-danger" type="button"
+                                        onclick="if(confirm('Voulez vous vraiment \nSupprimer Cette Publicite?'))document.getElementsByName('form')[0].submit()">
+                                    Supprimer
+                                </button>
+                            </div>
+                            {{ form_end(edit_form) }}
+                            {{ form_start(delete_form) }}
+                            {{ form_end(delete_form) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

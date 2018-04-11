@@ -51,7 +51,7 @@
                     </div>
                     <div class="profile_info">
                         <span>Welcome,</span>
-                        <h2>{% block Admin_name %}{% endblock %}</h2>
+                        <h2>{{ app.user.username }}</h2>
                     </div>
                 </div>
                 <!-- /menu profile quick info -->
@@ -81,6 +81,25 @@
                                     <li><a href="">Liste des évènements</a></li>
                                     <li><a href="">Ajouter un nouvel évènement </a></li>
                                     <li><a href="">Statistiques des évènements</a></li>
+                                </ul>
+                            </li>
+                            <li><a><i class="fa fa-sitemap"></i>Gestion Publicites <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a>Positions<span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="{{ path('Admin_Publicite_Position_new') }}">Ajouter Nouvelle</a></li>
+                                            <li><a href="{{ path('Admin_Publicite_Position_index') }}">Liste Positions</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a>Publicites<span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="{{ path('Admin_Publicite_new') }}">Ajouter Nouvelle</a></li>
+                                            <li><a href="{{ path('Admin_Publicite_index') }}">Liste Publicites</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="">Liste Clients</a></li>
+
+
                                 </ul>
                             </li>
                             <li><a><i class="fa fa-table"></i> Bonplans <span class="fa fa-chevron-down"></span></a>
@@ -125,7 +144,7 @@
                     <a data-toggle="tooltip" data-placement="top" title="Lock">
                         <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
                     </a>
-                    <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+                    <a data-toggle="tooltip" data-placement="top" title="Logout" href="{{ path('fos_user_security_logout') }}">
                         <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
                     </a>
                 </div>
@@ -145,7 +164,10 @@
                         <li class="">
                             <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
                                aria-expanded="false">
-                                <img src="{{ block('Admin_img') }}" alt="">John Doe
+                                <img src="{{ block('Admin_img') }}" alt="">
+                                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                        {{'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}
+                                    {% endif %}
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -157,7 +179,7 @@
                                     </a>
                                 </li>
                                 <li><a href="javascript:;">Help</a></li>
-                                <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                                <li><a href="{{ path('fos_user_security_logout') }}"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                             </ul>
                         </li>
 
@@ -292,6 +314,22 @@
 <!-- bootstrap-daterangepicker -->
 <script src="{{ asset('BO_assets/vendors/moment/min/moment.min.js') }}"></script>
 <script src="{{ asset('BO_assets/vendors/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
+<!-- Datatables -->
+<script src="{{ asset('BO_assets/vendors/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+<script src="{{ asset('BO_assets/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
+<script src="{{ asset('BO_assets/vendors/datatables.net-buttons/js/dataTables.buttons.min.js') }}"></script>
+<script src="{{ asset('BO_assets/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js') }}"></script>
+<script src="{{ asset('BO_assets/vendors/datatables.net-buttons/js/buttons.flash.min.js') }}"></script>
+<script src="{{ asset('BO_assets/vendors/datatables.net-buttons/js/buttons.html5.min.js') }}"></script>
+<script src="{{ asset('BO_assets/vendors/datatables.net-buttons/js/buttons.print.min.js') }}"></script>
+<script src="{{ asset('BO_assets/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js') }}"></script>
+<script src="{{ asset('BO_assets/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js') }}"></script>
+<script src="{{ asset('BO_assets/vendors/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('BO_assets/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js') }}"></script>
+<script src="{{ asset('BO_assets/vendors/datatables.net-scroller/js/dataTables.scroller.min.js') }}"></script>
+<script src="{{ asset('BO_assets/vendors/jszip/dist/jszip.min.js') }}"></script>
+<script src="{{ asset('BO_assets/vendors/pdfmake/build/pdfmake.min.js') }}"></script>
+<script src="{{ asset('BO_assets/vendors/pdfmake/build/vfs_fonts.js') }}"></script>
 <!-- Custom Theme Scripts -->
 <script src="{{ asset('BO_assets/build/js/custom.min.js') }}"></script>
 </body>

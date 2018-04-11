@@ -1,0 +1,174 @@
+{% extends ":Layouts:Layout_BO.html.twig" %}
+{% block content %}
+    <center>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!-- Meta, title, CSS, favicons, etc. -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>MySoulMate|BackOffice </title>
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="{{ asset("BO_assets/vendors/bootstrap/dist/css/bootstrap.min.css") }}"/>
+        <!-- Font Awesome -->
+        <link href="{{ asset("BO_assets/vendors/font-awesome/css/font-awesome.min.css") }}" rel="stylesheet">
+        <!-- NProgress -->
+        <link href="{{ asset("BO_assets/vendors/nprogress/nprogress.css") }}" rel="stylesheet">
+        <!-- iCheck -->
+        <link href="{{ asset("BO_assets/vendors/iCheck/skins/flat/green.css") }}" rel="stylesheet">
+        <!-- Datatables -->
+        <link href="{{ asset("BO_assets/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css") }}"
+              rel="stylesheet">
+        <link href="{{ asset("BO_assets/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css") }}"
+              rel="stylesheet">
+        <link href="{{ asset("BO_assets/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css") }}"
+              rel="stylesheet">
+        <link href="{{ asset("BO_assets/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css") }}"
+              rel="stylesheet">
+        <link href="{{ asset("BO_assets/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css") }}"
+              rel="stylesheet">
+
+
+        <!-- bootstrap-progressbar -->
+        <link href="{{ asset("BO_assets/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css") }}"
+              rel="stylesheet">
+        <!-- JQVMap -->
+        <link href="{{ asset("BO_assets/vendors/jqvmap/dist/jqvmap.min.css") }}" rel="stylesheet"/>
+        <!-- bootstrap-daterangepicker -->
+        <link href="{{ asset("BO_assets/vendors/bootstrap-daterangepicker/daterangepicker.css") }}"
+              rel="stylesheet">
+        <!-- Custom Theme Style -->
+        <link href="{{ asset("BO_assets/build/css/custom.min.css") }}" rel="stylesheet">
+        <link href='{{ asset('http://fonts.googleapis.com/css?family=Open+Sans:400,700,800') }}' rel='stylesheet'
+              type='text/css'>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+
+
+    <div class="container">
+        <div class="row">
+            <table id="example" class="table table-striped table-bordered" style="width:70%">
+                <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Type</th>
+                    <th>Email</th>
+                    <th>Site Web</th>
+                    <th>Telephone</th>
+                    <th>Description</th>
+
+                    <th style="text-align:left;width:100px;">Ajouter Plan <a href="{{ path('ajout') }}" class="action-button shadow animate green" >
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                            </a></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for i in m %}
+                    <tr>
+                        <td>{{ i.photo }}</td>
+                        <td>{{ i.type }}</td>
+                        <td>{{ i.email }}</td>
+                        <td>{{ i.siteweb }}</td>
+                        <td>{{ i.telephone }}</td>
+                        <td>{{ i.description }}</td>
+
+                        <td>
+                            <a href="{{ path ('modifierP',{'plan':i.id}) }}" class="action-button shadow animate blue" >
+
+                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                            </a>
+                            <a href="{{ path('supprimer',{'plan':i.id}) }}" class="action-button shadow animate red">
+                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+                        </td>
+
+                    </tr>
+                {% endfor %}
+                </tbody>
+                <tfoot>
+
+                </tfoot>
+            </table>
+        </div>
+    </div>
+
+    <style>
+        table{
+            width:50%;
+        }
+        #example_filter{
+            float:right;
+        }
+        #example_paginate{
+            float:right;
+        }
+        label {
+            display: inline-flex;
+            margin-bottom: .5rem;
+            margin-top: .5rem;
+
+        }
+
+    </style>
+    <style>
+
+
+        .animate
+        {
+            transition: all 0.1s;
+            -webkit-transition: all 0.1s;
+        }
+
+        .action-button
+        {
+            position: relative;
+            padding: 5px 10px;
+            margin: 0px 10px 10px 0px;
+            float: left;
+            border-radius: 10px;
+            font-family: 'Pacifico', cursive;
+            font-size: 25px;
+            color: #FFF;
+            text-decoration: none;
+        }
+
+        .blue
+        {
+            background-color: #3498DB ;
+            border-bottom: 5px solid #2980B9;
+            text-shadow: 0px -2px #2980B9;
+
+        }
+
+        .red
+        {
+            background-color: #E74C3C;
+            border-bottom: 5px solid #BD3E31;
+            text-shadow: 0px -2px #BD3E31;
+        }
+
+        .green
+        {
+            background-color: #82BF56;
+            border-bottom: 2px solid #669644;
+            text-shadow: 0px -2px #669644;
+        }
+
+
+
+        .action-button:active
+        {
+            transform: translate(0px,5px);
+            -webkit-transform: translate(0px,5px);
+            border-bottom: 1px solid;
+        }
+    </style>
+
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable();
+        } );
+
+    </script>
+    </center>
+
+{% endblock %}

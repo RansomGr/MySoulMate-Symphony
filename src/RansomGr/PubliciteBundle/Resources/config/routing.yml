@@ -1,7 +1,7 @@
-ransom_gr_publicite_Admin_publicite:
-    resource: "@RansomGrPubliciteBundle/Resources/config/routing/publicite.yml"
-    prefix:   /Admin/publicite
+ransom_gr_pub_pos_Admin_publicite:
+    resource: "@RansomGrPubliciteBundle/Resources/config/routing/pubpos.yml"
+    prefix:   /Admin/Position_Publicite
 
-ransom_gr_publicite_homepage:
-    path:     /Admin/NewPub
-    defaults: { _controller: RansomGrPubliciteBundle:Publicite:AddnewPublicite }
+ransom_gr_publicite_Admin:
+    resource:     "@RansomGrPubliciteBundle/Resources/config/routing/publicite.yml"
+    prefix:   /Admin/Publicite

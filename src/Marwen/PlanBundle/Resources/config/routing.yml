@@ -1,3 +1,18 @@
 marwen_plan_homepage:
-    path:     /
+    path:     /index
     defaults: { _controller: MarwenPlanBundle:Default:index }
+
+ajout:
+    path:     /Admin/Plan/ajout
+    defaults: { _controller: MarwenPlanBundle:Plan:ajout }
+
+supprimer:
+    path:     /Admin/Plan/supprimer/{plan}
+    defaults: { _controller: MarwenPlanBundle:Plan:supprimer }
+
+modifierP:
+    path:     /Admin/Plan/modifierP/{plan}
+    defaults: { _controller: MarwenPlanBundle:Plan:modifier }
+afficherP:
+    path:     /Admin/Plan/afficherP
+    defaults: { _controller: MarwenPlanBundle:Plan:afficher }

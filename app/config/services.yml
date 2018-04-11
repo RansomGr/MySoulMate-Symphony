@@ -28,7 +28,9 @@ services:
         resource: '../../src/AppBundle/Controller'
         public: true
         tags: ['controller.service_arguments']
-
+    authentication.handler.login_success_handler:
+        class:  MySoulMate\MainBundle\Controller\LoginSuccessHandler
+        arguments:  ['@router', '@security.authorization_checker']
     # add more services, or override services that need manual wiring
     # AppBundle\Service\ExampleService:
     #     arguments:

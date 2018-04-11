@@ -1,0 +1,28 @@
+Admin_Publicite_Position_index:
+    path:     /
+    defaults: { _controller: "RansomGrPubliciteBundle:PubPos:index" }
+    methods:  GET
+
+Admin_Publicite_Position_show:
+    path:     /{id}/show
+    defaults: { _controller: "RansomGrPubliciteBundle:PubPos:show" }
+    methods:  GET
+
+Admin_Publicite_Position_new:
+    path:     /new
+    defaults: { _controller: "RansomGrPubliciteBundle:PubPos:new" }
+    methods:  [GET, POST]
+
+Admin_Publicite_Position_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "RansomGrPubliciteBundle:PubPos:edit" }
+    methods:  [GET, POST]
+
+Admin_Publicite_Position_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "RansomGrPubliciteBundle:PubPos:delete" }
+    methods:  DELETE
+Admin_Publicite_Position_delete_get:
+    path:     /{id}/remove
+    defaults: { _controller: "RansomGrPubliciteBundle:PubPos:remove" }
+
