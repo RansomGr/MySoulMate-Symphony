@@ -22,11 +22,11 @@ class Invitation
     private $id;
 
     /**
-     * @var \DateTime
+     * @var string
      *
-     * @ORM\Column(name="date_h", type="datetime", nullable=false)
+     * @ORM\Column(name="statut", type="string", length=30, nullable=true)
      */
-    private $dateH;
+    private $statut;
 
     /**
      * @var \Utilisateur
@@ -47,6 +47,70 @@ class Invitation
      * })
      */
     private $client1;
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStatut()
+    {
+        return $this->statut;
+    }
+
+    /**
+     * @param string $statut
+     */
+    public function setStatut($statut)
+    {
+        $this->statut = $statut;
+    }
+
+    /**
+     * @return \Utilisateur
+     */
+    public function getClient2()
+    {
+        return $this->client2;
+    }
+
+    /**
+     * @param \Utilisateur $client2
+     */
+    public function setClient2($client2)
+    {
+        $this->client2 = $client2;
+    }
+
+    /**
+     * @return \Utilisateur
+     */
+    public function getClient1()
+    {
+        return $this->client1;
+    }
+
+    /**
+     * @param \Utilisateur $client1
+     */
+    public function setClient1($client1)
+    {
+        $this->client1 = $client1;
+    }
 
 
 }

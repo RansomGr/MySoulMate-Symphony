@@ -4,22 +4,22 @@
     <br>
     <table border="1">
         <tr>
-            <td>Entite</td><td>nom</td><td>type</td><td>durée / heure(s)</td><td>date</td><td>heure</td><td>organisateur</td><td>plan</td><td>description</td><td>nombre max</td><td>modifier</td><td>supprimer</td>
+            <td>id</td><td>nom</td><td>type</td><td>durée / heure(s)</td><td>date</td><td>heure</td><td>organisateur</td><td>plan</td><td>description</td><td>nombre max</td><td>modifier</td><td>supprimer</td>
         </tr>
         {% for i in m %}
             <tr>
-                <td>{{ i.entite.id }}</td>
+                <td>{{ i.id }}</td>
                 <td>{{ i.nomEvt }}</td>
                 <td>{{ i.typeEvt }}</td>
                 <td>{{ i.dureeEvt }}</td>
                 <td>{{ i.dateEvt|date }}</td>
-                <td>{{ i.heure|date }}</td>
-                <td>{{ i.organisateurEvt.entite.id }}</td>
-                <td>{{ i.planEvt.entite }}</td>
+                <td>{{ i.heure }}</td>
+                <td>{{ i.organisateurEvt.id }}</td>
+                <td>{{ i.planEvt.type }}</td>
                 <td>{{ i.descriptionEvt }}</td>
                 <td>{{ i.nbMax }}</td>
-                <td><a href="{{ path('_modifier',{ 'Entite':i.entite.id}) }}">modifier</a></td>
-                <td><a href="{{ path('_delete',{ 'Entite':i.entite.id}) }}">supprimer</a></td>
+                <td><a href="{{ path('_modifier',{ 'id':i.id}) }}">modifier</a></td>
+                <td><a href="{{ path('_delete',{ 'id':i.id}) }}">supprimer</a></td>
             </tr>
         {% endfor %}
     </table>

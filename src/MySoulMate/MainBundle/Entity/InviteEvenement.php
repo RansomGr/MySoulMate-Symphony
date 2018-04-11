@@ -31,9 +31,9 @@ class InviteEvenement
     /**
      * @var \Events
      *
-     * @ORM\ManyToOne(targetEntity="Events")
+     * @ORM\ManyToOne(targetEntity="Events",cascade={"persist"})
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="evenement_groupe", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="evenement_groupe", referencedColumnName="id", onDelete="CASCADE")
      * })
      */
     private $evenementGroupe;
@@ -47,6 +47,69 @@ class InviteEvenement
      * })
      */
     private $client;
+
+    /**
+     * InviteEvenement constructor.
+     */
+    public function __construct()
+    {
+    }
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getParticipe()
+    {
+        return $this->participe;
+    }
+
+    /**
+     * @param string $participe
+     */
+    public function setParticipe($participe)
+    {
+        $this->participe = $participe;
+    }
+
+    /**
+     * @return \Events
+     */
+    public function getEvenementGroupe()
+    {
+        return $this->evenementGroupe;
+    }
+
+    /**
+     * @param \Events $evenementGroupe
+     */
+    public function setEvenementGroupe($evenementGroupe)
+    {
+        $this->evenementGroupe = $evenementGroupe;
+    }
+
+    /**
+     * @return \Utilisateur
+     */
+    public function getClient()
+    {
+        return $this->client;
+    }
+
+    /**
+     * @param \Utilisateur $client
+     */
+    public function setClient($client)
+    {
+        $this->client = $client;
+    }
 
 
 }

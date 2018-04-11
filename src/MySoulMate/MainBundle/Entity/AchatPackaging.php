@@ -41,6 +41,54 @@ class AchatPackaging
      */
     private $client;
 
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return \Packaging
+     */
+    public function getPackaging()
+    {
+        return $this->packaging;
+    }
+
+    /**
+     * @param \Packaging $packaging
+     */
+    public function setPackaging($packaging)
+    {
+        $this->packaging = $packaging;
+    }
+
+    /**
+     * @return \Utilisateur
+     */
+    public function getClient()
+    {
+        return $this->client;
+    }
+
+    /**
+     * @param \Utilisateur $client
+     */
+    public function setClient($client)
+    {
+        $this->client = $client;
+    }
+
 
 }
 
