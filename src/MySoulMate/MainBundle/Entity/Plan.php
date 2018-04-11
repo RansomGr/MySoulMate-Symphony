@@ -274,9 +274,9 @@ class Plan
      * Plan constructor.
      * @param int $id
      */
-    public function __construct($id)
+    public function __construct()
     {
-        $this->id = $id;
+
     }
 
 }
