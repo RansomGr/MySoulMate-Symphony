@@ -3,7 +3,7 @@
 namespace RansomGr\PubliciteBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert ;
 /**
  * Publicite
  *
@@ -27,13 +27,19 @@ class Publicite
      * @ORM\Column(name="title", type="string", length=255)
      */
     private $title;
+    /**
+     * @var string
+     * @Assert\Image()
+     * @ORM\Column(name="lien", type="string", length=255)
+     */
 
+    private $photo;
     /**
      * @var string
      *
      * @ORM\Column(name="photo", type="string", length=255)
      */
-    private $photo;
+    private $lien;
 
     /**
      * @var string
@@ -55,7 +61,29 @@ class Publicite
      * @ORM\Column(name="date_fin", type="date")
      */
     private $dateFin;
+    /**
+     *  @var \PubOwner
+     * @ORM\ManyToOne(targetEntity="PubOwner")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="owner", referencedColumnName="id")
+     * })
+     */
+    private $owner;
+    /**
+     *  @var \PubPos
+     * @ORM\ManyToOne(targetEntity="PubPos")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="position", referencedColumnName="id")
+     * })
+     */
+    private $position;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="approved", type="string")
+     */
+    private $approved;
     /**
      * Get id
      *
@@ -102,6 +130,22 @@ class Publicite
         $this->photo = $photo;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLien()
+    {
+        return $this->lien;
+    }
+
+    /**
+     * @param string $lien
+     */
+    public function setLien($lien)
+    {
+        $this->lien = $lien;
     }
 
     /**
@@ -187,27 +231,52 @@ class Publicite
     }
 
     /**
-     * Set dateDeb
-     *
-     * @param \DateTime $dateDeb
-     *
-     * @return Publicite
+     * @return \PubOwner
      */
-    public function setDateDeb($dateDeb)
+    public function getOwner()
     {
-        $this->dateDeb = $dateDeb;
-
-        return $this;
+        return $this->owner;
     }
 
     /**
-     * Get dateDeb
-     *
-     * @return \DateTime
+     * @param \PubOwner $owner
      */
-    public function getDateDeb()
+    public function setOwner($owner)
     {
-        return $this->dateDeb;
+        $this->owner = $owner;
     }
+
+    /**
+     * @return \PubPos
+     */
+    public function getPosition()
+    {
+        return $this->position;
+    }
+
+    /**
+     * @param \PubPos $position
+     */
+    public function setPosition($position)
+    {
+        $this->position = $position;
+    }
+
+    /**
+     * @return string
+     */
+    public function getApproved()
+    {
+        return $this->approved;
+    }
+
+    /**
+     * @param string $approved
+     */
+    public function setApproved($approved)
+    {
+        $this->approved = $approved;
+    }
+
 }
 
