@@ -36,9 +36,9 @@ class Relation
     private $dateFin;
 
     /**
-     * @var string
+     * @var integer
      *
-     * @ORM\Column(name="niveau", type="string", length=20, nullable=true)
+     * @ORM\Column(name="niveau", type="integer", nullable=true)
      */
     private $niveau;
 
@@ -50,25 +50,166 @@ class Relation
     private $pointRelation;
 
     /**
-     * @var \Utilisateur
+     * @var Utilisateur
      *
      * @ORM\ManyToOne(targetEntity="Utilisateur")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="client1", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="client1", referencedColumnName="id",onDelete="CASCADE")
      * })
      */
-    private $client1;
+    private $conjoint1;
 
     /**
-     * @var \Utilisateur
+     * @var Utilisateur
      *
      * @ORM\ManyToOne(targetEntity="Utilisateur")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="client2", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="client2", referencedColumnName="id",onDelete="CASCADE")
      * })
      */
-    private $client2;
+    private $conjoint2;
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="ContenuMoment", mappedBy="relation")
+     */
+    private $cMoment;
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDateDebut()
+    {
+        return $this->dateDebut;
+    }
+
+    /**
+     * @param \DateTime $dateDebut
+     */
+    public function setDateDebut($dateDebut)
+    {
+        $this->dateDebut = $dateDebut;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDateFin()
+    {
+        return $this->dateFin;
+    }
+
+    /**
+     * @param \DateTime $dateFin
+     */
+    public function setDateFin($dateFin)
+    {
+        $this->dateFin = $dateFin;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNiveau()
+    {
+        return $this->niveau;
+    }
+
+    /**
+     * @param int $niveau
+     */
+    public function setNiveau($niveau)
+    {
+        $this->niveau = $niveau;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPointRelation()
+    {
+        return $this->pointRelation;
+    }
+
+    /**
+     * @param int $pointRelation
+     */
+    public function setPointRelation($pointRelation)
+    {
+        $this->pointRelation = $pointRelation;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getConjointt1()
+    {
+        return $this->conjoint1;
+    }
+
+    /**
+     * @param mixed $conjoint1
+     */
+    public function setConjoint1($conjoint1)
+    {
+        $this->conjoint1 = $conjoint1;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getConjoint2()
+    {
+        return $this->conjoint2;
+    }
+
+    /**
+     * @param mixed $conjoint2
+     */
+    public function setClient2($conjoint2)
+    {
+        $this->conjoint2 = $conjoint2;
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCMoment()
+    {
+        return $this->cMoment;
+    }
+
+    /**
+     * @param \Doctrine\Common\Collections\Collection $cMoment
+     */
+    public function setCMoment($cMoment)
+    {
+        $this->cMoment = $cMoment;
+    }
+
+    /**
+     * Constructor
+     */
+
+    public function __construct()
+    {
+        $this->cMoment = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
 }
 

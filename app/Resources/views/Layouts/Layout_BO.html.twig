@@ -104,9 +104,9 @@
                             </li>
                             <li><a><i class="fa fa-clone"></i>Relations <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="">Liste Relations</a></li>
-                                    <li><a href="">Ajouter nouveau conseil</a></li>
-                                    <li><a href="">Statistique relations</a></li>
+                                    <li><a href="{{ path('_afficherR') }}">Liste Relations</a></li>
+                                    <li><a href="{{ path('_ajoutC') }}">Ajouter nouveau conseil</a></li>
+                                    <li><a href="{{ path('_statR') }}">Statistique relations</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -239,7 +239,6 @@
         <!-- page content -->
         <div class="left_col" role="main">
         {% block content %}
-
         {% endblock %}
         </div>
         <!-- /page content -->
