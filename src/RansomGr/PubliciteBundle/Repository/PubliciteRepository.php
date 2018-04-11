@@ -10,4 +10,12 @@ namespace RansomGr\PubliciteBundle\Repository;
  */
 class PubliciteRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findAllordered()
+    {
+        $query= $this->getEntityManager()->createQuery('SELECT p,pp FROM RansomGrPubliciteBundle:Publicite p JOIN  p.position pp ORDER BY  pp.position ASC');
+        return $query->getResult();
+    }
+
+
+
 }

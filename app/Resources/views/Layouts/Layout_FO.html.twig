@@ -484,6 +484,7 @@
     <iframe src="//www.googletagmanager.com/ns.html?id=GTM-P9FT69" height="0" width="0"
             style="display:none;visibility:hidden"></iframe>
 </noscript>
+
 <script>(function (w, d, s, l, i) {
         w[l] = w[l] || [];
         w[l].push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
@@ -530,5 +531,15 @@
 <div class="rd-mobilepanel">
     <button class="rd-mobilepanel_toggle"><span></span></button>
     <h2 class="rd-mobilepanel_title">FAQ</h2></div>
-
+<footer>
+<script src="{{ asset('FO_assets/jquery.js') }}"></script>
+<script>
+    $(document).ready(
+        $.ajax({
+            type: 'post',
+            url:{{ path('') }},
+        });
+    );
+</script>
+</footer>
 </body><!-- Google Tag Manager --></html>
