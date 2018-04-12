@@ -42,6 +42,13 @@ class AchatPackaging
     private $client;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="datedebut", type="datetime", nullable=true)
+     */
+    private $datedebut;
+
+    /**
      * @return int
      */
     public function getId()
@@ -87,6 +94,22 @@ class AchatPackaging
     public function setClient($client)
     {
         $this->client = $client;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDatedebut()
+    {
+        return $this->datedebut;
+    }
+
+    /**
+     * @param \DateTime $datedebut
+     */
+    public function setDatedebut($datedebut)
+    {
+        $this->datedebut = $datedebut;
     }
 
 
