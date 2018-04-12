@@ -1,0 +1,304 @@
+{% extends "Layouts/Layout_BO.html.twig" %}
+
+
+
+
+
+
+    {% block content %}
+        <center>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+            <!-- Meta, title, CSS, favicons, etc. -->
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>MySoulMate|BackOffice </title>
+            <!-- Bootstrap -->
+            <link rel="stylesheet" href="{{ asset("BO_assets/vendors/bootstrap/dist/css/bootstrap.min.css") }}"/>
+            <!-- Font Awesome -->
+            <link href="{{ asset("BO_assets/vendors/font-awesome/css/font-awesome.min.css") }}" rel="stylesheet">
+            <!-- NProgress -->
+            <link href="{{ asset("BO_assets/vendors/nprogress/nprogress.css") }}" rel="stylesheet">
+            <!-- iCheck -->
+            <link href="{{ asset("BO_assets/vendors/iCheck/skins/flat/green.css") }}" rel="stylesheet">
+            <!-- Datatables -->
+            <link href="{{ asset("BO_assets/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css") }}"
+                  rel="stylesheet">
+            <link href="{{ asset("BO_assets/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css") }}"
+                  rel="stylesheet">
+            <link href="{{ asset("BO_assets/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css") }}"
+                  rel="stylesheet">
+            <link href="{{ asset("BO_assets/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css") }}"
+                  rel="stylesheet">
+            <link href="{{ asset("BO_assets/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css") }}"
+                  rel="stylesheet">
+
+
+            <!-- bootstrap-progressbar -->
+            <link href="{{ asset("BO_assets/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css") }}"
+                  rel="stylesheet">
+            <!-- JQVMap -->
+            <link href="{{ asset("BO_assets/vendors/jqvmap/dist/jqvmap.min.css") }}" rel="stylesheet"/>
+            <!-- bootstrap-daterangepicker -->
+            <link href="{{ asset("BO_assets/vendors/bootstrap-daterangepicker/daterangepicker.css") }}"
+                  rel="stylesheet">
+            <!-- Custom Theme Style -->
+            <link href="{{ asset("BO_assets/build/css/custom.min.css") }}" rel="stylesheet">
+            <link href='{{ asset('http://fonts.googleapis.com/css?family=Open+Sans:400,700,800') }}' rel='stylesheet'
+                  type='text/css'>
+            <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+            <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+            <!------ Include the above in your HEAD tag ---------->
+            {% block titre %}
+                <a href="{{ path('afficherP') }}" class="current">Ajouter</a>
+            {% endblock %}
+
+
+            {% block titre2 %}Ajouter des Offres{% endblock %}
+            <div class="container">
+                <form class="well span8" method="POST">
+                    <div class="row">
+                        <div class="span3">
+                            <label>Type</label>
+                            <input type="text" class="span3" placeholder="" name="type">
+                            <label>Email</label>
+                            <input type="text" class="span3" placeholder="" name="email">
+                            <label>Site Web</label>
+                            <input type="text" class="span3" placeholder="" name="siteweb">
+                            <label>Telephone</label>
+                            <input type="number" class="span3" placeholder="" name="telephone">
+
+                            <label>Photo</label>
+                            <input type="file" id="File" onchange="previewFile()" name="img">
+                            <label>Photo1</label>
+                            <input type="file" id="File" onchange="previewFile()" name="img1">
+                            <label>Photo2</label>
+                            <input type="file" id="File" onchange="previewFile()" name="img2">
+                            <label>lat</label>
+
+                            <input type="number" class="span3" placeholder="" name="lat" >
+                            <label>Lang</label>
+                            <input type="number" class="span3" placeholder="" name="lng">
+
+
+                            <div id="map" class="col-sm-5"
+                                 style="width: 50%;height: 500px;position: relative;overflow: hidden;">
+                                <div style="height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; background-color: rgb(229, 227, 223);">
+                                    <div class="gm-style"
+                                         style="position: absolute; z-index: 0; left: 0px; top: 0px; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px;">
+                                        <div tabindex="0"
+                                             style="position: absolute; z-index: 0; left: 0px; top: 0px; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px; cursor: url(&quot;https://maps.gstatic.com/mapfiles/openhand_8_8.cur&quot;), default; touch-action: pan-x pan-y;">
+                                            <div style="z-index: 1; position: absolute; left: 50%; top: 50%; transform: translate(0px, 0px);">
+                                                <div style="position: absolute; left: 0px; top: 0px; z-index: 100; width: 100%;">
+                                                    <div style="position: absolute; left: 0px; top: 0px; z-index: 0;">
+                                                        <div style="position: absolute; z-index: 1; transform: matrix(1, 0, 0, 1, -81, -175);">
+                                                            <div style="position: absolute; left: 0px; top: 0px; width: 256px; height: 256px;">
+                                                                <div style="width: 256px; height: 256px;"></div>
+                                                            </div>
+                                                            <div style="position: absolute; left: -256px; top: 0px; width: 256px; height: 256px;">
+                                                                <div style="width: 256px; height: 256px;"></div>
+                                                            </div>
+                                                            <div style="position: absolute; left: -256px; top: -256px; width: 256px; height: 256px;">
+                                                                <div style="width: 256px; height: 256px;"></div>
+                                                            </div>
+                                                            <div style="position: absolute; left: 0px; top: -256px; width: 256px; height: 256px;">
+                                                                <div style="width: 256px; height: 256px;"></div>
+                                                            </div>
+                                                            <div style="position: absolute; left: 256px; top: -256px; width: 256px; height: 256px;">
+                                                                <div style="width: 256px; height: 256px;"></div>
+                                                            </div>
+                                                            <div style="position: absolute; left: 256px; top: 0px; width: 256px; height: 256px;">
+                                                                <div style="width: 256px; height: 256px;"></div>
+                                                            </div>
+                                                            <div style="position: absolute; left: 256px; top: 256px; width: 256px; height: 256px;">
+                                                                <div style="width: 256px; height: 256px;"></div>
+                                                            </div>
+                                                            <div style="position: absolute; left: 0px; top: 256px; width: 256px; height: 256px;">
+                                                                <div style="width: 256px; height: 256px;"></div>
+                                                            </div>
+                                                            <div style="position: absolute; left: -256px; top: 256px; width: 256px; height: 256px;">
+                                                                <div style="width: 256px; height: 256px;"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div style="position: absolute; left: 0px; top: 0px; z-index: 101; width: 100%;"></div>
+                                                <div style="position: absolute; left: 0px; top: 0px; z-index: 102; width: 100%;"></div>
+                                                <div style="position: absolute; left: 0px; top: 0px; z-index: 103; width: 100%;">
+                                                    <div style="position: absolute; left: 0px; top: 0px; z-index: -1;">
+                                                        <div style="position: absolute; z-index: 1; transform: matrix(1, 0, 0, 1, -81, -175);">
+                                                            <div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 0px; top: 0px;"></div>
+                                                            <div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: -256px; top: 0px;"></div>
+                                                            <div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: -256px; top: -256px;"></div>
+                                                            <div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 0px; top: -256px;"></div>
+                                                            <div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 0px; top: 256px;"></div>
+                                                            <div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: -256px; top: 256px;"></div>
+                                                            <div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 256px; top: -256px;"></div>
+                                                            <div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 256px; top: 0px;"></div>
+                                                            <div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 256px; top: 256px;"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div style="width: 27px; height: 43px; overflow: hidden; position: absolute; left: 20px; top: -158px; z-index: -115; animation-duration: 500ms; animation-iteration-count: 1; animation-name: _gm7315;">
+                                                        <img alt=""
+                                                             src="https://maps.gstatic.com/mapfiles/api-3/images/spotlight-poi2.png"
+                                                             draggable="false"
+                                                             style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;">
+                                                    </div>
+                                                </div>
+                                                <div style="position: absolute; left: 0px; top: 0px; z-index: 0;">
+                                                    <div style="position: absolute; z-index: 0; transform: matrix(0.5, 0, 0, 0.5, -81, -47);"></div>
+                                                    <div style="position: absolute; z-index: 1; transform: matrix(1, 0, 0, 1, -81, -175);"></div>
+                                                </div>
+                                                <div style="position: absolute; left: 0px; top: 0px; z-index: -1; transform: matrix(0.5, 0, 0, 0.5, -110, -240);">
+                                                    <div style="position: absolute; left: 0px; top: 0px;"><img
+                                                                src="https://maps.googleapis.com/maps/api/js/StaticMapService.GetMapImage?1m2&amp;1i4039&amp;2i2943&amp;2e1&amp;3u5&amp;4m2&amp;1u575&amp;2u500&amp;5m6&amp;1e0&amp;5sfr-FR&amp;6sus&amp;10b1&amp;12b1&amp;14i1301875&amp;token=70459"
+                                                                style="width: 575px; height: 500px;"></div>
+                                                </div>
+                                            </div>
+                                            <div class="gm-style-pbc"
+                                                 style="z-index: 2; position: absolute; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px; left: 0px; top: 0px; opacity: 0; transition-duration: 0.2s;">
+                                                <p class="gm-style-pbt"></p></div>
+                                            <div style="z-index: 3; position: absolute; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px; left: 0px; top: 0px; touch-action: pan-x pan-y;">
+                                                <div style="z-index: 1; position: absolute; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px; left: 0px; top: 0px;"></div>
+                                                <div style="z-index: 4; position: absolute; left: 50%; top: 50%; transform: translate(0px, 0px);">
+                                                    <div style="position: absolute; left: 0px; top: 0px; z-index: 104; width: 100%;"></div>
+                                                    <div style="position: absolute; left: 0px; top: 0px; z-index: 105; width: 100%;"></div>
+                                                    <div style="position: absolute; left: 0px; top: 0px; z-index: 106; width: 100%;">
+                                                        <div class="gmnoprint"
+                                                             style="width: 27px; height: 43px; overflow: hidden; position: absolute; opacity: 0.01; touch-action: none; left: 20px; top: -158px; z-index: -115;">
+                                                            <img alt=""
+                                                                 src="https://maps.gstatic.com/mapfiles/api-3/images/spotlight-poi2.png"
+                                                                 draggable="false" usemap="#gmimap0"
+                                                                 style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;">
+                                                            <map name="gmimap0" id="gmimap0">
+                                                                <area href="javascript:void(0)" log="miw"
+                                                                      coords="13.5,0,4,3.75,0,13.5,13.5,43,27,13.5,23,3.75"
+                                                                      shape="poly" title=""
+                                                                      style="cursor: pointer; touch-action: none;">
+                                                            </map>
+                                                        </div>
+                                                    </div>
+                                                    <div style="position: absolute; left: 0px; top: 0px; z-index: 107; width: 100%;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <iframe frameborder="0" src="about:blank"
+                                                style="z-index: -1; position: absolute; width: 100%; height: 100%; top: 0px; left: 0px; border: none;"></iframe>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div class="span5">
+                            <label>Description</label>
+                            <textarea class="input-xlarge span5" id="message" name="description"
+                                      rows="10">
+                    </textarea>
+                            <img src="" height="100cm" id="img1">
+                        </div>
+                        <button name="boutton" class="btn btn-primary pull-right" type=
+                        "submit">Valider
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+
+            <script>
+                function previewFile() {
+                    document.getElementById("img1").style.display = 'block';
+                    var preview = document.querySelector('img'); //selects the query named img
+                    var file = document.querySelector('input[type=file]').files[0]; //sames as here
+                    var reader = new FileReader();
+                    var mysoulmate_mainbundle_plan_photo = document.getElementById("mysoulmate_mainbundle_plan_photo");
+
+                    reader.onloadend = function () {
+                        preview.src = reader.result;
+                    }
+
+                    if (file) {
+                        reader.readAsDataURL(file); //reads the data as a URL
+                        mysoulmate_mainbundle_plan_photo.value = file.name
+                    } else {
+                        preview.src = "";
+                        mysoulmate_mainbundle_plan_photo.value = reader.src;
+                    }
+                }
+
+                previewFile();  //calls the function named previewFile()
+            </script>
+
+
+            <style>
+                [type="date"] {
+                    background: #fff url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png) 97% 50% no-repeat;
+                }
+
+                [type="date"]::-webkit-inner-spin-button {
+                    display: none;
+                }
+
+                [type="date"]::-webkit-calendar-picker-indicator {
+                    opacity: 0;
+                }
+
+                /* custom styles */
+
+                label {
+                    display: block;
+                }
+
+                input {
+                    border: 1px solid #c4c4c4;
+                    border-radius: 5px;
+                    background-color: #fff;
+                    padding: 3px 5px;
+                    box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.1);
+                    width: 190px;
+                }
+            </style>
+
+
+            <script>
+                var marker;
+
+                function myMap() {
+                    var myCenter = new google.maps.LatLng(36.847218, 10.136408);
+                    var mapCanvas = document.getElementById("map");
+                    var mapOptions = {center: myCenter, zoom: 5};
+                    var map = new google.maps.Map(mapCanvas, mapOptions);
+
+                    var infowindow = new google.maps.InfoWindow();
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        anchorPoint: new google.maps.Point(0, -29)
+
+                    });
+                    marker = new google.maps.Marker({
+                        map: map,
+                        draggable: true,
+                        animation: google.maps.Animation.DROP,
+                        position: map.center
+                    });
+                    marker.setMap(map);
+                    //  marker.addListener('click', toggleBounce);
+                    google.maps.event.addListener(marker, 'drag', function (event) {
+                        $("#mysoulmate_mainbundle_plan_x").val(event.latLng.lang());
+                        $("#mysoulmate_mainbundle_plan_y").val(event.latLng.lat());
+                    });
+                    /////
+
+                    /////
+                    marker.setMap(map);
+
+                }
+            </script>
+
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWb0i4faRZm8P5oEN-ukUF_CACQzWt480&libraries=places&callback=myMap"></script>
+
+
+        </center>
+
+    {% endblock %}

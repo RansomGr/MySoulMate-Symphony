@@ -1,3 +1,40 @@
 jileni_relation_homepage:
-    path:     /
+    path:     /j
     defaults: { _controller: JileniRelationBundle:Default:index }
+
+_afficherR:
+    path:     /Admin/Relation/AfficherRe
+    defaults: { _controller: JileniRelationBundle:Relation:Afficher }
+_statR:
+    path:     /Admin/Relation/StatRE
+    defaults: { _controller: JileniRelationBundle:Relation:AfficherStat }
+
+_ajoutM:
+    path:     /Admin/Moment/AjoutMoment
+    defaults: { _controller: JileniRelationBundle:ContenuMoment:Ajout }
+
+_modifierM:
+    path:     /Admin/Moment/ModifierMoment/{id}
+    defaults: { _controller: JileniRelationBundle:ContenuMoment:Modifier }
+
+_supprimerM:
+    path:     /Admin/Moment/SupprimerMoment/{id}
+    defaults: { _controller: JileniRelationBundle:ContenuMoment:Supprimer }
+_afficherM:
+    path:     /Admin/Moment/AfficherMoment
+    defaults: { _controller: JileniRelationBundle:ContenuMoment:Afficher }
+_ajoutC:
+    path:     /Admin/Conseil/AjoutConseil
+    defaults: { _controller: JileniRelationBundle:Conseil:Ajout }
+
+_modifierC:
+    path:     /Admin/Conseil/ModifierConseil/{id}
+    defaults: { _controller: JileniRelationBundle:Conseil:Modifier }
+
+_supprimerC:
+    path:     /Admin/Conseil/SupprimerConseil{id}
+    defaults: { _controller: JileniRelationBundle:Conseil:Supprimer }
+
+_afficherC:
+    path:     /Admin/Conseil/AfficherConseil
+    defaults: { _controller: JileniRelationBundle:Conseil:Afficher }

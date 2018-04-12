@@ -231,30 +231,6 @@ class Publicite
     }
 
     /**
-     * Set dateDeb
-     *
-     * @param \DateTime $dateDeb
-     *
-     * @return Publicite
-     */
-    public function setDateDeb($dateDeb)
-    {
-        $this->dateDeb = $dateDeb;
-
-        return $this;
-    }
-
-    /**
-     * Get dateDeb
-     *
-     * @return \DateTime
-     */
-    public function getDateDeb()
-    {
-        return $this->dateDeb;
-    }
-
-    /**
      * @return \PubOwner
      */
     public function getOwner()

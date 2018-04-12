@@ -2,6 +2,7 @@
 
 namespace RansomGr\PubliciteBundle\Controller;
 
+use DateTime;
 use RansomGr\PubliciteBundle\Entity\Publicite;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\File\File;
@@ -156,5 +157,17 @@ class PubliciteController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+    public function fetchAllActivePubsAction()
+    {
+        $em=$this->getDoctrine()->getManager();
+        $pubs=$em->getRepository('RansomGrPubliciteBundle:Publicite')->findAllordered();
+        $EligiblePubs=array();
+        forEach($pubs as $pub)
+        {
+            if($pub->getDateDebut()<=(new DateTime())&&$pub->getDateFin()>=(new DateTime()))
+            $EligiblePubs[]=$pub;
+        }
+      die($EligiblePubs);
     }
 }

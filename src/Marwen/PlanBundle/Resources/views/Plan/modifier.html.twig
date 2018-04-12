@@ -1,0 +1,142 @@
+{% extends "Layouts/Layout_BO.html.twig" %}
+
+
+
+
+
+
+    {% block content %}
+<center>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MySoulMate|BackOffice </title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="{{ asset("BO_assets/vendors/bootstrap/dist/css/bootstrap.min.css") }}"/>
+    <!-- Font Awesome -->
+    <link href="{{ asset("BO_assets/vendors/font-awesome/css/font-awesome.min.css") }}" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="{{ asset("BO_assets/vendors/nprogress/nprogress.css") }}" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="{{ asset("BO_assets/vendors/iCheck/skins/flat/green.css") }}" rel="stylesheet">
+    <!-- Datatables -->
+    <link href="{{ asset("BO_assets/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css") }}" rel="stylesheet">
+    <link href="{{ asset("BO_assets/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css") }}" rel="stylesheet">
+    <link href="{{ asset("BO_assets/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css") }}" rel="stylesheet">
+    <link href="{{ asset("BO_assets/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css") }}" rel="stylesheet">
+    <link href="{{ asset("BO_assets/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css") }}" rel="stylesheet">
+
+
+    <!-- bootstrap-progressbar -->
+    <link href="{{ asset("BO_assets/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css") }}"
+          rel="stylesheet">
+    <!-- JQVMap -->
+    <link href="{{ asset("BO_assets/vendors/jqvmap/dist/jqvmap.min.css") }}" rel="stylesheet"/>
+    <!-- bootstrap-daterangepicker -->
+    <link href="{{ asset("BO_assets/vendors/bootstrap-daterangepicker/daterangepicker.css") }}" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="{{ asset("BO_assets/build/css/custom.min.css") }}" rel="stylesheet">
+    <link href='{{ asset('http://fonts.googleapis.com/css?family=Open+Sans:400,700,800') }}' rel='stylesheet'
+          type='text/css'>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+    <div class="container">
+        <form class="well span8" method="POST">
+            <div class="row">
+                <div class="span3">
+                    <label>Type</label>
+                    <input type="text" class="span3" placeholder="" name="type" value="{{ plan.type }}">
+                    <label>Email</label>
+                    <input type="text" class="span3" placeholder="" name="email" value="{{ plan.email }}">
+                    <label>Site Web</label>
+                    <input type="text" class="span3" placeholder="" name="siteweb" value="{{ plan.siteweb}}">
+                    <label>Telephone</label>
+                    <input type="number" class="span3" placeholder="" name="telephone" value="{{ plan.telephone }}">
+
+
+                    <label>Photo</label>
+                    <input type="file" id="File" onchange="previewFile()" name="img">
+                    <label>Photo1</label>
+                    <input type="file" id="File" onchange="previewFile()" name="img1">
+                    <label>Photo2</label>
+                    <input type="file" id="File" onchange="previewFile()" name="img2">
+                    <label>lat</label>
+                    <input type="number" class="span3" placeholder="" name="lat" value="{{ plan.x }}">
+                    <label>Lang</label>
+                    <input type="number" class="span3" placeholder="" name="lng" value="{{ plan.y }}">
+                    <div>
+                    <label>Description</label>
+                    <textarea class="input-xlarge span5" id="message" name="description"
+                              rows="10" > {{ plan.description }}
+                    </textarea>
+                        </div>
+
+                </div>
+
+                <div class="span3">
+
+                    <img src="" height="100cm" id="img1">
+                </div><button name="boutton" class="btn btn-primary pull-right" type=
+                "submit" >Valider</button>
+
+
+
+
+
+
+    <script>
+        function previewFile(){
+            var preview = document.querySelector('img'); //selects the query named img
+            var file    = document.querySelector('input[type=file]').files[0]; //sames as here
+            var reader  = new FileReader();
+            var myapp_offrebundle_offre_afficheO = document.getElementById("myapp_offrebundle_offre_afficheO");
+
+            reader.onloadend = function () {
+                preview.src = reader.result;
+            }
+
+            if (file) {
+                reader.readAsDataURL(file); //reads the data as a URL
+                myapp_offrebundle_offre_afficheO.value=file.name
+            } else {
+                preview.src = "";
+                myapp_offrebundle_offre_afficheO.value=reader.src;
+            }
+        }
+
+        previewFile();  //calls the function named previewFile()
+    </script>
+
+    <style>
+        [type="date"] {
+            background:#fff url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png)  97% 50% no-repeat ;
+        }
+        [type="date"]::-webkit-inner-spin-button {
+            display: none;
+        }
+        [type="date"]::-webkit-calendar-picker-indicator {
+            opacity: 0;
+        }
+
+        /* custom styles */
+
+        label {
+            display: block;
+        }
+        input {
+            border: 1px solid #c4c4c4;
+            border-radius: 5px;
+            background-color: #fff;
+            padding: 3px 5px;
+            box-shadow: inset 0 3px 6px rgba(0,0,0,0.1);
+            width: 190px;
+        }
+    </style>
+
+
+    </center>
+
+    {% endblock %}
