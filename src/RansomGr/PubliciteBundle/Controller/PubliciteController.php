@@ -7,7 +7,9 @@ use RansomGr\PubliciteBundle\Entity\Publicite;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Publicite controller.
@@ -39,9 +41,9 @@ class PubliciteController extends Controller
         $publicite = new Publicite();
         $form = $this->createForm('RansomGr\PubliciteBundle\Form\PubliciteType', $publicite);
         $form->handleRequest($request);
-   /**
-    * @var UploadedFile $file
-    */
+        /**
+         * @var UploadedFile $file
+         */
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $file=$publicite->getPhoto();
@@ -156,18 +158,26 @@ class PubliciteController extends Controller
             ->setAction($this->generateUrl('Admin_Publicite_delete', array('id' => $publicite->getId())))
             ->setMethod('DELETE')
             ->getForm()
-        ;
+            ;
     }
     public function fetchAllActivePubsAction()
     {
+
         $em=$this->getDoctrine()->getManager();
         $pubs=$em->getRepository('RansomGrPubliciteBundle:Publicite')->findAllordered();
         $EligiblePubs=array();
         forEach($pubs as $pub)
         {
             if($pub->getDateDebut()<=(new DateTime())&&$pub->getDateFin()>=(new DateTime()))
-            $EligiblePubs[]=$pub;
+                $EligiblePubs[]=$pub;
         }
-      die($EligiblePubs);
+   $content='';
+        forEach($pubs as $pub)
+        {
+          $content.="<div  data-p='170.00' >
+          <a href='".$pub->getLien()."' >
+          <img data-u='image' src='/MySoulMate-Symphony/web/images/".$pub->getPhoto()."' ></a></div>";
+        }
+        return new JsonResponse(array('pubs'=>$content));
     }
 }

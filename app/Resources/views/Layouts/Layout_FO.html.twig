@@ -1,6 +1,25 @@
 <!DOCTYPE html>
 <html class=" desktop landscape" lang="en">
 <head>
+    <script>
+        $('#pubs').ready(
+            $.ajax({
+                url: 'http://localhost/MySoulMate-Symphony/web/app_dev.php/gimme',
+                type: 'get',
+                beforeSend: function () {
+                    console.log('loading');
+                },
+                success: function (data) {
+                    $('#pubs').append(data.pubs);
+                    console.log('yepyep');
+                },
+                error: function (jqxhr, status, exception) {
+                    alert('Exception:' + status);
+                }
+
+            }));
+
+    </script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -159,38 +178,7 @@
                         <div data-u="loading" class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
                             <img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="{{ asset('FO_assets/img/spin.svg') }}" />
                         </div>
-                        <div data-u="slides" style="cursor:default;position:relative;top:0px;left:0px;width:640px;height:120px;overflow:hidden;">
-                            <div data-p="170.00">
-                                <a href="{{ path('_Dashpage') }}" ><img data-u="image" src="{{ asset('FO_assets/img/001.jpg') }}" /></a>
-                            </div>
-                            <div data-p="170.00">
-                                <img data-u="image" src="{{ asset('FO_assets/img/002.jpg') }}" />
-                            </div>
-                            <div data-p="170.00">
-                                <img data-u="image" src="{{ asset('FO_assets/img/003.jpg') }}" />
-                            </div>
-                            <div data-p="170.00">
-                                <img data-u="image" src="{{ asset('FO_assets/img/004.jpg') }}" />
-                            </div>
-                            <div data-p="170.00">
-                                <img data-u="image" src="{{ asset('FO_assets/img/005.jpg') }}" />
-                            </div>
-                            <div data-p="170.00">
-                                <img data-u="image" src="{{ asset('FO_assets/img/006.jpg') }}" />
-                            </div>
-                            <div data-p="170.00">
-                                <img data-u="image" src="{{ asset('FO_assets/img/007.jpg') }}" />
-                            </div>
-                            <div data-b="0" data-p="170.00">
-                                <img data-u="image" src="{{ asset('FO_assets/img/008.jpg') }}" />
-                            </div>
-                            <div data-p="170.00">
-                                <img data-u="image" src="{{ asset('FO_assets/img/009.jpg') }}" />
-                            </div>
-                            <div data-p="170.00">
-                                <img data-u="image" src="{{ asset('FO_assets/img/010.jpg') }}" />
-
-                            </div>
+                        <div id="pubs" data-u="slides" style="cursor:default;position:relative;top:0px;left:0px;width:640px;height:120px;overflow:hidden;">
                         </div>
                         <!-- Bullet Navigator -->
                         <div data-u="navigator" class="jssorb052" style="position:absolute;bottom:12px;right:12px;" data-autocenter="1" data-scale="0.5" data-scale-bottom="0.75">
@@ -531,14 +519,6 @@
     <button class="rd-mobilepanel_toggle"><span></span></button>
     <h2 class="rd-mobilepanel_title">FAQ</h2></div>
 <footer>
-<script src="{{ asset('FO_assets/jquery.js') }}"></script>
-<script>
-    $(document).ready(
-        $.ajax({
-            type: 'post',
-            url:'ff',
-        })
-    );
-</script>
+    <script src="{{ asset('FO_assets/jquery.js') }}"></script>
 </footer>
 </body><!-- Google Tag Manager --></html>

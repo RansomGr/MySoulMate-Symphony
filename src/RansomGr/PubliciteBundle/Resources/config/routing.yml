@@ -5,3 +5,6 @@ ransom_gr_pub_pos_Admin_publicite:
 ransom_gr_publicite_Admin:
     resource:     "@RansomGrPubliciteBundle/Resources/config/routing/publicite.yml"
     prefix:   /Admin/Publicite
+Admin_Publicite_pubs_active:
+    path:     /gimme
+    defaults: { _controller: "RansomGrPubliciteBundle:Publicite:fetchAllActivePubs" }
