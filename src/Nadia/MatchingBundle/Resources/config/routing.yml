@@ -31,7 +31,7 @@ FO_SuppInvit:
 
 FO_VoirCompa:
     path:     /Client/FO_VoirCompa{id}
-    defaults: { _controller: NadiaMatchingBundle:Default:FO_VoirCompa }
+    defaults: { _controller: NadiaMatchingBundle:Matching:FO_CalculMatchingTot }
 
 
 FO_acheter:
