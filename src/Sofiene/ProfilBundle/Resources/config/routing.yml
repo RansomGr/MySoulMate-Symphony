@@ -6,19 +6,40 @@ afficher:
     path:     /afficher/
     defaults: { _controller: SofieneProfilBundle:Caracteristique:affichage }
 
-
 modifier_caracteristique:
     path:     /modifier/{q}
     defaults: { _controller: SofieneProfilBundle:Caracteristique:modifier }
-
 
 acceuil:
     path:     /acceuil
     defaults: { _controller: SofieneProfilBundle:Caracteristique:acceuil}
 
+profile_index:
+    path:     /profile
+    defaults: { _controller: SofieneProfilBundle:Profile:profileIndex}
+profiles_index:
+    path:     /profiles
+    defaults: { _controller: SofieneProfilBundle:Profile:profileAllIndex}
+profile_show:
+    path:     /profile/show/{id}
+    defaults: { _controller: SofieneProfilBundle:Profile:profileShow}
+profile_add:
+    path:     /profile/add
+    defaults: { _controller: SofieneProfilBundle:Profile:profileAdd}
+profile_edit:
+    path:     /profile/edit
+    defaults: { _controller: SofieneProfilBundle:Profile:profileEdit}
+actualites_index:
+    path:     /actualites
+    defaults: { _controller: SofieneProfilBundle:Actualite:index}
 
+actualites_add:
+    path:     /actualite/add
+    defaults: { _controller: SofieneProfilBundle:Actualite:newActualite}
+actualites_show:
+    path:     /actualite/{id}
+    defaults: { _controller: SofieneProfilBundle:Actualite:articleShow}
 
-
-
-
-
+actualites_delete:
+    path:     /actualite/delete/{id}
+    defaults: { _controller: SofieneProfilBundle:Actualite:articleDelete}

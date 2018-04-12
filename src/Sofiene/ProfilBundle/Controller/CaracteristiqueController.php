@@ -16,61 +16,45 @@ class CaracteristiqueController extends Controller
         $caracteristique = new Caracteristique();
         $form = $this->createForm(CaracteristiqueType::class, $caracteristique);
         $form->handleRequest($request);
-
-
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-
-
-
-
-
             $em->persist($caracteristique);
             $em->flush();
-
-
-
-            //return $this->redirectToRoute('affichoffrecoloc');
-
-
+            $profile = $em->getRepository('MySoulMateMainBundle:Profil')->findOneBy(['user' => $this->getUser()]);
+            $profile->setCaracteristique($caracteristique);
+            $em->persist($caracteristique);
+            $em->flush();
+            return $this->redirectToRoute('profile_index');
         }
-
-
-
-        return $this->render('SofieneProfilBundle:Caracteristique:ajout.html.twig', array('form' => $form->createView(),
-            // ...
-        ));
+        return $this->render('SofieneProfilBundle:Caracteristique:ajout.html.twig', array('form' => $form->createView()));
     }
 
-    public function affichageAction($q,Request $request)
+    public function affichageAction($q, Request $request)
     {
-        $em=$this->getDoctrine()->getManager();
-        $offre=$em->getRepository('MySoulMateMainBundle:Caracteristique')->find($q);
+        $em = $this->getDoctrine()->getManager();
+        $offre = $em->getRepository('MySoulMateMainBundle:Caracteristique')->find($q);
         return $this->render('@SofieneProfil/Caracteristique/afficher.html.twig', array(
-            'm'=>$offre));
+            'm' => $offre));
     }
 
 
-
-    public function modifierAction($q,Request $request)
+    public function modifierAction($q, Request $request)
     {
-        $em=$this->getDoctrine()->getManager();
-        $mark=$em->getRepository('MySoulMateMainBundle:Caracteristique')->find($q);
-        $form=$this->createForm(CaracteristiqueType::class,$mark);
-        if($form->handleRequest($request)->isValid())
-        {
+        $em = $this->getDoctrine()->getManager();
+        $mark = $em->getRepository('MySoulMateMainBundle:Caracteristique')->find($q);
+        $form = $this->createForm(CaracteristiqueType::class, $mark);
+        if ($form->handleRequest($request)->isValid()) {
             $em->persist($mark);
             $em->flush();
-            return $this->redirectToRoute('afficher');
+            return $this->redirectToRoute('profile_index');
         }
-        return $this->render('@SofieneProfil/Caracteristique/ajout.html.twig',array(
-            'form'=>$form->createView()));
+        return $this->render('@SofieneProfil/Caracteristique/modifier.html.twig', array(
+            'form' => $form->createView(),'q'=>$q));
     }
 
     public function acceuilAction()
     {
-        return $this->render(':Layouts:Layout_FO.html.twig',array(
-        ));
+        return $this->render(':Layouts:Layout_FO.html.twig', array());
     }
 
     public function AfficheProfilAction()
@@ -79,9 +63,6 @@ class CaracteristiqueController extends Controller
         $colocations = $this->getDoctrine()->getRepository(Profil::class)->findByUtilisateur($user);
         return $this->render('@Colocation/Default/mesoffres.html.twig', ['' => $colocations]);
     }
-
-
-
 
 
 }
