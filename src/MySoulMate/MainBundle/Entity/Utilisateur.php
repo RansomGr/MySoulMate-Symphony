@@ -14,6 +14,7 @@ use FOS\UserBundle\Model\User as BaseUser ;
  */
 class Utilisateur extends BaseUser
 {
+
     /**
      * @var integer
      *
@@ -70,6 +71,14 @@ class Utilisateur extends BaseUser
      * })
      */
     private $adresse;
+
+    /**
+     * Utilisateur constructor.
+     */
+    public function __construct()
+    {
+
+    }
 
     /**
      * @return \Adresse

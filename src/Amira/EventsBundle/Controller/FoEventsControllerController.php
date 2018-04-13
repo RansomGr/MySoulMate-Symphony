@@ -9,6 +9,9 @@ use MySoulMate\MainBundle\Entity\InviteEvenement;
 use MySoulMate\MainBundle\Entity\Utilisateur;
 use Endroid\QrCode\ErrorCorrectionLevel;
 use Endroid\QrCode\LabelAlignment;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\VarDumper\VarDumper;
@@ -46,7 +49,7 @@ class FoEventsControllerController extends Controller
 
             $even->setNbMax($request->get('nbMaximale'));
             $even->setOrganisateurEvt($this->get('security.token_storage')->getToken()->getUser());
-
+              //  exit(VarDumper::dump($this->get('security.token_storage')->getToken()->getUser()));
             $even->setPlanEvt(
                 $em
                     ->getRepository('MySoulMateMainBundle:Plan')
@@ -58,14 +61,16 @@ class FoEventsControllerController extends Controller
 
             foreach ( $request->get('invites') as $user) {
 
+                $userr = new Utilisateur();
+                $userr = $em
+                    ->getRepository('MySoulMateMainBundle:Utilisateur')
+                    ->findOneBy(['id'=>$user]);
                 $inviteEvenement =new InviteEvenement();
                 $inviteEvenement->setEvenementGroupe($even);
                 $inviteEvenement->setClient(
-                    $em
-                        ->getRepository('MySoulMateMainBundle:Utilisateur')
-                        ->findOneBy(['id'=>$user])
+                    $userr
                 );
-                $inviteEvenement->setParticipe("oui");
+                $inviteEvenement->setParticipe("non");
 
                 $em->persist($inviteEvenement);
                 $em->flush();
@@ -90,7 +95,25 @@ class FoEventsControllerController extends Controller
         // dump($villeDestination);
         $em=$this->getDoctrine()->getManager();
         $clubs = $em->getRepository('MySoulMateMainBundle:Events')->eventRecherche($clubNom);//
-        //  exit(VarDumper::dump($clubs));
+//        exit(VarDumper::dump($clubs));
+        $ser = new Serializer(array (new ObjectNormalizer()));
+        $data = $ser->normalize($clubs);
+
+        return new JsonResponse($data);
+//        }
+    }
+
+    public function rechercher1Action($id)
+    {
+
+//
+//        if($request ->isXmlHttpRequest())
+//        {
+       // $clubNom=$request->get('clubNom');
+        // dump($villeDestination);
+        $em=$this->getDoctrine()->getManager();
+        $clubs = $em->getRepository('MySoulMateMainBundle:Events')->eventRecherche($id);//
+
         $ser = new Serializer(array (new ObjectNormalizer()));
         $data = $ser->normalize($clubs);
 
@@ -101,7 +124,6 @@ class FoEventsControllerController extends Controller
     public function ModifierAction(Request $request , $id)
     {
         $even = new Events();
-
         $em=$this->getDoctrine()->getManager();
         $even=$em
             ->getRepository('MySoulMateMainBundle:Events')
@@ -153,28 +175,33 @@ class FoEventsControllerController extends Controller
                 ->getRepository('MySoulMateMainBundle:InviteEvenement')
                 ->findBy(['evenementGroupe'=>$id]);
 
+
             foreach ( $request->get('invites') as $user) {
                 $i=0;
+
                 foreach ($inviteEvenementOriginale as $inviteEvenementOrig ){
-                    if($inviteEvenementOrig->getClient()->getId()==$user->getId())$i=1;
+                    if($inviteEvenementOrig->getClient()->getId()==$user)$i=1;
 
                 }
                 if($i==0){
+
+                    $userr =  $em
+                        ->getRepository('MySoulMateMainBundle:Utilisateur')
+                        ->findOneBy(['id'=>$user]);
                     $inviteEvenement =new InviteEvenement();
                     $inviteEvenement->setEvenementGroupe($even);
-                    $inviteEvenement->setClient(
-                        $em
-                            ->getRepository('MySoulMateMainBundle:Utilisateur')
-                            ->findOneBy(['id'=>$user])
+                    $inviteEvenement->setClient($userr
                     );
-                    $inviteEvenement->setParticipe("oui");
+
+                $inviteEvenement->setParticipe("non");
                     $em->persist($inviteEvenement);
                     $em->flush();
+//                    exit(VarDumper::dump($inviteEvenement));
                 }
             }
             //   $inviteEvenement->setParticipe();
-            //$em->persist($even);
-            $em->flush();
+            $em->persist($even);
+          $em->flush();
         }
         return $this->render('AmiraEventsBundle:FoEventsController:modifier.html.twig', array('plans'=>$plans
         ,'utilisateurs'=>$utilisateurs,'event'=>$even,'date'=>$ddate,'heure'=>$heure,'minute'=>$minute
@@ -226,7 +253,14 @@ class FoEventsControllerController extends Controller
     {
         $em=$this->getDoctrine()->getManager();
         $even=$em->getRepository('MySoulMateMainBundle:Events')->find($id);
-        $em->remove($even);
+        $inviteEvenementOriginale = $em
+            ->getRepository('MySoulMateMainBundle:InviteEvenement')
+            ->findBy(['evenementGroupe'=>$id]);
+        $inviteEvenementOriginale->setParticipe("non");
+        $em->persist($inviteEvenementOriginale);
+        $em->flush();
+
+        $em->persist($even);
         $em->flush();
         return $this->redirectToRoute('FO_listing');
 

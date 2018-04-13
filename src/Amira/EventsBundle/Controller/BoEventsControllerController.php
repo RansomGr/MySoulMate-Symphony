@@ -142,8 +142,7 @@ class BoEventsControllerController extends Controller
             foreach ( $request->get('invites') as $user) {
                     $i=0;
                     foreach ($inviteEvenementOriginale as $inviteEvenementOrig ){
-                        if($inviteEvenementOrig->getClient()->getId()==$user->getId())$i=1;
-
+                        if($inviteEvenementOrig->getClient()->getId()==$user)$i=1;
                     }
                     if($i==0){
                 $inviteEvenement =new InviteEvenement();

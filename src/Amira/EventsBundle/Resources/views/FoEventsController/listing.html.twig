@@ -1,89 +1,94 @@
 {% extends "Layouts/Layout_FO.html.twig" %}
 {% block content %}
-    <br>
-    <br>
-    <br>
-    <br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<head>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        tr, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even){background-color: #f2f2f2}
+    </style>
+</head>
+
+    <center><h5 class="titrerose"> <a href='{{ path('FO_ajouter') }}'> Ajouter un évènement </a><font
+                    color="white"> ________________________________________________________________ </font> <a
+                    href='{{ path('FO_ajouter') }}'>Ajouter un évènement </a></center> </h5>
+
     <h2>Les évènements</h2>
 
-    <input type="text" class="form-control" placeholder="rechercher" id="clubRechrche" name="clubRechrche" style="width: 400px">
-<div id="t">
+    <center><input type="text" class="form-control" placeholder="rechercher" id="clubRechrche" name="clubRechrche" style="width: 400px"></center>
+    <div style="overflow-x:auto;">
     <table border="1" align="center">
         <tr>
-            <td>nom</td><td>type</td><td>durée / heure(s)</td><td>date</td><td>à quelle heure ?</td><td>organisateur</td><td>Emplacement</td><td>description</td><td>nombre maximum d'invités</td>
+            <td>nombre de participants</td><td>type</td><td>durée / heure(s)</td><td>date</td><td>à quelle heure ?</td><td>organisateur</td><td>Emplacement</td><td>description</td><td>nombre maximum d'invités</td>
         </tr>
+        <tbody id="t">
         {% for i in m %}
+
             <tr>
                 <td>{{ i.nomEvt }}</td>
                 <td>{{ i.typeEvt }}</td>
                 <td>{{ i.dureeEvt }}</td>
-                <td>{{ i.dateEvt|date }}</td>
+                <td>{{ i.dateEvt|date("d/m/Y") }}</td>
                 <td>{{ i.heure }}</td>
                 <td>{{ i.organisateurEvt.username }}</td>
                 <td>{{ i.planEvt.type }}</td>
                 <td>{{ i.descriptionEvt }}</td>
                 <td>{{ i.nbMax }}</td>
                 <td><a href="{{ path('FO _modifier',{ 'id':i.id}) }}">modifier</a></td>
-                <td><a target="_blank" href="{{ path('FO_QR',{ 'id':i.nomEvt }) }}">nob invit</a></td>
-                <td><input type="checkbox" value="" name="participe">participer</td>
+                <td><a target="_blank" href="{{ path('FO_QR',{ 'id':i.nomEvt }) }}">nombre de participants</a></td>
+                <td><input type="submit" value="participer" onclick="{{ path('FO_particierEvt',{ 'id':i.id}) }}" class="btn btn-xs btn-default" ></td>
             </tr>
+
         {% endfor %}
+        </tbody>
     </table>
-</div>
-    <script src="{{ asset('front/jquery-3.2.1.min.js') }}"></script>
-    <script>
-        $('#clubRechrche').keyup(function () {
-                var input=$('#clubRechrche').val();
-                var afficher_url = "{{ path('club_afficher',{'id':'alias'}) }}" ;
-                    {%  set alias='alias' %}
+    </div>
+    <script src="{{ asset('FO_assets/js/jquery-3.2.1.min.js') }}"></script>
+        <script>
+
+        $("#clubRechrche").keyup(function () {
+                var input=$("#clubRechrche").val();
+            var afficher_url = "{{ path('FO_QR',{'id':'alias'}) }}" ;
+            var modifier = "{{ path('FO _modifier',{'id':'alias'}) }}" ;
+            {%  set alias='alias' %}
                 var pathh ="{{ path('club_rechercher')}}";
-
-
-
-
                 $.ajax({url : pathh,
                     type:'post',
                     data :{'clubNom':input},
                     dataType : 'json',
                     success : function (data) {
-                        $('#t').empty();
+                        $("#t").empty();
                         $.each(data,function (i,e) {
-                            if(e.category==null)e.category="autre";
-                            if(e.description==null)e.description="";
                             console.log(data);
-                            afficher_url = afficher_url.replace('alias',e.id);
-                            image = image.replace('alias',e.Photo);
+                            afficher_url = afficher_url.replace('alias',e.nomEvt);
+                            modifier = modifier.replace('alias',e.id);
+
                             $('#t').append(
-                                ' <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">'+
-                                '<div class="recipe-box2">'+
-                                '<ul class="recipe-box2-social">'+
-                                '<li><a href="'+afficher_url+
-                                '"><i class="fa fa-link" aria-hidden="true"></i></a></li>'+
-                                '</ul>'+
-                                '<div class="recipe-box2-img-holder">'+
-                                '<a href="'+afficher_url
-                                +'"><img src="'+
-                                image+
-                                '" alt="Recipe" class="img-responsive"></a>'
-                                + '</div>'
-                                +'<div class="recipe-box2-bottom-content-holder">'
-                                + '<h3><a href="'+afficher_url+'">'+e.username+'</a></h3>'
-
-                                +'<p>'+e.description+'</p>'
-                                +'<ul>'
-                                +'<li><a href="'+afficher_url+'">' +
-                                '<i class="fa fa-users" aria-hidden="true"></i> Categorie(s)'+ ':'+'<span>'
-
-                                +e.category+
-                                '</span></a></li></ul> </div></div> </div>'
-
-
-                            );
+                                '<tr><td>'+e.nomEvt +'</td>'
+                                + '<td>'+e.typeEvt +'</td>'
+                                + '<td>'+e.dureeEvt +'</td>'
+                                + '<td>'+e.dateEvt +'|date </td>'
+                                + '<td>'+e.heure +'</td>'
+                                + '<td>'+e.organisateurEvt.username +'</td>'
+                                + '<td>'+e.planEvt.type +'</td>'
+                                + '<td>'+e.descriptionEvt +'</td>'
+                                + '<td>'+e.nbMax +'</td>'
+                                + '<td><a target="_blank" href="'+afficher_url+'">nob invit</a></td>'
+                                + '<td><a target="_blank" href="'+modifier+'">modifier</a></td>'
+                                + '<td><input type="submit" value="participer" onclick="" class="btn btn-xs btn-default"></td>'
+                                + '</tr>'                 );
                         })
                     }
                 })
             }
         );
     </script>
-
 {% endblock %}

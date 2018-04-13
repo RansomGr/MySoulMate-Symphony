@@ -8,7 +8,6 @@
                 <td>Date :</td>
                 <td>
                     <input required type="date" value="{{ date }}" name="date">
-
                 </td>
             </tr>
             <tr>
@@ -27,8 +26,6 @@
                 <td><input required type="number" value="{{ heure }}" min="0" max="23" name="heure">
                     :
                     <input required type="number" value="{{ minute }}" min="0" max="59" name="minute">
-
-
                 </td>
             </tr>
             <tr>
@@ -46,7 +43,7 @@
             <tr>
                 <td>Description :</td>
                 <td>
-                    <textarea name="description">{{ event.descriptionEvt }}</textarea>
+                    <textarea required name="description">{{ event.descriptionEvt }}</textarea>
                 </td>
             </tr>
             <tr>
@@ -73,7 +70,7 @@
             {% for utilisateur in utilisateurs %}
                 <tr>
 
-                    <td><input required type="checkbox" value="{{ utilisateur.id }}" name="invites[]">{{ utilisateur.username }}</td>
+                    <td><input type="checkbox" value="{{ utilisateur.id }}" name="invites[]">{{ utilisateur.username }}</td>
 
 
                 </tr>

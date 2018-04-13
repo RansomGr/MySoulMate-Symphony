@@ -1,10 +1,25 @@
 {% extends "Layouts/Layout_BO.html.twig" %}
 {% block content %}
-    <h1>les évènements</h1>
-    <br>
+    <head>
+        <h2>Les évènements</h2>
+        <style>
+            table {
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            tr, td {
+                text-align: left;
+                padding: 8px;
+            }
+
+            tr:nth-child(even){background-color: #f2f2f2}
+        </style>
+    </head>
+<div style="overflow-x:auto;">
     <table border="1">
         <tr>
-            <td>id</td><td>nom</td><td>type</td><td>durée / heure(s)</td><td>date</td><td>heure</td><td>organisateur</td><td>plan</td><td>description</td><td>nombre max</td><td>modifier</td><td>supprimer</td>
+            <td>id</td><td>nombre de participants</td><td>type</td><td>durée / heure(s)</td><td>date</td><td>heure</td><td>organisateur</td><td>plan</td><td>description</td><td>nombre maximum</td>
         </tr>
         {% for i in m %}
             <tr>
@@ -12,7 +27,7 @@
                 <td>{{ i.nomEvt }}</td>
                 <td>{{ i.typeEvt }}</td>
                 <td>{{ i.dureeEvt }}</td>
-                <td>{{ i.dateEvt|date }}</td>
+                <td>{{ i.dateEvt|date("d/m/Y") }}</td>
                 <td>{{ i.heure }}</td>
                 <td>{{ i.organisateurEvt.id }}</td>
                 <td>{{ i.planEvt.type }}</td>
@@ -23,4 +38,5 @@
             </tr>
         {% endfor %}
     </table>
+</div>
 {% endblock %}
