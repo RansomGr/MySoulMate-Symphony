@@ -73,7 +73,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Aperçu</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <img style="max-height:150px;max-width:150px;height:auto;width:auto;" src="{{ asset('images/') }}{{ photo }}">
+                                    <img id="img" style="max-height:150px;max-width:150px;height:auto;width:auto;" src="{{ asset('images/') }}{{ photo }}">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -140,6 +140,24 @@
                             {{ form_end(delete_form) }}
                         </div>
                     </div>
+                    <script src="{{ asset('FO_assets/jquery.js') }}"></script>
+                    <script>
+                        function readURL(input) {
+                            if (input.files && input.files[0]) {
+                                var reader = new FileReader();
+
+                                reader.onload = function (e) {
+                                    $('#img').attr('src', e.target.result);
+                                }
+
+                                reader.readAsDataURL(input.files[0]);
+                            }
+                        }
+
+                        $("#ransomgr_publicitebundle_publicite_photo").change(function(){
+                            readURL(this);
+                        });
+                    </script>
                 </div>
             </div>
         </div>

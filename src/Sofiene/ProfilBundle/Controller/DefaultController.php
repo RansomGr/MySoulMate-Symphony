@@ -8,6 +8,6 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('SofieneProfilBundle:Default:index.html.twig');
+        return $this->render('Layouts/Layout_Profil.html.twig');
     }
 }

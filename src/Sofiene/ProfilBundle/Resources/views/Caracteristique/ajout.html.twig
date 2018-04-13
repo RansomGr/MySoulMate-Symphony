@@ -1,105 +1,55 @@
-{% extends "Layouts/Layout_Profil.html.twig" %}
+{{ form_start(form, {'action': path('ajouter')}) }}
 
-
-{% block content %}
-
-
-{{ form_start(form)  }}
-<table>
-                  <tr>
-                  <td>Corpulence</td>
-                      <td>{{ form_widget(form.corpulence,{'attr':{'class':'input','placeholder':"corpulence"}}) }}</td>
-                  </tr>
-    <tr>
-        <td>Pilosite</td>
-        <td>{{ form_widget(form.pilosite,{'attr':{'class':'input','placeholder':"corpulence"}}) }}</td>
-    </tr>
-
-    <tr>
-        <td>Origine</td>
-        <td>    {{ form_widget(form.origine,{'attr':{'class':'input','placeholder':"corpulence"}}) }}
-        </td>
-    </tr>
-
-    <tr>
-        <td>Profession</td>
-        <td>        {{ form_widget(form.profession,{'attr':{'class':'input','placeholder':"corpulence"}}) }}
-
-        </td>
-    </tr>
-
-
-    <tr>
-        <td>Alcool</td>
-        <td>            {{ form_widget(form.alcool,{'attr':{'class':'input','placeholder':"corpulence"}}) }}
-
-        </td>
-    </tr>
-
-
-
-
-
-    <tr>
-        <td>Tabac</td>
-        <td>            {{ form_widget(form.tabac,{'attr':{'class':'input','placeholder':"corpulence"}}) }}
-
-        </td>
-    </tr>
-
-    <tr>
-        <td>Taille</td>
-        <td>            {{ form_widget(form.taille,{'attr':{'class':'input','placeholder':"corpulence"}}) }}
-
-        </td>
-    </tr>
-    <tr>
-        <td>Cheuveux</td>
-        <td>            {{ form_widget(form.cheveux,{'attr':{'class':'input','placeholder':"corpulence"}}) }}
-
-        </td>
-    </tr>
-
-    <tr>
-        <td>Yeux</td>
-        <td>            {{ form_widget(form.yeux,{'attr':{'class':'input','placeholder':"corpulence"}}) }}
-
-        </td>
-    </tr>
-    <tr>
-        <td>Caractère</td>
-        <td>            {{ form_widget(form.caractere,{'attr':{'class':'input','placeholder':"corpulence"}}) }}
-
-        </td>
-    </tr>
-    <tr>
-        <td>Statut</td>
-        <td>            {{ form_widget(form.statut,{'attr':{'class':'input','placeholder':"corpulence"}}) }}
-
-        </td>
-    </tr>
-    <tr>
-        <td>Cuisine</td>
-        <td>            {{ form_widget(form.cuisine,{'attr':{'class':'input','placeholder':"corpulence"}}) }}
-
-        </td>
-    </tr>
-
-
-
-
-
-
-    <tr>
-        <td>             <input type="submit" class="button" value="Ajouter">
-
-
-        </td>
-    </tr>
-
-
-</table>
+<div class="form-group">
+    <label>Corpulence</label>
+    {{ form_widget(form.corpulence,{'attr':{'class':'form-control','placeholder':"corpulence"}}) }}
+</div>
+<div class="form-group">
+    <label>Pilosite</label>
+    {{ form_widget(form.pilosite,{'attr':{'class':'form-control','placeholder':"corpulence"}}) }}
+</div>
+<div class="form-group">
+    <label>Origine</label>
+    {{ form_widget(form.origine,{'attr':{'class':'form-control','placeholder':"corpulence"}}) }}
+</div>
+<div class="form-group">
+    <label>Profession</label>
+    {{ form_widget(form.profession,{'attr':{'class':'form-control','placeholder':"corpulence"}}) }}
+</div>
+<div class="form-group">
+    <label>Alcool</label>
+    {{ form_widget(form.alcool,{'attr':{'class':'form-control','placeholder':"corpulence"}}) }}
+</div>
+<div class="form-group">
+    <label>Tabac</label>
+    {{ form_widget(form.tabac,{'attr':{'class':'form-control','placeholder':"corpulence"}}) }}
+</div>
+<div class="form-group">
+    <label>Taille</label>
+    {{ form_widget(form.taille,{'attr':{'class':'form-control','placeholder':"corpulence"}}) }}
+</div>
+<div class="form-group">
+    <label>Cheuveux</label>
+    {{ form_widget(form.cheveux,{'attr':{'class':'form-control','placeholder':"corpulence"}}) }}
+</div>
+<div class="form-group">
+    <label>Yeux</label>
+    {{ form_widget(form.yeux,{'attr':{'class':'form-control','placeholder':"corpulence"}}) }}
+</div>
+<div class="form-group">
+    <label>Caractère</label>
+    {{ form_widget(form.caractere,{'attr':{'class':'form-control','placeholder':"corpulence"}}) }}
+</div>
+<div class="form-group">
+    <label>Statut</label>
+    {{ form_widget(form.statut,{'attr':{'class':'form-control','placeholder':"corpulence"}}) }}
+</div>
+<div class="form-group">
+    <label>Cuisine</label>
+    {{ form_widget(form.cuisine,{'attr':{'class':'form-control','placeholder':"corpulence"}}) }}
+</div>
+<div class="form-group">
+    <input type="submit" class="btn btn-success" value="Ajouter">
+</div>
 
 {{ form_end(form) }}
-
-{% endblock %}

@@ -176,6 +176,28 @@ class Utilisateur extends BaseUser
         $this->profil = $profil;
     }
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="matchtot", type="integer", nullable=true)
+     */
+    private $matchtot;
+
+    /**
+     * @return int
+     */
+    public function getMatchtot()
+    {
+        return $this->matchtot;
+    }
+
+    /**
+     * @param int $matchtot
+     */
+    public function setMatchtot($matchtot)
+    {
+        $this->matchtot = $matchtot;
+    }
 
 }
 

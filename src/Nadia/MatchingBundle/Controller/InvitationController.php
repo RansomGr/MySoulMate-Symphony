@@ -27,19 +27,28 @@ class InvitationController extends Controller
             $em2->persist($invit);// insert into
             $em2->flush(); // query
 
+        $em = $this->getDoctrine()->getManager();
 
-        //if($user2->hasRole("ROLE_USER")) {
-            $marks = $em->getRepository('MySoulMateMainBundle:Utilisateur')->findAll();
-            return $this->render('NadiaMatchingBundle:Default:FO_RechercheMatching.html.twig', array(
-                'm' => $marks
-            ));
-        //}
+        $moi = $em->getRepository('MySoulMateMainBundle:Utilisateur')->find($this->getUser());
+        $role = "ROLE_ADMIN";
+
+        $query = $this->getDoctrine()->getManager()
+            ->createQueryBuilder()
+            ->select('u')
+            ->from('MySoulMateMainBundle:Utilisateur', 'u')
+            ->where('u.id != :client1')
+            ->andwhere('u.roles not like :role ')
+            ->setParameter(':client1', $moi)->setParameter(':role', '%' . $role . '%')
+            ->orderBy('u.matchtot', 'ASC');
+
+        $result = $query->getQuery()->getResult();
+        return $this->render('NadiaMatchingBundle:Default:FO_RechercheMatching.html.twig', array('m' => $result));
+
     }
 
 
-    public function AccepterInvitAction(Request $request, $id)
+    public function AccepterInvitAction( $id)
     {
-        $invit = new Invitation();
 
             $em = $this->getDoctrine()->getManager();
             $invit = $em->getRepository('MySoulMateMainBundle:Invitation')->find($id);

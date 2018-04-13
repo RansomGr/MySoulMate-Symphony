@@ -18,15 +18,7 @@
     <script async="" src="{{ asset('FO_assets/FAQ_files/gtm.js') }}"></script>
     <script src="{{ asset('FO_assets/FAQ_files/jquery.js') }}"></script>
     <script src="{{ asset('FO_assets/FAQ_files/jquery-migrate-1.js') }}"></script>
-    <!--[if lt IE 9]>
-    <div style=' clear: both; text-align:center; position: relative;'>
-        <a href="http://windows.microsoft.com/en-US/internet-explorer/..">
-            <img src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820"
-                 alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."/>
-        </a>
-    </div>
-    <script src="js/html5shiv.js"></script>
-    <![endif]-->
+
     <script src="{{ asset('FO_assets/FAQ_files/device.js') }}"></script>
     <style data-olark="true" type="text/css">.olark-key, #hbl_code, #olark-data {
             display: none !important;
@@ -36,7 +28,8 @@
                 display: none !important
             }
         }</style>
-    <link data-olark="true" rel="stylesheet" href="FAQ_files/theme.css" type="text/css">
+    <link data-olark="true" rel="stylesheet" href="{{ asset('FO_assets/FAQ_files/theme.css') }}" type="text/css">
+    {% block css %}{% endblock %}
 </head>
 <body>
 <div style="display: none;" id="olark">
@@ -84,8 +77,9 @@
                                                      alt=""></a>
                                 </td>
                                 <td>
-                                    <a href={{ path('ajouter') }}> <img class="img-responsive"
-                                                                        src="{{ asset('FO_assets/assets_FO/colore_compte.png') }}" alt=""></a>
+                                    <a href={{ path('profile_index') }}> <img class="img-responsive"
+                                                                              src="{{ asset('FO_assets/assets_FO/colore_compte.png') }}"
+                                                                              alt=""></a>
                                 </td>
 
 
@@ -109,6 +103,18 @@
                                     <a href=""><img class="img-responsive"
                                                     src="{{ asset('FO_assets/assets_FO/colore_evenements.png') }}"
                                                     alt=""></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href={{ path('actualites_index') }}> <img class="img-responsive"
+                                                                              src="{{ asset('FO_assets/assets_FO/colore_compte.png') }}"
+                                                                              alt=""></a>
+                                </td>
+                                <td>
+                                    <a href={{ path('fos_user_security_logout') }}> <img class="img-responsive"
+                                                                              src="{{ asset('FO_assets/assets_FO/colore_compte.png') }}"
+                                                                              alt=""></a>
                                 </td>
                             </tr>
                         </table>

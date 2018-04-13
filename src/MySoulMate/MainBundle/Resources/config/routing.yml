@@ -4,4 +4,6 @@ _homepage:
 _Dashpage:
     path:     /Admin
     defaults: { _controller: MySoulMateMainBundle:Main:Admin }
-
+_Login_page:
+    path:     /welcome/login
+    defaults: { _controller: MySoulMateMainBundle:Main:loginClient }
