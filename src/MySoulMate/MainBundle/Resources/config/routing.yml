@@ -7,3 +7,10 @@ _Dashpage:
 _Login_page:
     path:     /welcome/login
     defaults: { _controller: MySoulMateMainBundle:Main:loginClient }
+_CodeNameOne_login:
+    path:     /User
+    defaults: { _controller: MySoulMateMainBundle:Main:LoginClient2 }
+
+_CodeNameOne_new:
+    path:     /User/addnew
+    defaults: { _controller: MySoulMateMainBundle:Main:addnew }
