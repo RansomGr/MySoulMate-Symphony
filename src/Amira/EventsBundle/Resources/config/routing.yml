@@ -18,6 +18,14 @@ _delete:
     path:     /Admin/Events/delete/{id}
     defaults: { _controller: AmiraEventsBundle:BoEventsController:Delete }
 
+club_rechercher:
+    path: /rechercher
+    defaults: { _controller: AmiraEventsBundle:FoEventsController:rechercher }
+
+club_rechercher1:
+    path: /rechercher1/{id}
+    defaults: { _controller: AmiraEventsBundle:FoEventsController:rechercher1 }
+
 FO_ajouter:
     path:     /foajouter
     defaults: { _controller: AmiraEventsBundle:FoEventsController:Ajouter }
@@ -29,6 +37,10 @@ FO _modifier:
 FO_listing:
     path:     /folisting
     defaults: { _controller: AmiraEventsBundle:FoEventsController:Listing }
+
+FO_particierEvt:
+    path:     /foparticiperEvt/{id}
+    defaults: { _controller: AmiraEventsBundle:FoEventsController:Participe }
 
 FO_delete:
     path:     /fodelete/{id}

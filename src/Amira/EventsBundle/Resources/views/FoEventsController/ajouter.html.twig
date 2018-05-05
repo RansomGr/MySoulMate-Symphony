@@ -1,9 +1,43 @@
 {% extends "Layouts/Layout_FO.html.twig" %}
 {% block content %}
-    <br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <head>
+        <style>
+            {
+                box-sizing: border-box;
+            }
+
+            input[type=text],[type=number], [type=date], select, textarea {
+                width: 100%;
+                padding: 12px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                resize: vertical;
+                background-color: #FEFEE2;
+            }
+
+            label {
+                padding: 12px 12px 12px 0;
+                display: inline-block;
+            }
+
+
+            textarea {
+                width: 100%;
+                height: 150px;
+                padding: 12px 20px;
+                box-sizing: border-box;
+                border: 2px solid #ccc;
+                border-radius: 4px;
+                background-color: #FEFEE2;
+                font-size: 16px;
+                resize: none;
+            }
+        </style>
+    </head>
     <h2>Ajouter évènement</h2>
     <form method="post">
-        <table>
+        <table align="center">
             <tr>
                 <td>Date :</td>
                 <td>
@@ -11,6 +45,7 @@
 
                 </td>
             </tr>
+
             <tr>
                 <td>Type :</td>
                 <td> <select name="type">
@@ -68,12 +103,12 @@
             </tr>
             {% for utilisateur in utilisateurs %}
                 <tr>
-                    <td><input type="checkbox" value="{{ utilisateur.id }}" name="invites[]">{{ utilisateur.username }}</td>
+                    <td><input type="checkbox" value="{{ utilisateur.id }}" name="invites[]" class="small text-primary">{{ utilisateur.username }}</td>
                 </tr>
             {% endfor %}
         </table>
 
-        <input type="submit" value="Ajouter">
+        <input type="submit" value="Ajouter" class="btn btn-xs btn-default">
     </form>
 {% endblock %}
 
