@@ -59,3 +59,20 @@ BO_supppack:
     defaults: { _controller: NadiaMatchingBundle:Packaging:delete }
 
 
+##################################
+
+
+
+FO_voirpackagingsM:
+    path:     /Client/FO_voirpackagingM
+    defaults: { _controller: NadiaMatchingBundle:Default:FO_PackagingsM }
+
+FO_matching_homepageM:
+    path:     /Client/FO_matching_homepageM
+    defaults: { _controller: NadiaMatchingBundle:Default:FO_MatchingHomepageM }
+
+FO_prefM:
+    path:     /Client/FO_ajouterPrefM
+    defaults: { _controller: NadiaMatchingBundle:Pref:new }
+
+
