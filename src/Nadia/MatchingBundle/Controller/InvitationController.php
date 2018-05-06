@@ -4,7 +4,10 @@ namespace Nadia\MatchingBundle\Controller;
 
 use MySoulMate\MainBundle\Entity\Invitation;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 class InvitationController extends Controller
 {
@@ -31,15 +34,41 @@ class InvitationController extends Controller
 
         $moi = $em->getRepository('MySoulMateMainBundle:Utilisateur')->find($this->getUser());
         $role = "ROLE_ADMIN";
-
-        $query = $this->getDoctrine()->getManager()
-            ->createQueryBuilder()
-            ->select('u')
-            ->from('MySoulMateMainBundle:Utilisateur', 'u')
-            ->where('u.id != :client1')
-            ->andwhere('u.roles not like :role ')
-            ->setParameter(':client1', $moi)->setParameter(':role', '%' . $role . '%')
-            ->orderBy('u.matchtot', 'ASC');
+//        if ( ($em->getRepository('MySoulMateMainBundle:AchatPackaging')->find($this->getUser())) == true ) {
+//            $demande = $this->getDoctrine()->getManager()
+//                ->createQueryBuilder()
+//                ->select('p.contenu from MySoulMateMainBundle:Packaging p inner join MySoulMateMainBundle:AchatPackaging ap with  p.id = ap.packaging ')
+//                ->where('ap.client = :client')
+//                ->setParameter(':client', $moi)
+//                ->getQuery()
+//                ->getResult();
+//
+//
+//            $query = $this->getDoctrine()->getManager()
+//                ->createQueryBuilder()
+//                ->select('u')
+//                ->from('MySoulMateMainBundle:Utilisateur', 'u')
+//                ->where('u.id != :client1')
+//                ->andwhere('u.roles not like :role')
+//                ->andwhere('u.matchtot <', ':demande')
+//                ->setParameter(':client1', $moi)
+//                ->setParameter(':demande', $demande)
+//                ->setParameter(':role', '%' . $role . '%')
+//                ->orderBy('u.matchtot', 'ASC');
+//        }
+//
+//        else {
+            $query = $this->getDoctrine()->getManager()
+                ->createQueryBuilder()
+                ->select('u')
+                ->from('MySoulMateMainBundle:Utilisateur', 'u')
+                ->where('u.id != :client1')
+                ->andwhere('u.roles not like :role')
+                ->andwhere('u.matchtot < 30')
+                ->setParameter(':client1', $moi)
+                ->setParameter(':role', '%' . $role . '%')
+                ->orderBy('u.matchtot', 'ASC');
+ //       }
 
         $result = $query->getQuery()->getResult();
         return $this->render('NadiaMatchingBundle:Default:FO_RechercheMatching.html.twig', array('m' => $result));
@@ -91,4 +120,74 @@ class InvitationController extends Controller
     }
 
 
+
+
+    ////////////////////////////////////////////////////////
+    ///
+    ///
+    ///
+    public function FO_InviterMAction(Request $request, $id)
+    {
+        $invit = new Invitation();
+
+        $em = $this->getDoctrine()->getManager();
+
+        $user1 = $em->getRepository('MySoulMateMainBundle:Utilisateur')->find($this->getUser());
+        $invit->setClient1($user1);
+
+
+        $user2 = $em->getRepository('MySoulMateMainBundle:Utilisateur')->find($id);
+        $invit->setClient2($user2);
+
+        $invit->setStatut("en Attente");
+
+        $em2 = $this->getDoctrine()->getManager();
+        $em2->persist($invit);// insert into
+        $em2->flush(); // query
+
+        $em = $this->getDoctrine()->getManager();
+
+        $moi = $em->getRepository('MySoulMateMainBundle:Utilisateur')->find($this->getUser());
+        $role = "ROLE_ADMIN";
+        if ( ($em->getRepository('MySoulMateMainBundle:AchatPackaging')->find($this->getUser())) == true ) {
+            $demande = $this->getDoctrine()->getManager()
+                ->createQueryBuilder()
+                ->select('p.contenu from MySoulMateMainBundle:Packaging p inner join MySoulMateMainBundle:AchatPackaging ap with  p.id = ap.packaging ')
+                ->where('ap.client = :client')
+                ->setParameter(':client', $moi)
+                ->getQuery()
+                ->getResult();
+
+
+            $query = $this->getDoctrine()->getManager()
+                ->createQueryBuilder()
+                ->select('u')
+                ->from('MySoulMateMainBundle:Utilisateur', 'u')
+                ->where('u.id != :client1')
+                ->andwhere('u.roles not like :role')
+                ->andwhere('u.matchtot <', '98')
+                ->setParameter(':client1', $moi)
+                ->setParameter(':role', '%' . $role . '%')
+                ->orderBy('u.matchtot', 'ASC');
+        }
+
+        else {
+        $query = $this->getDoctrine()->getManager()
+            ->createQueryBuilder()
+            ->select('u')
+            ->from('MySoulMateMainBundle:Utilisateur', 'u')
+            ->where('u.id != :client1')
+            ->andwhere('u.roles not like :role')
+            ->andwhere('u.matchtot < 30')
+            ->setParameter(':client1', $moi)
+            ->setParameter(':role', '%' . $role . '%')
+            ->orderBy('u.matchtot', 'ASC');
+               }
+
+        $result = $query->getQuery()->getResult();
+
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($result);
+        return new JsonResponse($formatted);
+    }
 }
