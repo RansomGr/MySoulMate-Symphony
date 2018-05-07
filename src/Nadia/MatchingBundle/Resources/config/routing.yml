@@ -68,11 +68,25 @@ FO_voirpackagingsM:
     defaults: { _controller: NadiaMatchingBundle:Default:FO_PackagingsM }
 
 FO_matching_homepageM:
-    path:     /Client/FO_matching_homepageM
+    path:      /Client/FO_matching_homepageM{id}
     defaults: { _controller: NadiaMatchingBundle:Default:FO_MatchingHomepageM }
 
 FO_prefM:
     path:     /Client/FO_ajouterPrefM
     defaults: { _controller: NadiaMatchingBundle:Pref:new }
 
+FO_acheterM:
+    path:     /Client/FO_acheterM{id}
+    defaults: { _controller: NadiaMatchingBundle:AchatPackaging:FO_AcheterM }
 
+FO_inviterM:
+    path:     /Client/FO_inviterM{id}
+    defaults: { _controller: NadiaMatchingBundle:Invitation:FO_InviterM }
+
+FO_AccepterInvitM:
+    path:     /Client/FO_AccepterInvitM{id}
+    defaults: { _controller: NadiaMatchingBundle:Invitation:AccepterInvitM }
+
+FO_SuppInvitM:
+    path:     /Client/FO_SuppInvitM{id}
+    defaults: { _controller: NadiaMatchingBundle:Invitation:FO_SuppInvitM }

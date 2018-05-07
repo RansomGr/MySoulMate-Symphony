@@ -259,15 +259,15 @@ class DefaultController extends Controller
     }
 
 
-    public function FO_MatchingHomepageMAction()
+    public function FO_MatchingHomepageMAction($id, \Symfony\Component\HttpFoundation\Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $moi = $em->getRepository('MySoulMateMainBundle:Utilisateur')->find($this->getUser());
-        $this->CalculMatchingTot();
+        $moi =  $em->getRepository('MySoulMateMainBundle:Utilisateur')->find($id);
+        $this->CalculMatchingTot2($id);
         $role = "ROLE_ADMIN";
 
-        if ( ($em->getRepository('MySoulMateMainBundle:AchatPackaging')->find($this->getUser())) == true ) {
+        if ( ($em->getRepository('MySoulMateMainBundle:AchatPackaging')->find($id)) == true ) {
             $demande = $this->getDoctrine()->getManager()
                 ->createQueryBuilder()
                 ->select('p.contenu from MySoulMateMainBundle:Packaging p inner join MySoulMateMainBundle:AchatPackaging ap with  p.id = ap.packaging ')
@@ -283,9 +283,8 @@ class DefaultController extends Controller
                 ->from('MySoulMateMainBundle:Utilisateur', 'u')
                 ->where('u.id != :client1')
                 ->andwhere('u.roles not like :role')
-                ->andwhere('u.matchtot <', ':demande')
+                ->andwhere('u.matchtot < 98')
                 ->setParameter(':client1', $moi)
-                ->setParameter(':demande', $demande)
                 ->setParameter(':role', '%' . $role . '%')
                 ->orderBy('u.matchtot', 'ASC');
         }
@@ -305,8 +304,11 @@ class DefaultController extends Controller
 
 
         $result = $query->getQuery()->getResult();
+        $res[]=$result[0];
+        $res[]=$result[1];
+        $res[]=$result[2];
         $serializer = new Serializer([new ObjectNormalizer()]);
-        $formatted = $serializer->normalize($result);
+        $formatted = $serializer->normalize($res);
         return new JsonResponse($formatted);
 
         //return $this->render('NadiaMatchingBundle:Default:FO_RechercheMatching.html.twig', array('m' => $result));
@@ -314,6 +316,68 @@ class DefaultController extends Controller
     }
 
 
+    public function CalculMatchingTot2($id)
+
+    {
+        $em = $this->getDoctrine()->getManager();
+        $clients = $em->getRepository('MySoulMateMainBundle:Utilisateur')->findAll();
+        $client1 = $em->getRepository('MySoulMateMainBundle:Utilisateur')->find($id);
+
+        foreach ($clients as $client2) {
+            $matchingtotal = 0;
+
+            if ($client1->getProfil()->getPreference()->getCorpulence() == $client2->getProfil()->getCaracteristique()->getCorpulence()) {
+                $matchingtotal += 8;
+            }
+            if ($client1->getProfil()->getPreference()->getPilosite() == $client2->getProfil()->getCaracteristique()->getPilosite()) {
+                $matchingtotal += 8;
+
+            }
+            if ($client1->getProfil()->getPreference()->getOrigine() == $client2->getProfil()->getCaracteristique()->getOrigine()) {
+                $matchingtotal += 8;
+            }
+            if ($client1->getProfil()->getPreference()->getProfession() == $client2->getProfil()->getCaracteristique()->getProfession()) {
+                $matchingtotal += 8;
+            }
+            if ($client1->getProfil()->getPreference()->getAlcool() == $client2->getProfil()->getCaracteristique()->getAlcool()) {
+                $matchingtotal += 8;
+            }
+
+            if ($client1->getProfil()->getPreference()->getTabac() == $client2->getProfil()->getCaracteristique()->getTabac()) {
+                $matchingtotal += 8;
+            }
+
+            if ($client1->getGender() == 'H' AND $client1->getProfil()->getPreference()->getTaille() >= $client2->getProfil()->getCaracteristique()->getTaille()) {
+                $matchingtotal += 8;
+            }
+            if ($client1->getGender() == 'F' AND $client1->getProfil()->getPreference()->getTaille() <= $client2->getProfil()->getCaracteristique()->getTaille()) {
+                $matchingtotal += 8;
+            }
+            if ($client1->getProfil()->getPreference()->getCheveux() == $client2->getProfil()->getCaracteristique()->getCheveux()) {
+                $matchingtotal += 8;
+            }
+            if ($client1->getProfil()->getPreference()->getYeux() == $client2->getProfil()->getCaracteristique()->getYeux()) {
+                $matchingtotal += 8;
+            }
+            if ($client1->getProfil()->getPreference()->getCaractere() == $client2->getProfil()->getCaracteristique()->getCaractere()) {
+                $matchingtotal += 8;
+            }
+            if ($client1->getProfil()->getPreference()->getStatut() == $client2->getProfil()->getCaracteristique()->getStatut()) {
+                $matchingtotal += 8;
+            }
+            if ($client1->getProfil()->getPreference()->getCuisine() == $client2->getProfil()->getCaracteristique()->getCuisine()) {
+                $matchingtotal += 8;
+
+            }
+
+            $client2->setMatchtot($matchingtotal);
+            $em->persist($client2);// insert into
+
+        }
+
+        $em->flush();
+
+    }
 
 
 }

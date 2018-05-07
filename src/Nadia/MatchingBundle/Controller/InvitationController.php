@@ -122,10 +122,8 @@ class InvitationController extends Controller
 
 
 
-    ////////////////////////////////////////////////////////
-    ///
-    ///
-    ///
+    //////////////////////////////////////////////////////// MOBILE ////////////////////
+
     public function FO_InviterMAction(Request $request, $id)
     {
         $invit = new Invitation();
@@ -190,4 +188,55 @@ class InvitationController extends Controller
         $formatted = $serializer->normalize($result);
         return new JsonResponse($formatted);
     }
+
+
+
+
+
+
+    public function AccepterInvitMAction( $id)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+        $invit = $em->getRepository('MySoulMateMainBundle:Invitation')->find($id);
+
+        $invit->setStatut('Accepté');
+        var_dump($invit->getStatut());
+
+        $em->persist($invit);// insert into
+        $em->flush(); // query
+
+
+
+        $em = $this->getDoctrine()->getManager();
+        $moi = $em->getRepository('MySoulMateMainBundle:Utilisateur')->find($this->getUser());
+        $accept="Accepté";
+
+        $query=$this->getDoctrine()->getManager()->createQuery('select i from MySoulMateMainBundle:Invitation i where (i.client1 = :client1) AND (i.statut like :accept) ')
+            ->setParameter(':client1',$moi)->setParameter(':accept', $accept);
+        $result=$query->getResult();
+
+
+        $attente="En Attente";
+        $query2=$this->getDoctrine()->getManager()->createQuery('select i from MySoulMateMainBundle:Invitation i where (i.client1 = :client1) AND (i.statut like :attent) ')
+            ->setParameter(':client1',$moi)->setParameter(':attent', $attente);
+        $result2=$query2->getResult();
+
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($result);
+        $formatted2 = $serializer->normalize($result2);
+        return new JsonResponse($formatted, $formatted2);    }
+
+
+
+    function FO_SuppInvitMAction($id)
+    {
+        $em=$this->getDoctrine()->getManager();
+        $mark=$em->getRepository('MySoulMateMainBundle:Invitation')->find($id);
+
+        $em->remove($mark);
+        $em->flush();
+        return $this->redirectToRoute('FO_MesAmis');
+    }
+
 }

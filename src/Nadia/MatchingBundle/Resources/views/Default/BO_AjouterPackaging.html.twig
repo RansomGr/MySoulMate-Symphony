@@ -69,7 +69,7 @@
                                     </tr>
                                     <tr>
                                         <td></td>
-                                        <td><input  class="btn btn-success"  type="submit" onclick="return confirm('Ajout avec succès')" value="Ajouter"></td>
+                                        <td><input  class="btn btn-success"  type="submit"  value="Ajouter"></td>
 
                                     </tr>
                                 </table>
@@ -87,19 +87,14 @@
 
     // Listen for input event on numInput.
     pr.onkeydown = function(e) {
-        if(!((e.keyCode > 95 && e.keyCode < 106)
-            || (e.keyCode > 47 && e.keyCode < 58)
-            || e.keyCode == 8)) {
-            return false;
-        }
-    }
+        if (document.getElementById('prix').value < 0)
+        { alert("Veuillez entrer un prix valide!"); }
+        if (document.getElementById('duree').value < 0)
+        { alert("Veuillez entrer une durée valide!"); }
+        else
+        { alert("Ajout avec succès");
+            window.location.href = link; }
 
-    du.onkeydown = function(e) {
-        if(!((e.keyCode > 95 && e.keyCode < 106)
-            || (e.keyCode > 47 && e.keyCode < 58)
-            || e.keyCode == 8)) {
-            return false;
-        }
     }
 </script>
 {% endblock %}
