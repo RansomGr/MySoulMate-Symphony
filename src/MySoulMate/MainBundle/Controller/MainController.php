@@ -23,6 +23,28 @@ class MainController extends Controller// to do the real job of the login you ne
     {
     }
 
+    public function RecoverAction(Request $request)
+    {
+        $user_manager = $this->get('fos_user.user_manager');
+        $em=$this->getDoctrine()->getManager();
+        $user=$em->getRepository('MySoulMateMainBundle:Utilisateur')->findOneBy(array('email'=>$request->get('email')));
+        $token = sha1(uniqid(mt_rand(), true)); // Or whatever you prefer to generate a token
+        $user->setConfirmationToken($token);
+        $user->setPasswordRequestedAt(new DateTime());
+        $em->persist($user);
+        $em->flush();
+        $headers="";
+
+        $headers = "From: \"MySoulMate:Service Utilisateur \"<info@address.com>\n";
+        $headers .= "Reply-To: jarrayaaudio18@gmail.com\n";
+        $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
+        $subject =$subject="7abcha9leuuuu";
+        $reciver=$request->get('email');
+        $content=$content=$this->renderView('@MySoulMateMain/mobileEmail/email_recovery.html.twig',array('user'=>$user,'recoverylink'=>'192.168.1.8/MySoulMate-Symphony/web/welcome?token='.$token));
+        mail($reciver , $subject , $content ,$headers);
+        return new JsonResponse(array('done'=>true));
+    }
+
     public function addnewAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();

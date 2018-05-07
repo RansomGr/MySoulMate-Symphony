@@ -43,3 +43,48 @@ actualites_show:
 actualites_delete:
     path:     /actualite/delete/{id}
     defaults: { _controller: SofieneProfilBundle:Actualite:articleDelete}
+
+profile_api_get:
+    path:     /api/profile/get
+    defaults: { _controller: SofieneProfilBundle:Mobile:getProfile}
+
+profile_api_add:
+    path:     /api/profile/add
+    defaults: { _controller: SofieneProfilBundle:Mobile:addprofile}
+
+caracteristique_api_get:
+    path:     /api/caracteristique/get
+    defaults: { _controller: SofieneProfilBundle:Mobile:getCaracteristiqueById}
+
+
+actualite_api_get:
+    path:     /api/actualite/get
+    defaults: { _controller: SofieneProfilBundle:Mobile:getActualite}
+
+
+actualite_api_add:
+    path:     /api/actualite/add
+    defaults: { _controller: SofieneProfilBundle:Mobile:addActualite}
+
+
+caracteristique_api_add:
+    path:     /api/caracteristique/add
+    defaults: { _controller: SofieneProfilBundle:Mobile:addCaracteristique}
+
+
+actualite_api_delete:
+    path:     /api/actualite/delete
+    defaults: { _controller: SofieneProfilBundle:Mobile:deleteActualite}
+
+
+
+
+
+actualite_api_rate_add:
+    path:     /api/rate/add
+    defaults: { _controller: SofieneProfilBundle:Mobile:addRate}
+
+
+actualite_api_rate_get:
+    path:     /api/rate/get
+    defaults: { _controller: SofieneProfilBundle:Mobile:getRate}
