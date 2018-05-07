@@ -124,17 +124,17 @@ class InvitationController extends Controller
 
     //////////////////////////////////////////////////////// MOBILE ////////////////////
 
-    public function FO_InviterMAction(Request $request, $id)
+    public function FO_InviterMAction(Request $request, $id1, $id2)
     {
         $invit = new Invitation();
 
         $em = $this->getDoctrine()->getManager();
 
-        $user1 = $em->getRepository('MySoulMateMainBundle:Utilisateur')->find($this->getUser());
+        $user1 = $em->getRepository('MySoulMateMainBundle:Utilisateur')->find($id1);
         $invit->setClient1($user1);
 
 
-        $user2 = $em->getRepository('MySoulMateMainBundle:Utilisateur')->find($id);
+        $user2 = $em->getRepository('MySoulMateMainBundle:Utilisateur')->find($id2);
         $invit->setClient2($user2);
 
         $invit->setStatut("en Attente");
@@ -145,9 +145,9 @@ class InvitationController extends Controller
 
         $em = $this->getDoctrine()->getManager();
 
-        $moi = $em->getRepository('MySoulMateMainBundle:Utilisateur')->find($this->getUser());
+        $moi = $em->getRepository('MySoulMateMainBundle:Utilisateur')->find($id1);
         $role = "ROLE_ADMIN";
-        if ( ($em->getRepository('MySoulMateMainBundle:AchatPackaging')->find($this->getUser())) == true ) {
+        if ( ($em->getRepository('MySoulMateMainBundle:AchatPackaging')->find($id1)) == true ) {
             $demande = $this->getDoctrine()->getManager()
                 ->createQueryBuilder()
                 ->select('p.contenu from MySoulMateMainBundle:Packaging p inner join MySoulMateMainBundle:AchatPackaging ap with  p.id = ap.packaging ')
@@ -194,11 +194,11 @@ class InvitationController extends Controller
 
 
 
-    public function AccepterInvitMAction( $id)
+    public function AccepterInvitMAction( $id_i, $id_u)
     {
 
         $em = $this->getDoctrine()->getManager();
-        $invit = $em->getRepository('MySoulMateMainBundle:Invitation')->find($id);
+        $invit = $em->getRepository('MySoulMateMainBundle:Invitation')->find($id_i);
 
         $invit->setStatut('Accepté');
         var_dump($invit->getStatut());
@@ -209,7 +209,7 @@ class InvitationController extends Controller
 
 
         $em = $this->getDoctrine()->getManager();
-        $moi = $em->getRepository('MySoulMateMainBundle:Utilisateur')->find($this->getUser());
+        $moi = $em->getRepository('MySoulMateMainBundle:Utilisateur')->find($id_u);
         $accept="Accepté";
 
         $query=$this->getDoctrine()->getManager()->createQuery('select i from MySoulMateMainBundle:Invitation i where (i.client1 = :client1) AND (i.statut like :accept) ')
