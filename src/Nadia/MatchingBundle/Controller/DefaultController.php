@@ -42,8 +42,8 @@ class DefaultController extends Controller
             ->createQueryBuilder()
             ->select('u')
             ->from('MySoulMateMainBundle:Utilisateur', 'u')
-            ->where('u.id != :client1')
-            ->andwhere('u.roles not like :role ')
+            ->where('u.id != :client1 AND u.roles not like :role')
+           // ->andwhere('u.roles not like :role ')
             ->setParameter(':client1', $moi)->setParameter(':role', '%' . $role . '%')
             ->orderBy('u.matchtot', 'ASC');
 
@@ -62,6 +62,7 @@ class DefaultController extends Controller
 
         foreach ($clients as $client2) {
             $matchingtotal = 0;
+          //  var_dump($client2);
 
             if ($client1->getProfil()->getPreference()->getCorpulence() == $client2->getProfil()->getCaracteristique()->getCorpulence()) {
                 $matchingtotal += 8;
