@@ -38,7 +38,7 @@ class Profil
     /**
      * Many Features have One Product.
      * @ORM\ManyToOne(targetEntity="MySoulMate\MainBundle\Entity\Caracteristique", inversedBy="profile")
-     * @ORM\JoinColumn(name="caracteristique_id", referencedColumnName="ID")
+     * @ORM\JoinColumn(name="caracteristique", referencedColumnName="ID")
      */
     private $caracteristique;
 

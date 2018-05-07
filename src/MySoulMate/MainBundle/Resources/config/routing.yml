@@ -14,3 +14,6 @@ _CodeNameOne_login:
 _CodeNameOne_new:
     path:     /User/addnew
     defaults: { _controller: MySoulMateMainBundle:Main:addnew }
+_CodeNameOne_recover:
+    path:    /User/recover
+    defaults: { _controller: MySoulMateMainBundle:Main:Recover}
