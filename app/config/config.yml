@@ -76,6 +76,11 @@ swiftmailer:
             allow_self_signed: true
             verify_peer: false
     spool: { type: memory }
+knp_snappy:
+    pdf:
+        enabled:    true
+        binary:     "\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe\""
+        options:    []
 fos_user:
      db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
      firewall_name: main
