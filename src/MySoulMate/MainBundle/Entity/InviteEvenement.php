@@ -106,7 +106,7 @@ class InviteEvenement
     /**
      * @param \Utilisateur $client
      */
-    public function setClient($client)
+    public function setClient(Utilisateur $client)
     {
         $this->client = $client;
     }

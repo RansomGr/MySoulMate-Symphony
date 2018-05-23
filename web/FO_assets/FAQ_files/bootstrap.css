@@ -18,6 +18,21 @@
   font-family: 'Comfortaa', sans-serif;
   color: #f44336;
 }
+select{
+  width: 43.5%;
+  height: 100%;
+  Line-Height: 18pt;
+
+}
+
+.ktibagris
+{Line-Height: 18pt;
+  font-size: 120%;
+  font-weight: 700;
+  width: 100%;
+  font-family: 'Comfortaa', sans-serif;
+  color: dimgray;
+}
 
 .transparenttext
 {

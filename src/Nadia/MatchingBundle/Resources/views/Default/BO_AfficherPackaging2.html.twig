@@ -71,6 +71,21 @@
     </div>
     </div>
     </div>
+    <script>
+        var pr = document.getElementById('prix');
+        var du = document.getElementById('duree');
 
+        // Listen for input event on numInput.
+        pr.onkeydown = function(e) {
+            if (document.getElementById('prix').value < 0)
+            { alert("Veuillez entrer un prix valide!"); }
+            if (document.getElementById('duree').value < 0)
+            { alert("Veuillez entrer une durée valide!"); }
+            else
+            { alert("Ajout avec succès");
+                window.location.href = link; }
+
+        }
+    </script>
 
 {% endblock %}

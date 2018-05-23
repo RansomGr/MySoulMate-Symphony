@@ -52,15 +52,17 @@
                                         <div class="left col-xs-7">
                                             <h2><strong>Titre</strong> :{{ publicite.title }}</h2>
                                             <ul class="list-unstyled">
-                                                <li> Address:</li>
+                                                {% set difference = date(publicite.dateFin).diff(date(publicite.dateDebut)) %}
+                                                {% set leftDays = difference.days %}
+                                                <li><strong>Prix total :</strong>{{ leftDays* publicite.position.price }} DT</li>
                                                 <li><strong><a href="{{ publicite.lien }}">Lien</a></strong> #:{{ publicite.lien }}
                                                 </li>
-                                                <li></li>
-                                                <p><strong>Description: </strong> {{ publicite.description }}</p>
+                                                <li><strong>Click Price :</strong>{{ publicite.position.clickprice }} DT</li>
+                                                <p><strong>Description :</strong> {{ publicite.description }}</p>
                                             </ul>
                                         </div>
                                         <div class="right col-xs-5 text-center">
-                                            <img src="{{ asset(publicite.photo) }}" alt="" class="img-circle img-responsive">
+                                            <img src="{{ asset('images/') }}{{ publicite.photo }}" alt="" class=" img-responsive">
                                         </div>
                                     </div>
 

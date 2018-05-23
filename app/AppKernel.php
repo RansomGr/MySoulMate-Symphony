@@ -25,6 +25,10 @@ class AppKernel extends Kernel
             new Nadia\MatchingBundle\NadiaMatchingBundle(),
             new RansomGr\PubliciteBundle\RansomGrPubliciteBundle(),
             new Sofiene\ProfilBundle\SofieneProfilBundle(),
+            new CMEN\GoogleChartsBundle\CMENGoogleChartsBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle(),
+            new Nelmio\CorsBundle\NelmioCorsBundle(),
+            new Nomaya\SocialBundle\NomayaSocialBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

@@ -14,6 +14,7 @@ use FOS\UserBundle\Model\User as BaseUser ;
  */
 class Utilisateur extends BaseUser
 {
+
     /**
      * @var integer
      *
@@ -70,6 +71,14 @@ class Utilisateur extends BaseUser
      * })
      */
     private $adresse;
+
+    /**
+     * Utilisateur constructor.
+     */
+    public function __construct()
+    {
+
+    }
 
     /**
      * @return \Adresse
@@ -167,6 +176,28 @@ class Utilisateur extends BaseUser
         $this->profil = $profil;
     }
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="matchtot", type="integer", nullable=true)
+     */
+    private $matchtot;
+
+    /**
+     * @return int
+     */
+    public function getMatchtot()
+    {
+        return $this->matchtot;
+    }
+
+    /**
+     * @param int $matchtot
+     */
+    public function setMatchtot($matchtot)
+    {
+        $this->matchtot = $matchtot;
+    }
 
 }
 

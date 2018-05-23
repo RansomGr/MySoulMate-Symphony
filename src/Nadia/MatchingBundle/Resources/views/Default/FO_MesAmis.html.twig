@@ -15,7 +15,7 @@
     <br> <br> <br> <br>  <br>
 
 
-    <center><h5 class="titrerose"><a href='{{ path('FO_voirpackagings') }}'> Voir plus de compatibilité </a><font
+    <center><h5 class="titrerose"><a href='{{ path('FO_matching_homepage') }}'> Voir plus de matchings </a><font
                     color="white"> __________________________________________________________________ </font> <a
                     href='{{ path('FO_ajouterpref') }}'>Ajouter mes préférences </a></center> </h5>
 
@@ -31,6 +31,7 @@
                     <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
                         <img src=" {{ asset(i.getClient2().getProfil().getPhoto()) }}" class="img-circle img-wide" alt="">
                         <h5 class="small text-primary"> {{ i.getClient2().getUsername() }} </h5>
+                        <small class="text-muted"><h5 class="small text-primary"> {{ i.getClient2().getMatchtot() }} % </h5></small>
 
                         <p class="offset-0">
 
@@ -59,7 +60,7 @@
                         </p>
 
 
-                        <a href="{{ path('FO_VoirCompa', { 'id': i.getId() }) }}"  class="btn btn-xs btn-default">Voir compatibilité</a>
+                        <a href="{{ path('FO_Pie', { 'id': i.getClient2().getId() }) }}"  class="btn btn-xs btn-default">Voir compatibilité</a>
 
                     </div>
 

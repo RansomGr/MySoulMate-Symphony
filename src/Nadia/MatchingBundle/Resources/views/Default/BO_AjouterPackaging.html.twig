@@ -5,15 +5,7 @@
     <br>
     <br>
     <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <div class="right_col" role="main">
+
         <div class="">
             <div class="page-title">
                 <div class="title_left">
@@ -69,15 +61,15 @@
 
                                     <tr>
                                         <td> prix :</td>
-                                        <td><input class="form-control col-md-7 col-xs-12" type="number" name="prix"/></td>
+                                        <td><input class="form-control col-md-7 col-xs-12" type="number" name="prix"  id="prix" min='0' /></td>
                                     </tr>
                                     <tr>
                                         <td> duree :</td>
-                                        <td><input class="form-control col-md-7 col-xs-12" type="number" name="duree"/></td>
+                                        <td><input class="form-control col-md-7 col-xs-12" type="number" name="duree" id="durée" min='1' /></td>
                                     </tr>
                                     <tr>
                                         <td></td>
-                                        <td><input  class="btn btn-success"  type="submit" onclick="return confirm('Ajout avec succès')" value="Ajouter"></td>
+                                        <td><input  class="btn btn-success"  type="submit"  value="Ajouter"></td>
 
                                     </tr>
                                 </table>
@@ -88,8 +80,21 @@
                 </div>
             </div>
         </div>
-    </div>
 
+<script>
+    var pr = document.getElementById('prix');
+    var du = document.getElementById('duree');
 
+    // Listen for input event on numInput.
+    pr.onkeydown = function(e) {
+        if (document.getElementById('prix').value < 0)
+        { alert("Veuillez entrer un prix valide!"); }
+        if (document.getElementById('duree').value < 0)
+        { alert("Veuillez entrer une durée valide!"); }
+        else
+        { alert("Ajout avec succès");
+            window.location.href = link; }
 
+    }
+</script>
 {% endblock %}

@@ -24,6 +24,12 @@ class Plan
     /**
      * @var string
      *
+     * @ORM\Column(name="nom", type="string", length=50, nullable=true)
+     */
+    private $nom;
+    /**
+     * @var string
+     *
      * @ORM\Column(name="type", type="string", length=30, nullable=true)
      */
     private $type;
@@ -48,6 +54,22 @@ class Plan
      * @ORM\Column(name="photo", type="string", length=500, nullable=false)
      */
     private $photo;
+
+    /**
+     * @return string
+     */
+    public function getNom()
+    {
+        return $this->nom;
+    }
+
+    /**
+     * @param string $nom
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+    }
 
     /**
      * @return string

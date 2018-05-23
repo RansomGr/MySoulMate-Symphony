@@ -1,1 +1,70 @@
-<
+{% extends 'Layouts/Layout_Profil.html.twig' %}
+{% block content %}
+    <div class="row">
+        {% if profile is not null %}
+            <div class="col-md-6 col-lg-offset-2">
+                {{ socialButtons() }}
+
+                <h4>Description : </h4>
+                <p>{{ profile.description }}</p>
+
+                <img src="    {{ asset('images/') }}{{ profile.photo }}"/>
+                {% if profile.caracteristique is not null %}
+
+                    <h5>Corpulence : </h5>
+                    <p>{{ profile.caracteristique.corpulence }}</p>
+                    <h5>Pilosite : </h5>
+                    <p>{{ profile.caracteristique.pilosite }}</p>
+                    <h5>Origine : </h5>
+                    <p>{{ profile.caracteristique.origine }}</p>
+                    <h5>Profession : </h5>
+                    <p>{{ profile.caracteristique.profession }}</p>
+                    <h5>Alcool : </h5>
+                    <p>{{ profile.caracteristique.alcool }}</p>
+                    <h5>Tabac : </h5>
+                    <p>{{ profile.caracteristique.tabac }}</p>
+                    <h5>Taille : </h5>
+                    <p>{{ profile.caracteristique.taille }}</p>
+                    <h5>Cheveux : </h5>
+                    <p>{{ profile.caracteristique.cheveux }}</p>
+                    <h5>Yeux : </h5>
+                    <p>{{ profile.caracteristique.yeux }}</p>
+                    <h5>Caractere : </h5>
+                    <p>{{ profile.caracteristique.caractere }}</p>
+                    <h5>Statut : </h5>
+                    <p>{{ profile.caracteristique.statut }}</p>
+                    <h5>Cuisine : </h5>
+                    <p>{{ profile.caracteristique.cuisine }}</p>
+                {% else %}
+                    {{ render(controller('SofieneProfilBundle:Caracteristique:ajout')) }}
+                {% endif %}
+            </div>
+
+            <div class="col-md-4">
+                <button class="btn btn-warning" id="show"><span class="glyphicon glyphicon-edit"></span></button>
+                <div id="formulaire" hidden>
+                    <h4>Modifier profile</h4>
+                    {{ render(controller('SofieneProfilBundle:Profile:profileEdit')) }}
+
+                    {% if profile.caracteristique is not null %}
+                        <br/><br/>
+                        <h4>Modifier les carectéristique</h4>
+                        {{ render(controller('SofieneProfilBundle:Caracteristique:modifier',{'q':profile.caracteristique.id})) }}
+
+                    {% endif %}
+                </div>
+            </div>
+        {% else %}
+            <div class="col-md-6 col-lg-offset-2">
+                {{ render(controller('SofieneProfilBundle:Profile:profileAdd')) }}
+            </div>
+        {% endif %}
+    </div>
+    <script>
+        $("#show").click(function () {
+            $("#formulaire").toggle("slow", function () {
+                // Animation complete.
+            });
+        });
+    </script>
+{% endblock %}
