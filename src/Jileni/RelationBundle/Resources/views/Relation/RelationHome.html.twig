@@ -1,0 +1,109 @@
+{% extends "Layouts/Layout_FO.html.twig" %}
+{% block affiche %}
+    <div class="right_col" role="main">
+        <div class="">
+            <div class="page-title">
+                <div class="title_left">
+                    <h3>Page relation</h3>
+                </div>
+
+
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel" style="height:600px;">
+                        <div class="x_title">
+                            <h2><font color="#a52a2a">Page d'acceuil Relations</font></h2>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="#">Settings 1</a>
+                                        </li>
+                                        <li><a href="#">Settings 2</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+
+                        <div class="x_content">
+                            <div class="row">
+
+                                <div class="col-md-12">
+
+                                    <!-- ajout moment -->
+                                    <div class="col-md-3 col-sm-6 col-xs-12">
+                                        <div class="pricing ui-ribbon-container">
+                                            <div class="title">
+                                                <h2><font color="#ff6347">Partager vos moments</font></h2>
+                                                <img src="{{ asset('images/img2202-photo-vacances-seniors-partager-moments-inoubliables.jpg') }}"><br>
+                                                <span><h6><strong>Vos moments sont sacrés !<br>
+                                            Nous tenons à ce que vous partagez les moments que vous chérissez ensemble</strong></h6></span>
+                                            </div>
+
+                                            <div class="pricing_footer">
+                                                <a href="{{ path('_ajoutM') }}" class="btn btn-primary btn-block" role="button">Ajouter <span> Moments !</span></a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <!-- afficher moment -->
+                                    <div class="col-md-3 col-sm-6 col-xs-12">
+                                        <div class="pricing ui-ribbon-container">
+                                            <div class="title">
+                                                <h2><font color="#ff6347">Revivez vos moments</font></h2>
+                                                <img src="{{ asset('images/MG_0006.jpg') }}"><br>
+                                                <span><h6><strong>Sélectionnez cette partie pur revoir vos moments !<br>
+                                            </strong></h6></span>
+                                            </div>
+                                            <br><br>
+                                            <div class="pricing_footer">
+                                                <a href="{{ path('_afficherM') }}" class="btn btn-primary btn-block" role="button">Afficher <span> Moments !</span></a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- afficher conseil -->
+                                    <div class="col-md-3 col-sm-6 col-xs-12">
+                                        <div class="pricing ui-ribbon-container">
+                                            <div class="title">
+                                                <h2><font color="#ff6347">Conseils Relations</font></h2>
+                                                <img src="{{ asset('images/6c2fdfef8cfff181627712c95a8b4598.png') }}">
+                                                <span><h6><strong>
+                                                            Notre aide est disponible !<br>Fiez vous à nos conseils et tutoriel sur la vie de couple</strong></h6></span>
+                                            </div>
+                                            <br><br><br><br><br>
+                                            <div class="x_content">
+                                                <div class="pricing_footer">
+                                                    <a href="{{ path('_afficherC') }}" class="btn btn-primary btn-block" role="button">Voir <span> Conseils!</span></a>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- price element -->
+
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

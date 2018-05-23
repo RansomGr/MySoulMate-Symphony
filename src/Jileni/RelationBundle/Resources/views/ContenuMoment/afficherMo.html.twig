@@ -1,0 +1,91 @@
+{% extends "Layouts/Layout_FO.html.twig" %}
+{% block title %}JileniRelationBundle:ContenuMoment:AfficherMoment{% endblock %}
+{% block body %}
+    <h1>Ajout Moments</h1>
+    {% block affiche %}
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!-- Meta, title, CSS, favicons, etc. -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>MySoulMate|BackOffice </title>
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="{{ asset("BO_assets/vendors/bootstrap/dist/css/bootstrap.min.css") }}"/>
+        <!-- Font Awesome -->
+        <link href="{{ asset("BO_assets/vendors/font-awesome/css/font-awesome.min.css") }}" rel="stylesheet">
+        <!-- NProgress -->
+        <link href="{{ asset("BO_assets/vendors/nprogress/nprogress.css") }}" rel="stylesheet">
+        <!-- iCheck -->
+        <link href="{{ asset("BO_assets/vendors/iCheck/skins/flat/green.css") }}" rel="stylesheet">
+        <!-- Datatables -->
+        <link href="{{ asset("BO_assets/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css") }}" rel="stylesheet">
+        <link href="{{ asset("BO_assets/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css") }}" rel="stylesheet">
+        <link href="{{ asset("BO_assets/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css") }}" rel="stylesheet">
+        <link href="{{ asset("BO_assets/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css") }}" rel="stylesheet">
+        <link href="{{ asset("BO_assets/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css") }}" rel="stylesheet">
+
+
+        <!-- bootstrap-progressbar -->
+        <link href="{{ asset("BO_assets/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css") }}"
+              rel="stylesheet">
+        <!-- JQVMap -->
+        <link href="{{ asset("BO_assets/vendors/jqvmap/dist/jqvmap.min.css") }}" rel="stylesheet"/>
+        <!-- bootstrap-daterangepicker -->
+        <link href="{{ asset("BO_assets/vendors/bootstrap-daterangepicker/daterangepicker.css") }}" rel="stylesheet">
+        <!-- Custom Theme Style -->
+        <link href="{{ asset("BO_assets/build/css/custom.min.css") }}" rel="stylesheet">
+        <div class="row">
+        <div class="col-md-12">
+            <div class="col-sm-6">
+                <div id="datatable_filter" class="dataTables_filter">
+                    <label>Search:<input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable">
+                    </label></div></div></div>
+        <div class="x_panel">
+        <div class="x_title">
+            <h2><font color="#ff6347">Vos moments</font></h2>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+
+        <div class="row">
+        <div class="col-md-55">
+            <div class="thumbnail">
+                <div class="image view view-first">
+                    <img style="width: 100%; display: block;"
+                         img src="{{ asset('images/Sans titre.png') }}" alt="image" />
+                    <div class="mask">
+                        <p>Ajouter moment</p>
+                        <div class="tools tools-bottom">
+                            <a href="{{ path('_ajoutM') }}">+</a>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="caption">
+                    <p>  </p>
+                </div>
+            </div>
+
+        </div>
+{%  for i in m %}
+        <div class="col-md-55">
+            <div class="thumbnail">
+                <div class="image view view-first">
+                    <img style="width: 100%; display: block;"
+                         img src="{{ asset('images/img2202-photo-vacances-seniors-partager-moments-inoubliables.jpg') }}" alt="image" />
+                    <div class="mask">
+                        <p>{{ i.nom }} - {{ i.dateMoment | date }}</p>
+                        <div class="tools tools-bottom">
+                            <a href="{{ path('_modifierM', {'id': i.id}) }}"><i class="fa fa-pencil"></i></a>
+                            <a href="{{ path('_supprimerM', {'id': i.id}) }}"><i class="fa fa-times"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="caption">
+                    <p>{{ i.description }}</p>
+                </div>
+            </div>
+        </div>
+{% endfor %}
+    {% endblock %}
+{% endblock %}

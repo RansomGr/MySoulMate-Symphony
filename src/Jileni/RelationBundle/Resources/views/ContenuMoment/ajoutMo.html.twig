@@ -1,0 +1,71 @@
+{% extends "Layouts/Layout_FO.html.twig" %}
+{% block title %}JileniRelationBundle:ContenuMoment:Ajout{% endblock %}
+{% block body %}
+
+    {% block affiche %}
+        <center><a href="{{ path('_afficherM') }}"> <button class="btn btn-round btn-default">Voir moments</button></a></center>
+
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="{{ asset("BO_assets/vendors/bootstrap/dist/css/bootstrap.min.css") }}"/>
+        <!-- bootstrap-progressbar -->
+        <link href="{{ asset("BO_assets/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css") }}"
+              rel="stylesheet">
+        <!-- JQVMap -->
+        <link href="{{ asset("BO_assets/vendors/jqvmap/dist/jqvmap.min.css") }}" rel="stylesheet"/>
+        <!-- bootstrap-daterangepicker -->
+        <link href="{{ asset("BO_assets/vendors/bootstrap-daterangepicker/daterangepicker.css") }}" rel="stylesheet">
+
+        <br><br><br>
+        <h2><font color="#ff6347">Ajouter moment</font></h2>
+        <br><br>
+        <center><h3>
+
+            {{ form_start(f) }}
+            <table>
+                <tr>
+                    <td>Titre:</td>
+                    <td>{{ form_widget(f.nom)}}</td>
+                </tr>
+                <tr>
+                    <td><br></td>
+                    <td><br></td>
+                </tr>
+                <tr>
+                    <td>Photo:</td>
+                    <td>{{ form_widget(f.photo)}}</td>
+                </tr>
+                <tr>
+                    <td><br></td>
+                    <td><br></td>
+                </tr>
+                <tr>
+                    <td>Description:</td>
+                    <td>{{ form_widget(f.description) }}</td>
+                </tr>
+                <tr>
+                    <td><br></td>
+                    <td><br></td>
+                </tr>
+                <tr>
+                    <td>Date:</td>
+                    <td>{{ form_widget(f.dateMoment) }}</td>
+                </tr>
+                <tr>
+                    <td><br></td>
+                    <td><br></td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td><button  class="btn btn-round btn-danger" type="submit">Ajouter</button></td>
+                </tr>
+            </table>
+            {{ form_end(f) }}
+
+
+
+
+        </h3></center>
+
+    {% endblock %}
+{% endblock %}
