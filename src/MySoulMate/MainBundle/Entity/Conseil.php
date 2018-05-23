@@ -24,6 +24,12 @@ class Conseil
     /**
      * @var string
      *
+     * @ORM\Column(name="titre", type="text", length=65535, nullable=true)
+     */
+    private $titre;
+    /**
+     * @var string
+     *
      * @ORM\Column(name="contenu", type="text", length=65535, nullable=true)
      */
     private $contenu;
@@ -47,7 +53,7 @@ class Conseil
      *
      * @ORM\Column(name="type", type="text", length=65535, nullable=true)
      */
-    private $type;
+    private $categorie;
 
     /**
      * @return int
@@ -63,6 +69,38 @@ class Conseil
     public function setId($id)
     {
         $this->id = $id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitre()
+    {
+        return $this->titre;
+    }
+
+    /**
+     * @param string $titre
+     */
+    public function setTitre($titre)
+    {
+        $this->titre = $titre;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCategorie()
+    {
+        return $this->categorie;
+    }
+
+    /**
+     * @param string $categorie
+     */
+    public function setCategorie($categorie)
+    {
+        $this->categorie = $categorie;
     }
 
     /**
@@ -113,21 +151,6 @@ class Conseil
         $this->niveau = $niveau;
     }
 
-    /**
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
-     * @param string $type
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
-    }
 
 
 }

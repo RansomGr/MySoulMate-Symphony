@@ -8,20 +8,22 @@ _afficherR:
 _statR:
     path:     /Admin/Relation/StatRE
     defaults: { _controller: JileniRelationBundle:Relation:AfficherStat }
-
+_acceuilR:
+    path:     /pageRe
+    defaults: { _controller: JileniRelationBundle:Relation:AfficherPage}
 _ajoutM:
-    path:     /Admin/Moment/AjoutMoment
+    path:     /Moment/AjoutMoment
     defaults: { _controller: JileniRelationBundle:ContenuMoment:Ajout }
 
 _modifierM:
-    path:     /Admin/Moment/ModifierMoment/{id}
+    path:     /Moment/ModifierMoment/{id}
     defaults: { _controller: JileniRelationBundle:ContenuMoment:Modifier }
 
 _supprimerM:
-    path:     /Admin/Moment/SupprimerMoment/{id}
+    path:     /Moment/SupprimerMoment/{id}
     defaults: { _controller: JileniRelationBundle:ContenuMoment:Supprimer }
 _afficherM:
-    path:     /Admin/Moment/AfficherMoment
+    path:     /Moment/AfficherMoment
     defaults: { _controller: JileniRelationBundle:ContenuMoment:Afficher }
 _ajoutC:
     path:     /Admin/Conseil/AjoutConseil
@@ -32,9 +34,35 @@ _modifierC:
     defaults: { _controller: JileniRelationBundle:Conseil:Modifier }
 
 _supprimerC:
-    path:     /Admin/Conseil/SupprimerConseil{id}
+    path:     /Admin/Conseil/SupprimerConseil/{id}
     defaults: { _controller: JileniRelationBundle:Conseil:Supprimer }
+_pdfC:
+    path:     /Admin/Conseil/pdfConseil/{cid}
+    defaults: { _controller: JileniRelationBundle:Conseil:pdfconseil }
+_listeC:
+    path:     /Admin/Conseil/ListeConseil
+    defaults: { _controller: JileniRelationBundle:Conseil:listec }
 
 _afficherC:
     path:     /Admin/Conseil/AfficherConseil
     defaults: { _controller: JileniRelationBundle:Conseil:Afficher }
+
+listMo:
+    path:     /Moment/all
+    defaults: { _controller: JileniRelationBundle:ContenuMoment:all }
+
+find_moment:
+    path:     /Moment/find/{id}
+    defaults: { _controller: JileniRelationBundle:ContenuMoment:find}
+
+create_moment:
+    path:     /Moment/new/{nom}/{description}
+    defaults: { _controller: JileniRelationBundle:ContenuMoment:new}
+listCo:
+    path:     /Conseil/all
+    defaults: { _controller: JileniRelationBundle:Conseil:all }
+
+find_conseil:
+    path:     /Conseil/find/{id}
+    defaults: { _controller: JileniRelationBundle:Conseil:find}
+
