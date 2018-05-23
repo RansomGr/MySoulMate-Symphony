@@ -321,8 +321,7 @@ class DefaultController extends Controller
         $res[]=$result[2];
         $res[]=$result[3];
         $res[]=$result[4];
-        $res[]=$result[5];
-        $res[]=$result[6];
+
         $serializer = new Serializer([new ObjectNormalizer()]);
         $formatted = $serializer->normalize($res);
         return new JsonResponse($formatted);

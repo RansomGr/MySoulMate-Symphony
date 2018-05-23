@@ -16,7 +16,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 class MobileController extends Controller
 {
-
     public function getProfileAction(Request $request)
     {
 
@@ -84,8 +83,6 @@ class MobileController extends Controller
             "tabac" => $caracteristique->getTabac(),
             "taille" => $caracteristique->getTaille(),
             "yeux" => $caracteristique->getYeux(),
-
-
         );
 
         return new JsonResponse(array($array));

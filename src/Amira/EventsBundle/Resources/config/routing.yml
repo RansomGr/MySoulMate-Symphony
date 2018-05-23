@@ -49,3 +49,6 @@ FO_delete:
 FO_QR:
     path:     /QR/{id}
     defaults: { _controller: AmiraEventsBundle:FoEventsController:QR }
+events_listing:
+    path:     /api/event/allevents
+    defaults: { _controller: AmiraEventsBundle:CEvents:Listing }

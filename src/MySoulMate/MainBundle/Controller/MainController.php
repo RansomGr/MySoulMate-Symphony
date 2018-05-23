@@ -2,6 +2,7 @@
 
 namespace MySoulMate\MainBundle\Controller;
 use DateTime;
+use DateTimeZone;
 use MySoulMate\MainBundle\Entity\Utilisateur;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -43,6 +44,21 @@ class MainController extends Controller// to do the real job of the login you ne
         $content=$content=$this->renderView('@MySoulMateMain/mobileEmail/email_recovery.html.twig',array('user'=>$user,'recoverylink'=>'192.168.1.8/MySoulMate-Symphony/web/welcome?token='.$token));
         mail($reciver , $subject , $content ,$headers);
         return new JsonResponse(array('done'=>true));
+    }
+
+    public function UpdateAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $user=$em->getRepository(Utilisateur::class)->findOneBy(array('id'=>$request->get('idu')));
+        $user->setNom($request->get('nom'));
+        $user->setPrenom($request->get('prenom'));
+        $d=new DateTime();
+
+        $user->setDatenaissance($d->setTimestamp($request->get('datenai')/1000));
+        $user->setGender($request->get('gender'));
+        $em->persist($user);
+        $em->flush();
+        return new JsonResponse(array('benoumin'=>'eeineein'));
     }
 
     public function addnewAction(Request $request)

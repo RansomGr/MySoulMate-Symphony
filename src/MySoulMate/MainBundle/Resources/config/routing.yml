@@ -17,3 +17,6 @@ _CodeNameOne_new:
 _CodeNameOne_recover:
     path:    /User/recover
     defaults: { _controller: MySoulMateMainBundle:Main:Recover}
+_CodeNameOne_update:
+    path:   /User/update
+    defaults: {_controller: MySoulMateMainBundle:Main:Update}
